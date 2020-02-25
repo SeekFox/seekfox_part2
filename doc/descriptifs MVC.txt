@@ -1,0 +1,12 @@
+<<<< MODELE (C)
+	Moteurs de recherche Texte, Image, Son, Mot, CD
+		Entrée Par argc
+		Sortie sur un fichier texte (format JSON ? Texte brut ?)
+>>>>
+
+
+<<<< CONTROLEUR (Java)
+>>>>
+
+<<<< VUE (Processing)
+>>>>
