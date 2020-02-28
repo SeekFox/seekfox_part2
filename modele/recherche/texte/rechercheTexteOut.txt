@@ -1,6 +1,5 @@
-./rechercheTexte.out
-ceci
-est
-un
-test
-CONFIG gedit
+fichierInputRecherche.txt
+fichier1;74
+ficher2;7
+fichier3;81
+fichier4;41
