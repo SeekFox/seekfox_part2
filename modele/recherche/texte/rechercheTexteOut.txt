@@ -1,5 +1,4 @@
-fichierInputRecherche.txt
-fichier1;74
-ficher2;7
-fichier3;81
-fichier4;41
+fichierTexteAComparer
+fichier1;75
+fichier2;45
+fichier3;87
