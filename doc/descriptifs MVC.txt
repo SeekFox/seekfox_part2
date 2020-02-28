@@ -1,11 +1,17 @@
 <<<< MODELE (C)
 	Moteurs de recherche Texte, Image, Son, Mot, CD
 		Entrée Par argc
-		Sortie sur un fichier texte (format JSON ? Texte brut ?)
+		Sortie sur un fichier texte (format JSON ? Texte brut ?)	
 >>>>
 
 
 <<<< CONTROLEUR (Java)
+	ControlRecherche{AUDIO,TEXTE,IMAGE}
+		-> Lance le programme c associé
+		-> Lis le fichier 
+		-> Traite l'information
+	
+	
 >>>>
 
 <<<< VUE (Processing)
