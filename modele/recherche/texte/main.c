@@ -1,7 +1,8 @@
 /**
  * @file main.c
  * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
- * @brief 
+ * @brief Comparaison d'un texte .xml (en entrée) avec les fichiers textes déjà indexés
+ * @brief Ces descripeurs sont stockés dans le fichier ./data/descripteursTexte
  * @version 0.1
  * @date 28/02/2020
  * 
@@ -73,8 +74,36 @@ int main (int argc, char * argv[]){
     printf("Comparaison : %.2f %% \n",comparerDescripteurTexte(dt,dt));
 
 
+    FILE * fDescripteur = NULL;
+    fDescripteur = fopen("../../../data/descripteursTexte","r");
+
+    //Fichier des descripteurs Textes inexistant ?
+    if(fDescripteur==NULL){
+        fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "../../../data/descripteursTexte");
+        return 5;
+    }
+
+    fprintf(output,"===\n");
+
+    char * stringDescripteurCourant = (char*)malloc(sizeof(char)* 1024);
+    DescripteurTexte descripteurCourant = initDescripteurTexte();
+
+    while(fgets(stringDescripteurCourant,1024,fDescripteur)!=NULL){
+        descripteurCourant = StringTodescripteurText(stringDescripteurCourant);
+        fprintf(output,"%s\n",descripteurTexteToString(descripteurCourant));
+
+        printf("%s;%.2f\n",getNameDescripteurTexte(descripteurCourant)
+                                ,comparerDescripteurTexte(dt,descripteurCourant)
+                                );
+    }
+
+
+
     //fprintf(output,"CONFIG %s",getLogicielTexte(config));
 
+
+    fclose(fDescripteur);
+    fclose(output);
 
     return 0;
 }

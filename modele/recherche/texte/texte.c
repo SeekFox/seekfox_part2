@@ -128,7 +128,7 @@ DescripteurTexte lireFichierTexte(char * file){
             if(c==EOF) break; 
 
             //Caractere non voulus
-            if(c==','||c==':'||c=='!'||c=='\''||c=='?'||c=='.'||c==';') continue; 
+            if(c==','||c==':'||c=='!'||c=='\''||c=='?'||c=='.'||c==';'||c=='('||c==')'||c=='['||c==']') continue; 
 
             //Ajout d'un mot
             if(c==' '){
@@ -226,7 +226,9 @@ DescripteurTexte StringTodescripteurText(char * str){
                 c=str[i];
                 sprintf(chaine,"%s%c",chaine,c);
                 if(c==';'){
+                    (descripteur->name) = realloc(descripteur->name,(sizeof(char)*strlen(chaine)));
                     strncpy(descripteur->name,chaine,strlen(chaine)-1);
+                    
                     strcpy(chaine,"");
                 }
                 if(c==']'){
