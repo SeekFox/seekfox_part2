@@ -57,7 +57,7 @@ int main (int argc, char * argv[]){
         return 4;
     }
 
-    fprintf(output,"Extension : %s\n",getExtensionOfFile(cheminFichier));
+    fprintf(output,"%s\n",cheminFichier);
 
     
     //recuperation des parametres de config
@@ -69,9 +69,7 @@ int main (int argc, char * argv[]){
     dt = lireFichierTexte(cheminFichier);
     //afficheDescripteurTexte(dt);
 
-    fprintf(output,"%s\n",descripteurTexteToString(dt));
-
-    printf("Comparaison : %.2f %% \n",comparerDescripteurTexte(dt,dt));
+    //fprintf(output,"%s\n",descripteurTexteToString(dt));
 
 
     FILE * fDescripteur = NULL;
@@ -83,16 +81,14 @@ int main (int argc, char * argv[]){
         return 5;
     }
 
-    fprintf(output,"===\n");
-
     char * stringDescripteurCourant = (char*)malloc(sizeof(char)* 1024);
     DescripteurTexte descripteurCourant = initDescripteurTexte();
 
     while(fgets(stringDescripteurCourant,1024,fDescripteur)!=NULL){
         descripteurCourant = StringTodescripteurText(stringDescripteurCourant);
-        fprintf(output,"%s\n",descripteurTexteToString(descripteurCourant));
+        //fprintf(output,"%s\n",descripteurTexteToString(descripteurCourant));
 
-        printf("%s;%.2f\n",getNameDescripteurTexte(descripteurCourant)
+        fprintf(output,"%s;%.2f\n",getNameDescripteurTexte(descripteurCourant)
                                 ,comparerDescripteurTexte(dt,descripteurCourant)
                                 );
     }

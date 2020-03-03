@@ -1,5 +1,3 @@
-Extension : .xml
-[../../../base_de_document/Texte/05-Le_Colombien_Juan_Pablo_Montoya.xml;154]{Pablo;6}{Montoya;6}{Grand;5}{victoire;3}{circuit;4}{Monza;5}{Renault;8}{place;4}{leader;3}{monde;6}{pilotes;6}{lissue;3}{septembre;3}{Fernando;3}{Alonso;4}{Giancarlo;3}{Fisichella;4}{championnat;4}{epreuves;4}{McLaren;7}{Raikkonen;5}{Toyota;4}{Schumacher;4}{Williams;3}{Ferrari;4}{course;6}{points;8}{pilote;4}{apres;4}{moins;4}{dernieres;3}{saison;4}{detre;3}{podium;4}{merite;3}!
-===
-[../../../base_de_document/Texte/05-Le_Colombien_Juan_Pablo_Montoya.xml;154]{merite;3}{podium;4}{detre;3}{saison;4}{dernieres;3}{moins;4}{apres;4}{pilote;4}{points;8}{course;6}{Ferrari;4}{Williams;3}{Schumacher;4}{Toyota;4}{Raikkonen;5}{McLaren;7}{epreuves;4}{championnat;4}{Fisichella;4}{Giancarlo;3}{Alonso;4}{Fernando;3}{septembre;3}{lissue;3}{pilotes;6}{monde;6}{leader;3}{place;4}{Renault;8}{Monza;5}{circuit;4}{victoire;3}{Grand;5}{Montoya;6}{Pablo;6}!
-[../../../base_de_document/Texte/06-Le_Malgache_fou_du_Panama.xml;100]{feuille;30}{epreuves;10}{championnat;7}{octobre;3}{vaisseaux;20}{monde;15}{leader;3}{moyen;4}{victoire;3}{Petit;5}!
+../../../base_de_document/Texte/05-Le_Colombien_Juan_Pablo_Montoya.xml
+../../../base_de_document/Texte/05-Le_Colombien_Juan_Pablo_Montoya.xml;100.00
+../../../base_de_document/Texte/06-Le_Malgache_fou_du_Panama.xml;22.83
