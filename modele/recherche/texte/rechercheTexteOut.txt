@@ -1,4 +1,1 @@
-fichierTexteAComparer
-fichier1;75
-fichier2;45
-fichier3;87
+Extension : .xml
