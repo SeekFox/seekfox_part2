@@ -273,3 +273,15 @@ void majConfigFile(){
     }
     fclose(fichier);
 }
+
+/**
+ * @brief Get the Extension Of File object
+ * 
+ * @param file 
+ * @return const char* 
+ */
+const char * getExtensionOfFile(const char * file){
+  if (strlen(file) == 0 || strcmp(file, "NA") == 0) return "";
+
+  return strrchr(file,'.');
+}

@@ -66,7 +66,11 @@ int main (int argc, char * argv[]){
     //Execution
     DescripteurTexte dt = initDescripteurTexte();
     dt = lireFichierTexte(cheminFichier);
-    afficheDescripteurTexte(dt);
+    //afficheDescripteurTexte(dt);
+
+    fprintf(output,"%s\n",descripteurTexteToString(dt));
+
+    printf("Comparaison : %.2f %% \n",comparerDescripteurTexte(dt,dt));
 
 
     //fprintf(output,"CONFIG %s",getLogicielTexte(config));

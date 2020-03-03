@@ -186,3 +186,11 @@ void displayConfig();
  * 
  */
 void majConfigFile();
+
+/**
+ * @brief Get the Extension Of File object
+ * 
+ * @param file 
+ * @return const char* 
+ */
+const char * getExtensionOfFile(const char * file);
