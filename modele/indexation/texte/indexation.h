@@ -13,7 +13,7 @@
  * @brief 
  * 
  */
-void indexationTotale();
+int indexationTotale();
 
 
 /**
@@ -21,4 +21,4 @@ void indexationTotale();
  * 
  * @param cheminFichier 
  */
-void indexationFichier(char * cheminFichier);
+int indexationFichier(char * cheminFichier);

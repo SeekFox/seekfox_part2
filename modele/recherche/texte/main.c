@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "texte.h"
-#include "../config.h"
+#include "../../config.h"
 
 /**
  * @brief Variable globale config

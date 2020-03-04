@@ -112,6 +112,8 @@ DescripteurTexte lireFichierTexte(char * file){
     DescripteurTexte descripteur = initDescripteurTexte();
     descripteur->name = (char*)malloc(sizeof(char)*strlen(file));
     strcpy(descripteur->name,file);
+
+    
     
     ListeMots liste = initListeMots();
     FILE * fichier = NULL;

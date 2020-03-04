@@ -12,7 +12,7 @@ INCLUDE = .
 
 all :
 	@$(GCC) $(CFLAGS) -I $(INCLUDE) -c $(SRC) $(LIBFLAGS)
-	@$(GCC) $(CFLAGS) -o $(EXC) $(LIB)*.o ../config.o $(LIBFLAGS)
+	@$(GCC) $(CFLAGS) -o $(EXC) $(LIB)*.o ../../config.o $(LIBFLAGS)
 	@rm *.o
 
 clean :

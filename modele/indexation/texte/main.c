@@ -14,7 +14,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "texte.h"
+#include "indexation.h"
 #include "../../config.h"
+
 
 /**
  * @brief Variable globale config
@@ -39,18 +41,31 @@ int main (int argc, char * argv[]){
         fprintf(output,"ERREUR : \'%s\' expected one (1) argument.\n", argv[0]);
         return 2;
     }else{
+        //recuperation des parametres de config
+        config = loadConfig();
+
+
         if(strcmp(argv[1],"all")==0){ //Indexation Totale du fichier fichiersIndexesTexte
             fprintf(output,"Indexation Totale\n");
 
+            int codeErreur = indexationTotale();
+
+            if(codeErreur!=0) fprintf(output,"Code Erreur : #%d",codeErreur);
+
         }else{ //Indexation du fichier
             fprintf(output,"Indexation Unique de %s\n",argv[1]);
+
+            int codeErreur = indexationFichier(argv[1]);
+            
+            if(codeErreur!=0) fprintf(output,"Code Erreur : #%d",codeErreur);
         }
     }
 
 
 
-
+    fprintf(output,"Fin\n");
     fclose(output);
+    
 
     return 0;
 }
