@@ -50,14 +50,14 @@ int main (int argc, char * argv[]){
 
             int codeErreur = indexationTotale();
 
-            if(codeErreur!=0) fprintf(output,"Code Erreur : #%d",codeErreur);
+            if(codeErreur!=0) fprintf(output,"Code Erreur : #%d\n",codeErreur);
 
         }else{ //Indexation du fichier
             fprintf(output,"Indexation Unique de %s\n",argv[1]);
 
             int codeErreur = indexationFichier(argv[1]);
             
-            if(codeErreur!=0) fprintf(output,"Code Erreur : #%d",codeErreur);
+            if(codeErreur!=0) fprintf(output,"Code Erreur : #%d\n",codeErreur);
         }
     }
 

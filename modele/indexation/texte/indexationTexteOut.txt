@@ -1,2 +1,3 @@
-Indexation Totale
+Indexation Unique de ../../../base_de_document/Texte/05-Le_Colombien_Juan_Pablo_Montoya.xml
+Code Erreur : #24
 Fin

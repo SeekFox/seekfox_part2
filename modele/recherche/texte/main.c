@@ -87,10 +87,12 @@ int main (int argc, char * argv[]){
     while(fgets(stringDescripteurCourant,1024,fDescripteur)!=NULL){
         descripteurCourant = StringTodescripteurText(stringDescripteurCourant);
         //fprintf(output,"%s\n",descripteurTexteToString(descripteurCourant));
-
-        fprintf(output,"%s;%.2f\n",getNameDescripteurTexte(descripteurCourant)
-                                ,comparerDescripteurTexte(dt,descripteurCourant)
-                                );
+        int comparaison = comparerDescripteurTexte(dt,descripteurCourant);
+        if(comparaison>=20){
+            fprintf(output,"%s;%.2f\n",getNameDescripteurTexte(descripteurCourant)
+                                    ,comparerDescripteurTexte(dt,descripteurCourant)
+                                    );
+        }
     }
 
 
