@@ -1,0 +1,2 @@
+reportage
+../../../base_de_document/Texte/05-Photographie___Philip_Blenkinsop_a.xml;3
