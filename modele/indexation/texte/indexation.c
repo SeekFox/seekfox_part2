@@ -66,8 +66,8 @@ int indexationTotale(){
     rename("../../../data/TMP_fichiersIndexesTexte","../../../data/fichiersIndexesTexte");
     fclose(newFichierIndexes);
 
-    free(fichierCourant);
-    free(cheminFichierCourant);
+    //free(fichierCourant);
+    //free(cheminFichierCourant);
 
 
     return 0;

@@ -60,7 +60,8 @@ ListeMots ajoutMot(ListeMots liste, char * mot){
     if(!motAjoute){
         //printf("Nouvel element \"%s\"\n",mot);
         lm=(ListeMots)malloc(sizeof(struct listeMots));
-        lm->mot=(char*)malloc(sizeof(char)*strlen(mot));
+        lm->mot=(char*)malloc(sizeof(char)*strlen(mot)+8);
+        lm->next=(struct listeMots * )malloc(sizeof(struct listeMots));
         //lm->mot=mot;
         strncpy(lm->mot,mot,strlen(mot));
         //snprintf(lm->mot,strlen(mot),"%s",mot);
@@ -110,7 +111,7 @@ char * getNameDescripteurTexte(DescripteurTexte descripteur){
 
 DescripteurTexte lireFichierTexte(char * file){
     DescripteurTexte descripteur = initDescripteurTexte();
-    descripteur->name = (char*)malloc(sizeof(char)*strlen(file));
+    descripteur->name = (char*)malloc(sizeof(char)*2*strlen(file));
     strcpy(descripteur->name,file);
 
     
@@ -118,6 +119,7 @@ DescripteurTexte lireFichierTexte(char * file){
     ListeMots liste = initListeMots();
     FILE * fichier = NULL;
     char * str = (char*)malloc(sizeof(char)*TAILLEMAXMOT);
+    strcpy(str,"");
     char c = ' ';
 
 
@@ -130,20 +132,21 @@ DescripteurTexte lireFichierTexte(char * file){
             if(c==EOF) break; 
 
             //Caractere non voulus
-            if(c==','||c==':'||c=='!'||c=='\''||c=='?'||c=='.'||c==';'||c=='('||c==')'||c=='['||c==']') continue; 
+            if(c=='!'||c=='\''||c=='?'||c==';'||c=='\n'||c=='\r') continue; 
 
             //Ajout d'un mot
-            if(c==' '){
+            if(c==' '||c=='.'||c==':'||c==','||c=='('||c==')'||c=='['||c==']'||c=='-'){
                 if(strlen(str)>=getTailleMin()){
                     //printf("%s\n",str);
                     liste=ajoutMot(liste,str);
                 } 
                 
-                //printf("%s\n",str);
+                //printf("==> -%s-\n",str);
                 strcpy(str,"");
             }else if(c=='<'){
                 while(c!='>') c=fgetc(fichier);
             }else{   //Supression des balises
+                //printf("--> -%s--%c-\n",str,c);
                 sprintf(str,"%s%c",str,c);  
             } 
         }while(c!=EOF);
@@ -162,7 +165,7 @@ DescripteurTexte lireFichierTexte(char * file){
 }
 
 char * descripteurTexteToString(DescripteurTexte descripteur){
-    char * str = (char*)malloc(sizeof(char)*strlen(descripteur->name) + sizeof(int) + 4);
+    char * str = (char*)malloc(sizeof(char)*strlen(descripteur->name) + sizeof(int)*4 + 4);
     strcpy(str,"");
     sprintf(str,"[%s;%d]",descripteur->name,descripteur->nbMots);
 
@@ -176,7 +179,7 @@ char * descripteurTexteToString(DescripteurTexte descripteur){
         lm=lm->next;
     }
 
-    str = (char*) realloc(str,sizeof(char)*strlen(str)+strlen("!"));
+    str = (char*) realloc(str,sizeof(char)*strlen(str)*strlen("!")+8);
     sprintf(str,"%s%s",str,"!");
     return str;
 }
