@@ -26,7 +26,7 @@ int main (int argc, char * argv[]){
 
     //Initialisation
     FILE * output = NULL;
-    output = fopen("rechercheMotClefOut.txt","w+");
+    output = fopen("./src/modele/recherche/motClef/rechercheMotClefOut.txt","w+");
 
     //Le fichier de sortie est ouvert ?
     if(output==NULL){
@@ -54,11 +54,11 @@ int main (int argc, char * argv[]){
     
     //Execution
     FILE * fDescripteur = NULL;
-    fDescripteur = fopen("../../../data/descripteursTexte","r");
+    fDescripteur = fopen("./data/descripteursTexte","r");
 
     //Fichier des descripteurs Textes inexistant ?
     if(fDescripteur==NULL){
-        fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "../../../data/descripteursTexte");
+        fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "../../../../data/descripteursTexte");
         return 3;
     }
 
