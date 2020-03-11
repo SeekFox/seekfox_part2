@@ -23,12 +23,12 @@
 int indexationTotale(){
     // Ouverture du fichier fichiersIndexesTexte
     FILE * fichierIndexes = NULL;
-    fichierIndexes = fopen("../../../data/fichiersIndexesTexte","r+");
+    fichierIndexes = fopen("../../../../data/fichiersIndexesTexte","r+");
     if(fichierIndexes==NULL) return 11;
 
     // Ouverture du fichier des descripteurs textes
     FILE * fichierDescripteurs = NULL;
-    fichierDescripteurs = fopen("../../../data/descripteursTexte","w");
+    fichierDescripteurs = fopen("../../../../data/descripteursTexte","w");
     if(fichierDescripteurs==NULL) return 12;
 
 
@@ -40,14 +40,14 @@ int indexationTotale(){
 
 
     FILE * newFichierIndexes = NULL;
-    newFichierIndexes = fopen("../../../data/TMP_fichiersIndexesTexte","a");
+    newFichierIndexes = fopen("../../../../data/TMP_fichiersIndexesTexte","a");
     if(newFichierIndexes==NULL) return 13;
 
     
     //Generation des descritpeurs et ecriture dans descripteursTexte
     while(fgets(fichierCourant,1024,fichierIndexes)!=NULL){
         fichierCourant[strcspn(fichierCourant,"\r\n")] = 0; //Suppression du \n
-        sprintf(cheminFichierCourant,"../../../base_de_document/Texte/%s",fichierCourant);
+        sprintf(cheminFichierCourant,"../../../../base_de_document/Texte/%s",fichierCourant);
 
         fichier = fopen(cheminFichierCourant,"r");
         if(fichier!=NULL){
@@ -63,7 +63,7 @@ int indexationTotale(){
     fclose(fichierIndexes);
     fclose(fichierDescripteurs);
 
-    rename("../../../data/TMP_fichiersIndexesTexte","../../../data/fichiersIndexesTexte");
+    rename("../../../../data/TMP_fichiersIndexesTexte","../../../data/fichiersIndexesTexte");
     fclose(newFichierIndexes);
 
     //free(fichierCourant);
@@ -77,13 +77,13 @@ int indexationTotale(){
 int indexationFichier(char * cheminFichier){
     // Ouverture du fichier fichiersIndexesTexte
     FILE * fichierIndexes = NULL;
-    fichierIndexes = fopen("../../../data/fichiersIndexesTexte","a+");
+    fichierIndexes = fopen("../../../../data/fichiersIndexesTexte","a+");
     if(fichierIndexes==NULL) return 21;
 
 
     // Ouverture du fichier des descripteurs textes
     FILE * fichierDescripteurs = NULL;
-    fichierDescripteurs = fopen("../../../data/descripteursTexte","a+");
+    fichierDescripteurs = fopen("../../../../data/descripteursTexte","a+");
     if(fichierDescripteurs==NULL){
         fclose(fichierIndexes);
         return 22;
@@ -107,7 +107,7 @@ int indexationFichier(char * cheminFichier){
     //Generation des descritpeurs et ecriture dans descripteursTexte
     while(fgets(fichierCourant,1024,fichierIndexes)!=NULL){
         fichierCourant[strcspn(fichierCourant,"\r\n")] = 0; //Suppression du \n
-        sprintf(cheminFichierCourant,"../../../base_de_document/Texte/%s",fichierCourant);
+        sprintf(cheminFichierCourant,"../../../../base_de_document/Texte/%s",fichierCourant);
         
         if(strcmp(cheminFichier,cheminFichierCourant)==0){
             fclose(fichierIndexes);
@@ -121,10 +121,10 @@ int indexationFichier(char * cheminFichier){
 
     //printf("%s\n",cheminFichier);
     //printf("%s\n",strrchr(cheminFichier,'/'));
-    //printf("%s%s\n","../../../base_de_document/Texte",strrchr(cheminFichier,'/'));
+    //printf("%s%s\n","../../../../base_de_document/Texte",strrchr(cheminFichier,'/'));
 
     char * newCheminFichier = (char*)malloc(sizeof(char)*128);
-    sprintf(newCheminFichier,"%s%s","../../../base_de_document/Texte",strrchr(cheminFichier,'/'));
+    sprintf(newCheminFichier,"%s%s","../../../../base_de_document/Texte",strrchr(cheminFichier,'/'));
     rename(cheminFichier,newCheminFichier);
 
     strcpy(newCheminFichier,strrchr(cheminFichier,'/'));
