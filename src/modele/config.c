@@ -13,7 +13,7 @@
 #include <stdlib.h> 
 #include <string.h>
 #include <unistd.h>
-#include <crypt.h>
+//#include <crypt.h>
 #include <math.h>
 
 #ifndef __CONFIG__
@@ -95,7 +95,8 @@ char * getLogicielOuvertureFichier(){
 
 //Setter
 void setPasswordAdmin(Config *c, char * pwd){
-    strcpy((*c)->passwordAdmin,(char*)crypt(pwd,"456b7016a916a4b178dd72b947c152b7"));
+    strcpy((*c)->passwordAdmin,pwd);
+    //strcpy((*c)->passwordAdmin,(char*)crypt(pwd,"456b7016a916a4b178dd72b947c152b7"));
 }
 
 void setTailleMin(Config *c, int tailleMin){

@@ -1,6 +1,6 @@
 MAKE = make
 GCC = gcc
-LIBFLAGS = -lcrypt
+LIBFLAGS =
 CFLAGS = -Wall 
 SRC = $(wildcard *.c)
 EXC = ./indexationTexte.out
