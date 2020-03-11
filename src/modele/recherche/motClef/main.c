@@ -54,11 +54,11 @@ int main (int argc, char * argv[]){
     
     //Execution
     FILE * fDescripteur = NULL;
-    fDescripteur = fopen("../../../data/descripteursTexte","r");
+    fDescripteur = fopen("../../../../data/descripteursTexte","r");
 
     //Fichier des descripteurs Textes inexistant ?
     if(fDescripteur==NULL){
-        fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "../../../data/descripteursTexte");
+        fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "../../../../data/descripteursTexte");
         return 3;
     }
 

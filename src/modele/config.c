@@ -13,7 +13,7 @@
 #include <stdlib.h> 
 #include <string.h>
 #include <unistd.h>
-#include <crypt.h>
+//#include <crypt.h>
 #include <math.h>
 
 #ifndef __CONFIG__
@@ -95,7 +95,8 @@ char * getLogicielOuvertureFichier(){
 
 //Setter
 void setPasswordAdmin(Config *c, char * pwd){
-    strcpy((*c)->passwordAdmin,(char*)crypt(pwd,"456b7016a916a4b178dd72b947c152b7"));
+    strcpy((*c)->passwordAdmin,pwd);
+    //strcpy((*c)->passwordAdmin,(char*)crypt(pwd,"456b7016a916a4b178dd72b947c152b7"));
 }
 
 void setTailleMin(Config *c, int tailleMin){
@@ -141,7 +142,7 @@ Config loadConfig(){
     char line[64] = "";
     int i = 0;
 
-    fichier = fopen("../../../data/user.config","r");
+    fichier = fopen("./data/user.config","r");
     if(fichier!=NULL){
         while (fgets(line, 64, fichier) != NULL){
             line[strcspn(line,"\r\n")] = 0; //Suppression du \n
@@ -254,7 +255,7 @@ void displayConfig(){
 void majConfigFile(){
     FILE * fichier = NULL;
 
-    fichier = fopen("data/user.config","w+");
+    fichier = fopen("./data/user.config","w+");
 
     if(fichier!=NULL){
         fprintf(fichier,"%s\n",getPasswordAdmin());

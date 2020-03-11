@@ -26,11 +26,11 @@ int main (int argc, char * argv[]){
 
     //Initialisation
     FILE * output = NULL;
-    output = fopen("rechercheTexteOut.txt","w+");
+    output = fopen("./src/modele/recherche/texte/rechercheTexteOut.txt","w+");
 
     //Le fichier de sortie est ouvert ?
     if(output==NULL){
-        printf("ERREUR : \'rechercheTexteOut.txt\' dosen\'t exist.\n");
+        printf("ERREUR : \'rechercheTexteOut.txt\' doesn\'t exist.\n");
         return 1;
     }
 
@@ -58,7 +58,6 @@ int main (int argc, char * argv[]){
     }
 
     fprintf(output,"%s\n",cheminFichier);
-
     
     //recuperation des parametres de config
     config = loadConfig();
@@ -73,11 +72,11 @@ int main (int argc, char * argv[]){
 
 
     FILE * fDescripteur = NULL;
-    fDescripteur = fopen("../../../data/descripteursTexte","r");
+    fDescripteur = fopen("./data/descripteursTexte","r");
 
     //Fichier des descripteurs Textes inexistant ?
     if(fDescripteur==NULL){
-        fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "../../../data/descripteursTexte");
+        fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "./data/descripteursTexte");
         return 5;
     }
 

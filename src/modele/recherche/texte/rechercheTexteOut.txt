@@ -1,0 +1,3 @@
+./base_de_document/Texte/05-Le_Colombien_Juan_Pablo_Montoya.xml
+./base_de_document/Texte/05-Le_Colombien_Juan_Pablo_Montoya.xml;100.00
+./base_de_document/Texte/12-Fernando_Alonso.xml;37.30
