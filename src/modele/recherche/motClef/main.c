@@ -36,7 +36,8 @@ int main (int argc, char * argv[]){
 
     //Verification nombre de parametres
     if(argc!=2){
-        fprintf(output,"ERREUR : \'%s\' expected one (1) argument.\n", argv[0]);
+        //fprintf(output,"ERREUR : \'%s\' expected one (1) argument.\n", argv[0]);
+        printf("ERREUR : \'%s\' expected one (1) argument.\n", argv[0]);
         return 2;
     }
 
@@ -59,6 +60,7 @@ int main (int argc, char * argv[]){
     //Fichier des descripteurs Textes inexistant ?
     if(fDescripteur==NULL){
         fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "../../../../data/descripteursTexte");
+        printf("ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "../../../../data/descripteursTexte");
         return 3;
     }
 
@@ -73,6 +75,9 @@ int main (int argc, char * argv[]){
             fprintf(output,"%s;%d\n",getNameDescripteurTexte(descripteurCourant)
                                     ,comparaison
                                     );
+             printf("%s;%d\n",getNameDescripteurTexte(descripteurCourant)
+                                                 ,comparaison
+                                                 );
         }
     }
 
