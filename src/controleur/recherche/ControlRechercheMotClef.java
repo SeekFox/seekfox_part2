@@ -1,4 +1,9 @@
-package controleur;
+/*
+ * Copyright (c) 2020.
+ * Clément Truillet (clement@ctruillet.eu)
+ */
+
+package controleur.recherche;
 
 import modele.java.TypeRecherche;
 

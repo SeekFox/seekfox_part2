@@ -3,7 +3,7 @@
  * Clément Truillet (clement@ctruillet.eu)
  */
 
-package controleur;
+package controleur.recherche;
 
 import modele.java.TypeRecherche;
 

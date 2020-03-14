@@ -1,7 +1,7 @@
 package vue;
 
-import controleur.ControlRechercheMotClef;
-import controleur.ControlRechercheTexte;
+import controleur.recherche.ControlRechercheMotClef;
+import controleur.recherche.ControlRechercheTexte;
 
 public class Main {
 

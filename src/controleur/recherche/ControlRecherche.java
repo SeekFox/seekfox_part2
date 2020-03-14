@@ -3,7 +3,7 @@
  * Clément Truillet (clement@ctruillet.eu)
  */
 
-package controleur;
+package controleur.recherche;
 
 import modele.java.Resultat;
 import modele.java.TypeRecherche;
@@ -49,8 +49,6 @@ public class ControlRecherche {
 
 	}
 
-
-	//ToDo
 	public void lireFichierResultat(){
 		String res[];
 
@@ -59,7 +57,8 @@ public class ControlRecherche {
 			InputStreamReader ipsr=new InputStreamReader(ips);
 			BufferedReader br=new BufferedReader(ipsr);
 
-			String ligne = br.readLine();
+			br.readLine();
+			String ligne;
 
 			while ((ligne=br.readLine())!=null){
 
