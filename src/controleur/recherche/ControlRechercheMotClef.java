@@ -19,8 +19,8 @@ public class ControlRechercheMotClef extends ControlRecherche{
 
 
 	//Méthodes
-	public void rechercheTexte(String args) {
-		super.rechercheTexte(args, TypeRecherche.MOT_CLEF);
+	public void recherche(String args) {
+		super.recherche(args, TypeRecherche.MOT_CLEF);
 
 	}
 }

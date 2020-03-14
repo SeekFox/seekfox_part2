@@ -8,10 +8,7 @@ package controleur.recherche;
 import modele.java.Resultat;
 import modele.java.TypeRecherche;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class ControlRecherche {
 	//Attributs
@@ -23,7 +20,7 @@ public class ControlRecherche {
 	//Constructeur
 
 	//Méthodes
-	private void runRechercheTexte(String args){
+	private void runRecherche(String args){
 		String s;
 		try {
 			Process p = Runtime.getRuntime().exec(executableC + " " + args);
@@ -42,34 +39,39 @@ public class ControlRecherche {
 		}
 	}
 
-	public void rechercheTexte(String args, TypeRecherche type) {
+	public void recherche(String args, TypeRecherche type) {
 		this.resultat = new Resultat(args, type);
 
-		//this.runRechercheTexte(args);
+		//this.runRecherche(args);
+
+		try {
+			this.lireFichierResultat();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 
-	public void lireFichierResultat(){
-		String res[];
+	private void lireFichierResultat() throws IOException {
+		String[] res;
 
-		try{
-			InputStream ips=new FileInputStream(this.fichierResultat);
-			InputStreamReader ipsr=new InputStreamReader(ips);
-			BufferedReader br=new BufferedReader(ipsr);
+		try(
+				InputStream ips = new FileInputStream(this.fichierResultat);
+				InputStreamReader ipsr = new InputStreamReader(ips);
+				BufferedReader br = new BufferedReader(ipsr)
+				){
 
-			br.readLine();
-			String ligne;
+
+
+			String ligne = br.readLine();
 
 			while ((ligne=br.readLine())!=null){
 
 				res = (ligne.split(";"));
 				this.resultat.add(res[0],Float.parseFloat(res[1]));
 			}
-			br.close();
-			ips.close();
-			ipsr.close();
 		}
-		catch (Exception e){
+		catch (Exception e) {
 			System.out.println(e.toString());
 		}
 

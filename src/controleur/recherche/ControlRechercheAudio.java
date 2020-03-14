@@ -18,8 +18,8 @@ public class ControlRechercheAudio extends ControlRecherche {
 
 
 	//Méthodes
-	public void rechercheTexte(String args) {
-		super.rechercheTexte(args, TypeRecherche.AUDIO);
+	public void recherche(String args) {
+		super.recherche(args, TypeRecherche.AUDIO);
 
 	}
 }

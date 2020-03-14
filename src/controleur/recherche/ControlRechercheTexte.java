@@ -19,8 +19,8 @@ public class ControlRechercheTexte extends ControlRecherche{
 
 
 	//Méthodes
-	public void rechercheTexte(String args) {
-		super.rechercheTexte(args, TypeRecherche.TEXTE);
+	public void recherche(String args) {
+		super.recherche(args, TypeRecherche.TEXTE);
 
 	}
 }

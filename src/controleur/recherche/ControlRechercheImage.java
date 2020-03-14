@@ -18,8 +18,8 @@ public class ControlRechercheImage extends ControlRecherche {
 
 
 	//Méthodes
-	public void rechercheTexte(String args) {
-		super.rechercheTexte(args, TypeRecherche.IMAGE);
+	public void recherche(String args) {
+		super.recherche(args, TypeRecherche.IMAGE);
 
 	}
 
