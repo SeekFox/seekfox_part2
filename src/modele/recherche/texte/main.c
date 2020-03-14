@@ -23,22 +23,23 @@
 Config config;
 
 int main (int argc, char * argv[]){
-
+    printf("heyyy\n");
     //Initialisation
-    FILE * output = NULL;
-    output = fopen("./src/modele/recherche/texte/rechercheTexteOut.txt","w+");
+    //FILE * output = NULL;
+    //output = fopen("./src/modele/recherche/texte/rechercheTexteOut.txt","w+");
 
     //Le fichier de sortie est ouvert ?
-    if(output==NULL){
+    /*if(output==NULL){
         printf("ERREUR : \'rechercheTexteOut.txt\' doesn\'t exist.\n");
         return 1;
     }
 
     //Verification nombre de parametres
     if(argc!=2){
-        fprintf(output,"ERREUR : \'%s\' expected one (1) argument.\n", argv[0]);
+        //fprintf(output,"ERREUR : \'%s\' expected one (1) argument.\n", argv[0]);
+        printf("ERREUR : \'%s\' expected one (1) argument.\n", argv[0]);
         return 2;
-    }
+    }*/
 
     FILE * fichier = NULL;
     char * cheminFichier = (char*)malloc(sizeof(char)*strlen(argv[1]));
@@ -46,18 +47,24 @@ int main (int argc, char * argv[]){
     strcpy(cheminFichier,argv[1]);
     fichier = fopen(cheminFichier,"r");
 
-    //Fichier exite ?
+    printf("\n%s\n",cheminFichier);
+    //fprintf(output,"%s\n",cheminFichier);
+
+    //Fichier existe ?
     if(fichier==NULL){
-        fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", cheminFichier);
+        //fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", cheminFichier);
+        printf("ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", cheminFichier);
         return 3;
     }
 
     if(strcmp(getExtensionOfFile(cheminFichier),".xml")!=0){
-        fprintf(output,"ERREUR : \'%s\' isn\'t supported by \'%s\'.\n",cheminFichier,argv[0]);
+       // fprintf(output,"ERREUR : \'%s\' isn\'t supported by \'%s\'.\n",cheminFichier,argv[0]);
+        printf("ERREUR : \'%s\' isn\'t supported by \'%s\'.\n",cheminFichier,argv[0]);
+
         return 4;
     }
 
-    fprintf(output,"%s\n",cheminFichier);
+
     
     //recuperation des parametres de config
     config = loadConfig();
@@ -76,7 +83,8 @@ int main (int argc, char * argv[]){
 
     //Fichier des descripteurs Textes inexistant ?
     if(fDescripteur==NULL){
-        fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "./data/descripteursTexte");
+        printf("ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "./data/descripteursTexte");
+        //fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "./data/descripteursTexte");
         return 5;
     }
 
@@ -90,9 +98,12 @@ int main (int argc, char * argv[]){
         if(comparaison>=20){
 
             //fprintf(output,"%s\n%s\n",descripteurTexteToString(dt),descripteurTexteToString(descripteurCourant));
-            fprintf(output,"%s;%.2f\n",getNameDescripteurTexte(descripteurCourant)
-                                    ,comparerDescripteurTexte(dt,descripteurCourant)
-                                    );        
+            //fprintf(output,"%s;%.2f\n",getNameDescripteurTexte(descripteurCourant)
+            //                        ,comparerDescripteurTexte(dt,descripteurCourant)
+            //                        );
+            printf("%s;%.2f\n",getNameDescripteurTexte(descripteurCourant)
+                                                ,comparerDescripteurTexte(dt,descripteurCourant)
+                                                );
         }
     }
 
@@ -102,7 +113,7 @@ int main (int argc, char * argv[]){
 
 
     fclose(fDescripteur);
-    fclose(output);
+    //fclose(output);
 
     return 0;
 }

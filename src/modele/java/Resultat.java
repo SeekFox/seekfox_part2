@@ -21,19 +21,18 @@ public class Resultat {
 
 	//Méthodes
 	public void add(String fichier, float score){
-		int taille = this.resultats.size();
+		boolean isResultatAdd = false;
 
-		for(int i=0; i<this.resultats.size();i++){
+		for(int i=0; (i<this.resultats.size()&&!isResultatAdd);i++){
 			if(this.resultats.get(i).getScore()<score){
 				this.resultats.add(i,new CelluleResultat(fichier, score));
+				isResultatAdd= true;
 			}
 		}
 
-		if(taille==this.resultats.size()){
+		if(!isResultatAdd){
 			this.resultats.add(new CelluleResultat(fichier, score));
 		}
-
-		System.out.println("Hey!");
 
 	}
 
