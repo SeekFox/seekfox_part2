@@ -1,9 +1,9 @@
 MAKE = make
 GCC = gcc
 LIBFLAGS =
-CFLAGS = -Wall
+CFLAGS = -Wall 
 SRC = $(wildcard *.c)
-EXC = ./rechercheMotClef.out
+EXC = ./indexationAudio.out
 LIB = 
 INCLUDE = .
 
@@ -13,7 +13,7 @@ INCLUDE = .
 all :
 	@$(GCC) $(CFLAGS) -I $(INCLUDE) -c $(SRC) $(LIBFLAGS)
 	@$(GCC) $(CFLAGS) -o $(EXC) $(LIB)*.o ../../config.o $(LIBFLAGS)
-	@del *.o
+	@rm *.o
 
 clean :
-	@del $(EXC)
+	@rm $(EXC)

@@ -42,7 +42,13 @@ public class ControlRecherche {
 	public void recherche(String args, TypeRecherche type) {
 		this.resultat = new Resultat(args, type);
 
-		//this.runRecherche(args);
+		this.runRecherche(args);
+
+		try {
+			Thread.currentThread().sleep(100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 
 		try {
 			this.lireFichierResultat();
@@ -60,8 +66,6 @@ public class ControlRecherche {
 				InputStreamReader ipsr = new InputStreamReader(ips);
 				BufferedReader br = new BufferedReader(ipsr)
 				){
-
-
 
 			String ligne = br.readLine();
 

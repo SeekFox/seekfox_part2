@@ -14,7 +14,7 @@ public class ControlRechercheTexte extends ControlRecherche{
 	//Constructeur
 	public ControlRechercheTexte(){
 		this.fichierResultat = "src/modele/recherche/texte/rechercheTexteOut.txt";
-		this.executableC = "./src/modele/recherche/texte/rechercheTexte.out";
+		this.executableC = "./src/modele/recherche/texte/run.sh";
 	}
 
 

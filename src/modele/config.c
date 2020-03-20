@@ -142,7 +142,7 @@ Config loadConfig(){
     char line[64] = "";
     int i = 0;
 
-    fichier = fopen("./data/user.config","r");
+    fichier = fopen("../../../../data/user.config","r");
     if(fichier!=NULL){
         while (fgets(line, 64, fichier) != NULL){
             line[strcspn(line,"\r\n")] = 0; //Suppression du \n
@@ -255,7 +255,7 @@ void displayConfig(){
 void majConfigFile(){
     FILE * fichier = NULL;
 
-    fichier = fopen("./data/user.config","w+");
+    fichier = fopen("../../../../data/user.config","w+");
 
     if(fichier!=NULL){
         fprintf(fichier,"%s\n",getPasswordAdmin());

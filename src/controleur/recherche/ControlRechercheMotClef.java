@@ -14,7 +14,7 @@ public class ControlRechercheMotClef extends ControlRecherche{
 	//Constructeur
 	public ControlRechercheMotClef(){
 		this.fichierResultat = "src/modele/recherche/motClef/rechercheMotClefOut.txt";
-		this.executableC = "./src/modele/recherche/motClef/rechercheMotClef.out";
+		this.executableC = "./src/modele/recherche/motClef/run.sh";
 	}
 
 
