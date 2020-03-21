@@ -8,7 +8,7 @@
 
 /* callback associated to "Hello" messages */
 void EcouteCallback (IvyClientPtr app, void *data, int argc, char **argv){
-	printf("Message type=%s Option=%s\n", argv[0], argv[1]);
+	printf("Message type=%s%s Option=%s\n", argv[0], argv[1], argv[2]);
 }
 
 /* callback associated to "Bye" messages */
@@ -22,10 +22,10 @@ int main (int argc, char**argv)
 	/* initialisation */
 	IvyInit ("Impeesa", "Le loup ne dort jamais\n", 0, 0, 0, 0);
 
-	/* On �oute et on traite les messages qui commencent par n'importe quoi */
-	IvyBindMsg (EcouteCallback, 0, "^Impeesa type=(.*) argument=(.*)");
+	/* On ecoute et on traite les messages qui commencent par n'importe quoi */
+	IvyBindMsg (EcouteCallback, 0, "^Impeesa type=(.*)_(.*) argument=(.*)");
 
-	/* On �oute et on traite les messages 'Bye' */
+	/* On ecoute et on traite les messages 'Bye' */
 	IvyBindMsg (ByeCallback, 0, "^Impeesa Bye$");
 
     IvyStart ("127.255.255.255:2010"); // On lance l'agent sur le bus ivy
