@@ -12,7 +12,6 @@ INCLUDE = include/
 
 all :
 	@$(GCC) $(SRC) $(LIB) -o $(EXC)
-	@rm *.o
 
 clean :
 	@rm $(EXC)
