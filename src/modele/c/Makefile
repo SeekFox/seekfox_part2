@@ -2,16 +2,17 @@ MAKE = make
 GCC = gcc
 LIBFLAGS =
 CFLAGS = -Wall
-SRC = $(wildcard *.c)
+SRC = $(wildcard src/*.c)
 EXC = ./impeesa.out
-LIB =
-INCLUDE = .
+LIB = $(wildcard lib/*.a)
+INCLUDE = include/
 
 
 .SILENT:clean
 
 all :
-	@$(GCC) Ecoute.c *.a -o $(EXC)
+	@$(GCC) $(SRC) $(LIB) -o $(EXC)
+	@rm *.o
 
 clean :
 	@rm $(EXC)
