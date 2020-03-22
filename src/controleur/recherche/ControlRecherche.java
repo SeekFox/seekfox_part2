@@ -5,6 +5,8 @@
 
 package controleur.recherche;
 
+import fr.dgac.ivy.Ivy;
+import fr.dgac.ivy.IvyException;
 import modele.java.Resultat;
 import modele.java.TypeRecherche;
 
@@ -12,14 +14,44 @@ import java.io.*;
 
 public class ControlRecherche {
 	//Attributs
-	protected String fichierResultat;
-	protected String executableC;
-	protected Resultat resultat;
+
+	private String fichierResultat;
+	private Resultat resultat;
 
 
 	//Constructeur
 
 	//Méthodes
+	public static void runRecherche(Ivy bus, TypeRecherche type, String argument){
+		String msg = "";
+
+
+
+		//Configuration du message
+		switch (type){
+			case MOT_CLEF:
+				msg = "Impeesa type=Recherche_MotClef argument="+argument;
+				break;
+
+			default:
+				break;
+		}
+
+
+		//Envoi du message
+		try{
+			int i = bus.sendMsg(msg);
+			System.out.println("clients = " + i);
+		} catch (IvyException ie) {
+			System.err.println("Error : " + ie.getMessage());
+		}
+
+
+	}
+
+
+
+/*
 	private void runRecherche(String args){
 		String s;
 		try {
@@ -42,7 +74,13 @@ public class ControlRecherche {
 	public void recherche(String args, TypeRecherche type) {
 		this.resultat = new Resultat(args, type);
 
-		//this.runRecherche(args);
+		this.runRecherche(args);
+
+		try {
+			Thread.currentThread().sleep(100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 
 		try {
 			this.lireFichierResultat();
@@ -60,8 +98,6 @@ public class ControlRecherche {
 				InputStreamReader ipsr = new InputStreamReader(ips);
 				BufferedReader br = new BufferedReader(ipsr)
 				){
-
-
 
 			String ligne = br.readLine();
 
@@ -86,5 +122,5 @@ public class ControlRecherche {
 				", executableC='" + executableC + '\'' +
 				", resultat=" + resultat +
 				'}';
-	}
+	}*/
 }
