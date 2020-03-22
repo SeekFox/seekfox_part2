@@ -4,5 +4,6 @@ public enum TypeRecherche {
 	TEXTE,
 	AUDIO,
 	IMAGE,
-	MOT_CLEF
+	MOTCLEF,
+	FIN
 }

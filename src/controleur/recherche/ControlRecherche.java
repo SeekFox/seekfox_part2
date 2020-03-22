@@ -6,7 +6,9 @@
 package controleur.recherche;
 
 import fr.dgac.ivy.Ivy;
+import fr.dgac.ivy.IvyClient;
 import fr.dgac.ivy.IvyException;
+import fr.dgac.ivy.IvyMessageListener;
 import modele.java.Resultat;
 import modele.java.TypeRecherche;
 
@@ -15,22 +17,55 @@ import java.io.*;
 public class ControlRecherche {
 	//Attributs
 
-	private String fichierResultat;
+	private String fichierResultat = "./src/modele/c/rechercheOut.txt";
 	private Resultat resultat;
+	private TypeRecherche type;
+	private String argument;
 
 
 	//Constructeur
 
 	//Méthodes
-	public static void runRecherche(Ivy bus, TypeRecherche type, String argument){
-		String msg = "";
+	public Ivy initBus(String name, String msg){
+		Ivy bus  = new Ivy(name,msg,null);
+		//Lancement du Bus
+		try{
+			bus.start("127.255.255.255.2010");
+		}catch(IvyException ie){
+			System.err.println("Error : " + ie.getMessage());
+		}
 
+		//Abonnement à l'acquittement
+		try {
+			bus.bindMsg("^HamsterJovial answer=(.*)$", new IvyMessageListener() {
+				@Override
+				public void receive(IvyClient ivyClient, String[] strings) {
+					System.out.println("Reception ack");
+					resultat = lireResultat();
+				}
+			});
+		} catch (IvyException e) {
+			e.printStackTrace();
+		}
+
+		return bus;
+	}
+
+
+	public void runRecherche(Ivy bus, TypeRecherche type, String argument){
+		String msg = "";
+		this.type = type;
+		this.argument = argument;
+		this.resultat = null;
 
 
 		//Configuration du message
 		switch (type){
-			case MOT_CLEF:
-				msg = "Impeesa type=Recherche_MotClef argument="+argument;
+			case MOTCLEF:
+				msg = "Impeesa type=Recherche_" + type + " argument="+argument;
+				break;
+			case FIN :
+				msg = "Impeesa Bye";
 				break;
 
 			default:
@@ -41,86 +76,47 @@ public class ControlRecherche {
 		//Envoi du message
 		try{
 			int i = bus.sendMsg(msg);
-			System.out.println("clients = " + i);
 		} catch (IvyException ie) {
 			System.err.println("Error : " + ie.getMessage());
 		}
-
-
 	}
 
-
-
-/*
-	private void runRecherche(String args){
-		String s;
-		try {
-			Process p = Runtime.getRuntime().exec(executableC + " " + args);
-
-			//Lecture du terminal
-			BufferedReader br = new BufferedReader( new InputStreamReader(p.getInputStream()));
-
-			while((s = br.readLine())!=null){
-				System.out.println(s);
-			}
-
-			br.close();
-
-		}catch(Exception e){
-			System.out.println(e.toString());
-		}
-	}
-
-	public void recherche(String args, TypeRecherche type) {
-		this.resultat = new Resultat(args, type);
-
-		this.runRecherche(args);
-
-		try {
-			Thread.currentThread().sleep(100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
-		try {
-			this.lireFichierResultat();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	private void lireFichierResultat() throws IOException {
+	private Resultat lireResultat(){
 		String[] res;
+		Resultat resultat = new Resultat(argument,type);
 
 		try(
 				InputStream ips = new FileInputStream(this.fichierResultat);
 				InputStreamReader ipsr = new InputStreamReader(ips);
 				BufferedReader br = new BufferedReader(ipsr)
-				){
+		){
 
 			String ligne = br.readLine();
 
 			while ((ligne=br.readLine())!=null){
 
 				res = (ligne.split(";"));
-				this.resultat.add(res[0],Float.parseFloat(res[1]));
+				resultat.add(res[0],Float.parseFloat(res[1]));
 			}
 		}
 		catch (Exception e) {
 			System.out.println(e.toString());
 		}
 
-		System.out.println(this.resultat);
-
+		return resultat;
 	}
 
-	@Override
-	public String toString() {
-		return "ControlRecherche{" +
-				"fichierResultat='" + fichierResultat + '\'' +
-				", executableC='" + executableC + '\'' +
-				", resultat=" + resultat +
-				'}';
-	}*/
+	public Resultat getResultat() {
+		if(resultat!=null) {
+			return resultat;
+		}else{
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			return this.getResultat();
+		}
+
+	}
 }
