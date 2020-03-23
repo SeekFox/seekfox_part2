@@ -10,4 +10,4 @@
  */
  #define __RECHERCHE__
 
- void rechercheMotClef(char * motClef);
+ int rechercheMotClef(char * motClef);

@@ -59,7 +59,7 @@ int rechercheTexte(char * cheminFichier){
 
     if(strcmp(getExtensionOfFile(cheminFichier),".xml")!=0){
        // fprintf(output,"ERREUR : \'%s\' isn\'t supported by \'%s\'.\n",cheminFichier,argv[0]);
-        printf("ERREUR : \'%s\' isn\'t supported by \'%s\'.\n",cheminFichier,argv[0]);
+        printf("ERREUR : \'%s\' isn\'t supported by rechercheTexte.\n",cheminFichier);
 
         return 3;
     }

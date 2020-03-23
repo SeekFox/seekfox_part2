@@ -40,8 +40,18 @@ public class ControlRecherche {
 			bus.bindMsg("^HamsterJovial answer=(.*)$", new IvyMessageListener() {
 				@Override
 				public void receive(IvyClient ivyClient, String[] strings) {
-					System.out.println("Reception ack");
-					resultat = lireResultat();
+					//Control d'erreur
+					if(strings.length!=1){
+						System.err.println("Impeesa a rencontré un problème.");
+					}
+					if(!strings[0].equals("OK")){
+						System.err.println("Impeesa a rencontré un problème.");
+					}else{
+						resultat = lireResultat();
+					}
+
+
+
 				}
 			});
 		} catch (IvyException e) {

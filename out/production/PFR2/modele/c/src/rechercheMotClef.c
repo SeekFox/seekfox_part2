@@ -32,7 +32,7 @@
  */
 Config config;
 
-void rechercheMotClef(char * motClef){
+int rechercheMotClef(char * motClef){
 
     //Initialisation
     FILE * output = NULL;
@@ -41,7 +41,7 @@ void rechercheMotClef(char * motClef){
     //Le fichier de sortie est ouvert ?
     if(output==NULL){
         printf("ERREUR : \'rechercheOut.txt\' doesn\'t exist.\n");
-        return;
+        return 1;
     }
 
     fprintf(output,"%s\n",motClef);
@@ -59,7 +59,7 @@ void rechercheMotClef(char * motClef){
     if(fDescripteur==NULL){
         fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "./data/descripteursTexte");
         printf("ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "./data/descripteursTexte");
-        return;
+        return 2;
     }
 
     char * stringDescripteurCourant = (char*)malloc(sizeof(char)* 1024);
@@ -83,4 +83,6 @@ void rechercheMotClef(char * motClef){
 
     fclose(fDescripteur);
     fclose(output);
+
+    return 0;
 }
