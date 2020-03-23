@@ -74,6 +74,10 @@ public class ControlRecherche {
 			case MOTCLEF:
 				msg = "Impeesa type=Recherche_" + type + " argument="+argument;
 				break;
+			case TEXTE:
+				msg = "Impeesa type=Recherche_" + type + " argument="+argument;
+				break;
+
 			case FIN :
 				msg = "Impeesa Bye";
 				break;

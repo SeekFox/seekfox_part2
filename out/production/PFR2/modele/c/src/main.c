@@ -21,7 +21,7 @@ void EcouteCallback (IvyClientPtr app, void *data, int argc, char **argv){
 
         printf("Recherche\n");
         if(strcmp("TEXTE",argv[1])==0){
-            printf("%s\n",argv[1]);
+            retour = rechercheTexte(argv[2]);
 
         }else if(strcmp("IMAGE",argv[1])==0){
             printf("%s\n",argv[1]);

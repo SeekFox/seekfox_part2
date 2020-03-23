@@ -31,7 +31,9 @@
  */
 Config config;
 
+
 int rechercheTexte(char * cheminFichier){
+
     //Initialisation
     FILE * output = NULL;
     output = fopen("./rechercheOut.txt","w+");
@@ -43,12 +45,14 @@ int rechercheTexte(char * cheminFichier){
     }
 
     fprintf(output,"%s\n",cheminFichier);
-
+    printf("%s\n",cheminFichier);
+    
     FILE * fichier = NULL;
 
     fichier = fopen(cheminFichier,"r");
 
-    //fprintf(output,"%s\n",cheminFichier);
+    fprintf(output,"%s\n",cheminFichier);
+    printf("%s\n",cheminFichier);
 
     //Fichier existe ?
     if(fichier==NULL){
@@ -83,8 +87,8 @@ int rechercheTexte(char * cheminFichier){
 
     //Fichier des descripteurs Textes inexistant ?
     if(fDescripteur==NULL){
-        printf("ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "./data/descripteursTexte");
-        //fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "./data/descripteursTexte");
+        //printf("ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "./data/descripteursTexte");
+        fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "./data/descripteursTexte");
         return 5;
     }
 
@@ -96,14 +100,12 @@ int rechercheTexte(char * cheminFichier){
         
         int comparaison = comparerDescripteurTexte(dt,descripteurCourant);
         if(comparaison>=20){
-
-            //fprintf(output,"%s\n%s\n",descripteurTexteToString(dt),descripteurTexteToString(descripteurCourant));
-            //fprintf(output,"%s;%.2f\n",getNameDescripteurTexte(descripteurCourant)
-            //                        ,comparerDescripteurTexte(dt,descripteurCourant)
-            //                        );
+            fprintf(output,"%s;%.2f\n",getNameDescripteurTexte(descripteurCourant)
+                                    ,comparerDescripteurTexte(dt,descripteurCourant)
+                                    );
             printf("%s;%.2f\n",getNameDescripteurTexte(descripteurCourant)
-                                                ,comparerDescripteurTexte(dt,descripteurCourant)
-                                                );
+                                               ,comparerDescripteurTexte(dt,descripteurCourant)
+                                               );
         }
     }
 

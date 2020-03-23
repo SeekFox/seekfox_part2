@@ -11,3 +11,5 @@
  #define __RECHERCHE__
 
  int rechercheMotClef(char * motClef);
+
+ int rechercheTexte(char * cheminFichier);
