@@ -14,7 +14,7 @@
 
 /* callback associated to "Hello" messages */
 void EcouteCallback (IvyClientPtr app, void *data, int argc, char **argv){
-	printf("Message type=%s%s Option=%s\n", argv[0], argv[1], argv[2]);
+	printf("Message type=%s_%s argument=%s\n", argv[0], argv[1], argv[2]);
 	int retour = 0;
 
     if(strcmp(argv[0],"Recherche")==0){
