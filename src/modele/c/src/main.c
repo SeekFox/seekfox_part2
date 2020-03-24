@@ -14,13 +14,14 @@
 
 /* callback associated to "Hello" messages */
 void EcouteCallback (IvyClientPtr app, void *data, int argc, char **argv){
-	printf("Message type=%s%s Option=%s\n", argv[0], argv[1], argv[2]);
+	printf("Message type=%s_%s argument=%s\n", argv[0], argv[1], argv[2]);
+	int retour = 0;
 
     if(strcmp(argv[0],"Recherche")==0){
 
         printf("Recherche\n");
         if(strcmp("TEXTE",argv[1])==0){
-            printf("%s\n",argv[1]);
+            retour = rechercheTexte(argv[2]);
 
         }else if(strcmp("IMAGE",argv[1])==0){
             printf("%s\n",argv[1]);
@@ -29,10 +30,11 @@ void EcouteCallback (IvyClientPtr app, void *data, int argc, char **argv){
             printf("%s\n",argv[1]);
 
         }else if(strcmp("MOTCLEF",argv[1])==0){
-            rechercheMotClef(argv[2]);
+            retour = rechercheMotClef(argv[2]);
 
         }else{
             printf("ERREUR : %s\n",argv[1]);
+            retour = 1;
 
         }
 
@@ -45,7 +47,12 @@ void EcouteCallback (IvyClientPtr app, void *data, int argc, char **argv){
 
     }
 
-    IvySendMsg("HamsterJovial answer=OK");
+    if(retour==0){
+        IvySendMsg("HamsterJovial answer=OK");
+    }else{
+        IvySendMsg("HamsterJovial answer=ERREUR");
+    }
+
 
 
 

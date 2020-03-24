@@ -1,10 +1,13 @@
 
 C
-java:S14819"&Remove this unused "i" local variable.(¹Ğ„Œ8şÆ.
-H
-java:S1068",Remove this unused "resultat" private field.(„©Î-8­ß¤í.
-H
-java:S1172"&Remove these unused method parameters.(‚µ—Õüÿÿÿÿ8Óü.
-U
-java:S1068"3Remove this unused "fichierResultat" private field.(Œæ´ıÿÿÿÿ8óú£í.
-]	java:S125D"<This block of commented-out lines of code should be removed.(¾¦¿æÿÿÿÿÿ8¥¤¢í.
+java:S1481N"&Remove this unused "i" local variable.(¹Ğ„Œ8şÆ.
+E
+java:S11480"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Ç›ó”.
+E
+java:S1148t"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ˆÃ±•.
+^
+java:S1117V"<Rename "resultat" which hides the field declared at line 21.(ô²ï‚şÿÿÿÿ8™â¬•.
+c
+java:S2142s"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ˆÃ±•.
+J
+java:S1604("(Make this anonymous inner class a lambda(ø§ÆÊûÿÿÿÿ8Ç›ó”.

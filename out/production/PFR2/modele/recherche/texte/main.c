@@ -13,55 +13,55 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "texte.h"
-#include "../../config.h"
 
+#ifndef __CONFIG__
+    #include "../include/config.h"
+#endif
+
+#ifndef __TEXTE__
+    #include "../include/texte.h"
+#endif
+
+#ifndef __RECHERCHE__
+    #include "../include/recherche.h"
+#endif
 /**
  * @brief Variable globale config
  * 
  */
 Config config;
 
-int main (int argc, char * argv[]){
-    printf("heyyy\n");
+int rechercheTexte(char * cheminFichier){
     //Initialisation
-    //FILE * output = NULL;
-    //output = fopen("./src/modele/recherche/texte/rechercheTexteOut.txt","w+");
+    FILE * output = NULL;
+    output = fopen("./rechercheOut.txt","w+");
 
     //Le fichier de sortie est ouvert ?
-    /*if(output==NULL){
-        printf("ERREUR : \'rechercheTexteOut.txt\' doesn\'t exist.\n");
+    if(output==NULL){
+        printf("ERREUR : \'rechercheOut.txt\' doesn\'t exist.\n");
         return 1;
     }
 
-    //Verification nombre de parametres
-    if(argc!=2){
-        //fprintf(output,"ERREUR : \'%s\' expected one (1) argument.\n", argv[0]);
-        printf("ERREUR : \'%s\' expected one (1) argument.\n", argv[0]);
-        return 2;
-    }*/
+    fprintf(output,"%s\n",cheminFichier);
 
     FILE * fichier = NULL;
-    char * cheminFichier = (char*)malloc(sizeof(char)*strlen(argv[1]));
 
-    strcpy(cheminFichier,argv[1]);
     fichier = fopen(cheminFichier,"r");
 
-    printf("\n%s\n",cheminFichier);
     //fprintf(output,"%s\n",cheminFichier);
 
     //Fichier existe ?
     if(fichier==NULL){
         //fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", cheminFichier);
         printf("ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", cheminFichier);
-        return 3;
+        return 2;
     }
 
     if(strcmp(getExtensionOfFile(cheminFichier),".xml")!=0){
        // fprintf(output,"ERREUR : \'%s\' isn\'t supported by \'%s\'.\n",cheminFichier,argv[0]);
         printf("ERREUR : \'%s\' isn\'t supported by \'%s\'.\n",cheminFichier,argv[0]);
 
-        return 4;
+        return 3;
     }
 
 

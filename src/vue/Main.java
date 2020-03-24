@@ -27,32 +27,41 @@ public class Main {
 		while(isRunning){
 			System.out.println("CHOIX \n" +
 					"\t0/ Lancer Recherche MotClef\n" +
-					"\t1/ Quitter"
+					"\t1/ Lancer Recherche Texte\n" +
+					"\t2/ Quitter"
 			);
 
 			choix = sc.nextInt();
 			sc.nextLine();
 
-			if(choix==0){
+			if(choix==0) {
 				System.out.println("Entrez le mot clef");
 
 				argument = sc.nextLine();
 
 				System.out.println(argument);
-				controlRecherche.runRecherche(bus, TypeRecherche.MOTCLEF,argument);
+				controlRecherche.runRecherche(bus, TypeRecherche.MOTCLEF, argument);
 
 				System.out.println(controlRecherche.getResultat());
 
-
-
 			}else if(choix==1){
+				System.out.println("Entrez le chemin vers le fichier");
+
+				argument = sc.nextLine();
+
+				System.out.println(argument);
+				controlRecherche.runRecherche(bus, TypeRecherche.TEXTE, argument);
+
+				System.out.println(controlRecherche.getResultat());
+
+			}else if(choix==2){
 				controlRecherche.runRecherche(bus, TypeRecherche.FIN,"");
 				isRunning=false;
 			}
 		}
 
 		bus.stop();
-		System.out.println("FIN\n");
+		System.out.println("Fin de Piste");
 	}
 
 }
