@@ -5,9 +5,9 @@
  * @brief Ces descripeurs sont stockés dans le fichier ./data/descripteursTexte
  * @version 0.1
  * @date 28/02/2020
- * 
+ *
  * @copyright Copyright (c) 2020
- * 
+ *
  */
 
 #include <stdio.h>
@@ -27,7 +27,7 @@
 #endif
 /**
  * @brief Variable globale config
- * 
+ *
  */
 Config config;
 
@@ -45,14 +45,12 @@ int rechercheTexte(char * cheminFichier){
     }
 
     fprintf(output,"%s\n",cheminFichier);
-    printf("%s\n",cheminFichier);
-    
+    //printf("%s\n",cheminFichier);
+
     FILE * fichier = NULL;
 
     fichier = fopen(cheminFichier,"r");
 
-    fprintf(output,"%s\n",cheminFichier);
-    printf("%s\n",cheminFichier);
 
     //Fichier existe ?
     if(fichier==NULL){
@@ -69,11 +67,11 @@ int rechercheTexte(char * cheminFichier){
     }
 
 
-    
+
     //recuperation des parametres de config
     config = loadConfig();
 
-    
+
     //Execution
     DescripteurTexte dt = initDescripteurTexte();
     dt = lireFichierTexte(cheminFichier);
@@ -97,15 +95,15 @@ int rechercheTexte(char * cheminFichier){
 
     while(fgets(stringDescripteurCourant,1024,fDescripteur)!=NULL){
         descripteurCourant = StringTodescripteurText(stringDescripteurCourant);
-        
+
         int comparaison = comparerDescripteurTexte(dt,descripteurCourant);
         if(comparaison>=20){
             fprintf(output,"%s;%.2f\n",getNameDescripteurTexte(descripteurCourant)
                                     ,comparerDescripteurTexte(dt,descripteurCourant)
                                     );
-            printf("%s;%.2f\n",getNameDescripteurTexte(descripteurCourant)
-                                               ,comparerDescripteurTexte(dt,descripteurCourant)
-                                               );
+            //printf("%s;%.2f\n",getNameDescripteurTexte(descripteurCourant)
+            //                                   ,comparerDescripteurTexte(dt,descripteurCourant)
+            //                                   );
         }
     }
 
@@ -115,7 +113,7 @@ int rechercheTexte(char * cheminFichier){
 
 
     fclose(fDescripteur);
-    //fclose(output);
+    fclose(output);
 
     return 0;
 }
