@@ -1,5 +1,5 @@
 /**
- * @file recherche.h
+ * @file indexation.h
  * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
  * @brief
  * @version 0.1
@@ -8,8 +8,7 @@
  * @copyright Copyright (c) 2020
  *
  */
- #define __RECHERCHE__
+ #define __INDEXATION__
 
- int rechercheMotClef(char * motClef);
 
- int rechercheTexte(char * cheminFichier);
+int indexationTexte (char * argument);

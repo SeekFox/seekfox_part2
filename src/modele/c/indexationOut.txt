@@ -1,0 +1,3 @@
+Indexation Unique de ./baseDeDocuments/Texte/15-Capturer_et_emprisonner_le_CO.xml
+Code Erreur : #24
+Fin

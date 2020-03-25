@@ -139,12 +139,17 @@ public class ControlRequete {
 		String msg = "";
 		this.type = type;
 		this.argument = argument;
-		this.resultat = null;
 		this.etatRequeteIvy = EtatRequeteIvy.WAIT;
 
 
 		//Configuration du message
 		switch (type) {
+			case TEXTE:
+			case AUDIO:
+			case IMAGE:
+				msg = "Impeesa type=Indexation_" + type + " argument=" + argument;
+
+				break;
 			default:
 				break;
 		}
@@ -213,6 +218,7 @@ public class ControlRequete {
 	 * @return
 	 */
 	private boolean isGoodExtension(String fichier, TypeRequete type) {
+		if(fichier.equals("all") && (!type.equals(TypeRequete.MOTCLEF) && !type.equals(TypeRequete.FIN) )) return true;
 		switch (type) {
 			case TEXTE:
 				return fichier.endsWith(".xml");

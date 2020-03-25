@@ -30,37 +30,53 @@ public class Main {
 				System.out.println("CHOIX \n" +
 						"\t0/ Lancer Recherche MotClef\n" +
 						"\t1/ Lancer Recherche Texte\n" +
-						"\t2/ Quitter"
+						"\t2/ Indexation Texte\n" +
+						"\t3/ Quitter"
 				);
 
 				choix = sc.nextInt();
 				sc.nextLine();
 
-				if (choix == 0) {
-					System.out.println("Entrez le mot clef");
+				switch (choix) {
+					case 0:
+						System.out.println("Entrez le mot clef");
 
-					argument = sc.nextLine();
+						argument = sc.nextLine();
 
-					System.out.println(argument);
-					controlRequete.runRecherche(TypeRequete.MOTCLEF, argument);
+						System.out.println(argument);
+						controlRequete.runRecherche(TypeRequete.MOTCLEF, argument);
 
-					System.out.println(controlRequete.getResultat());
+						System.out.println(controlRequete.getResultat());
 
-				} else if (choix == 1) {
-					System.out.println("Entrez le chemin vers le fichier");
+						break;
 
-					argument = sc.nextLine();
+					case 1:
+						System.out.println("Entrez le chemin vers le fichier");
 
-					System.out.println(argument);
-					controlRequete.runRecherche(TypeRequete.TEXTE, argument);
+						argument = sc.nextLine();
 
-					System.out.println(controlRequete.getResultat());
+						System.out.println(argument);
+						controlRequete.runRecherche(TypeRequete.TEXTE, argument);
 
-				} else if (choix == 2) {
-					controlRequete.stop();
-					isRunning = false;
+						break;
+
+					case 2:
+						System.out.println("[all/fichier.xml]");
+
+						argument = sc.nextLine();
+
+						System.out.println(argument);
+						controlRequete.runIndexation(TypeRequete.TEXTE, argument);
+
+						break;
+
+					default:
+						controlRequete.stop();
+						isRunning = false;
+						break;
 				}
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
