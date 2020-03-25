@@ -11,7 +11,7 @@ import modele.java.TypeRequete;
 import java.util.Scanner;
 
 public class Main {
-
+/*
 	public static void main(String[] args) throws Exception {
 		boolean isRunning = true;
 		ControlRequete controlRequete = new ControlRequete();
@@ -85,5 +85,5 @@ public class Main {
 
 		System.out.println("Fin de Piste");
 	}
-
+*/
 }
