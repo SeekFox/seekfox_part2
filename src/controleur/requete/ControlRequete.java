@@ -93,7 +93,12 @@ public class ControlRequete {
 	 * @param type
 	 * @param argument
 	 */
-	public void runRecherche(TypeRequete type, String argument) {
+	public void runRecherche(TypeRequete type, String argument) throws Exception {
+		if (!this.isGoodExtension(argument, type)) {
+			throw new Exception(argument + "n'est pas supporté par le moteur de recherche");
+		}
+
+
 		String msg = "";
 		this.type = type;
 		this.argument = argument;
@@ -130,7 +135,7 @@ public class ControlRequete {
 	 * @param type
 	 * @param argument
 	 */
-	public void runIdexation(TypeRequete type, String argument) {
+	public void runIndexation(TypeRequete type, String argument) {
 		String msg = "";
 		this.type = type;
 		this.argument = argument;
@@ -197,6 +202,31 @@ public class ControlRequete {
 		}
 
 		return resultat;
+	}
+
+
+	/**
+	 * Renvoi True si le fichier est supporté par le moteur de recherche
+	 *
+	 * @param fichier
+	 * @param type
+	 * @return
+	 */
+	private boolean isGoodExtension(String fichier, TypeRequete type) {
+		switch (type) {
+			case TEXTE:
+				return fichier.endsWith(".xml");
+
+			case AUDIO:
+				return fichier.endsWith(".bin");
+
+			case IMAGE:
+				return (fichier.endsWith(".bmp") || fichier.endsWith(".jpg"));
+
+			default:
+				return true;
+		}
+
 	}
 
 	/**
