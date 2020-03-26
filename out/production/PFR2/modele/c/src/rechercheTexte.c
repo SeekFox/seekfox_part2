@@ -31,7 +31,9 @@
  */
 Config config;
 
+
 int rechercheTexte(char * cheminFichier){
+
     //Initialisation
     FILE * output = NULL;
     output = fopen("./rechercheOut.txt","w+");
@@ -43,7 +45,8 @@ int rechercheTexte(char * cheminFichier){
     }
 
     fprintf(output,"%s\n",cheminFichier);
-
+    printf("%s\n",cheminFichier);
+    
     FILE * fichier = NULL;
 
     fichier = fopen(cheminFichier,"r");
