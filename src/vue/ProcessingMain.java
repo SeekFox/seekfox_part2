@@ -3,9 +3,8 @@ import processing.core.*;
 
 
 public class ProcessingMain extends PApplet{
-    Button testButton = new Button(100,100,200,50, color(0,255,255), "c la teuf", this);
-    Slider testSlider = new Slider(100,300,100,0,100,this);
-    Textbox testbox = new Textbox(300,100,100,30,"moncul",this);
+    private ScreenName currentScreen = ScreenName.MAIN;
+    private MainScreen mainScreen;
 
     public void settings(){
         size(640,480);
@@ -13,39 +12,101 @@ public class ProcessingMain extends PApplet{
     }
 
     public void setup(){
+        mainScreen = new MainScreen(this);
 
 
-        //background(255);
     }
 
 
 
 
     public void draw(){
-        background(color(255));
-        testButton.display();
-        testbox.display();
-        testSlider.display();
-    }
+        //Check for change of screen
+        switch(currentScreen){
+            case MAIN:
+                currentScreen = mainScreen.getNextScreen();
+                break;
+            case CONFIG:
+                break;
+            case HISTORY:
+                break;
+            case SEARCH_CONFIG:
+                break;
+            case RESULTS:
+                break;
+        }
+
+
+        //Draw everything
+        switch(currentScreen){
+            case MAIN:
+                mainScreen.draw();
+                break;
+            case CONFIG:
+
+
+                break;
+            case HISTORY:
+                break;
+            case SEARCH_CONFIG:
+                background(0);
+                currentScreen = ScreenName.MAIN;
+                break;
+            case RESULTS:
+                break;
+        }
+
+
+
+}
 
 
 
 
     public void mousePressed(){
-        if(testButton.isPressed())
-            println("ptdr");
-
-        testbox.clickParsing();
-        testSlider.clickParsing();
+        switch(currentScreen){
+            case MAIN:
+                mainScreen.mousePressed();
+                break;
+            case CONFIG:
+                break;
+            case HISTORY:
+                break;
+            case SEARCH_CONFIG:
+                break;
+            case RESULTS:
+                break;
+        }
     }
     public void mouseReleased(){
-        testButton.release();
-        testbox.release();
-        testSlider.release();
+        switch(currentScreen){
+            case MAIN:
+                mainScreen.mouseReleased();
+                break;
+            case CONFIG:
+                break;
+            case HISTORY:
+                break;
+            case SEARCH_CONFIG:
+                break;
+            case RESULTS:
+                break;
+        }
     }
 
     public void keyPressed(){
-        testbox.keyPressedParsing(key);
+        switch(currentScreen){
+            case MAIN:
+                break;
+            case CONFIG:
+                break;
+            case HISTORY:
+                break;
+            case SEARCH_CONFIG:
+                break;
+            case RESULTS:
+                break;
+        }
     }
 
     public static void main(String... args){

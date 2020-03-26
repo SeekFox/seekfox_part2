@@ -19,9 +19,11 @@ public class Button{
     private int buttonColorWhenPressed;
     private String buttonText;
     private boolean isPressed = false;
+    private boolean isCentered;
 
-    public Button(int px, int py, int sx, int sy, int buttonColor, String buttonText, PApplet app){
+    public Button(int px, int py, int sx, int sy, int buttonColor, String buttonText, boolean isCentered,PApplet app){
         p = app;
+        this.isCentered = isCentered;
         posX = px;
         posY = py;
         sizeX = sx;
@@ -32,7 +34,11 @@ public class Button{
     }
 
     public void display(){
-        p.rectMode(p.CORNER);
+        if(isCentered)
+            p.rectMode(p.CENTER);
+        else
+            p.rectMode(p.CORNER);
+
         if(!isPressed)
             p.fill(buttonColor);
         else
@@ -46,19 +52,23 @@ public class Button{
     }
 
     public boolean isPressed(){
-        if(p.mouseX >= (posX) && p.mouseX <=  (posX+sizeX)
-                && p.mouseY >= (posY) && p.mouseY <=  (posY+sizeY)){
-            isPressed = true;
-            return true;
-        }
-        else{
-            isPressed = false;
-            return false;
-        }
+        if(!isCentered)
+            return p.mouseX >= (posX) && p.mouseX <= (posX + sizeX) && p.mouseY >= (posY) && p.mouseY <= (posY + sizeY);
+        else
+            return p.mouseX >= (posX - sizeX/2) && p.mouseX <= (posX + sizeX/2) && p.mouseY >= (posY-sizeY/2) && p.mouseY <= (posY + sizeY/2);
     }
 
-    public void release(){
-        isPressed = false;
+    public void clickParsing(){
+        isPressed = isPressed();
+    }
+
+    public boolean release(){
+        if(isPressed) {
+            isPressed = false;
+            return true;
+        }
+        return false;
+
     }
 
 
