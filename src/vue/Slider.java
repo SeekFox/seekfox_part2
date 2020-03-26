@@ -7,7 +7,7 @@ package vue;
 
 import processing.core.PApplet;
 
-public class Slider{
+public class Slider {
     private int posX;
     private int posY;
     private int sizeX;
@@ -19,7 +19,7 @@ public class Slider{
 
     private boolean isPressed = false;
 
-    public Slider( int posX,int posY,int sizeX,float valMin,float valMax,PApplet app ){
+    public Slider(int posX, int posY, int sizeX, float valMin, float valMax, PApplet app) {
         p = app;
         this.posX = posX;
         this.posY = posY;
@@ -30,48 +30,47 @@ public class Slider{
     }
 
 
-    public void display(){
+    public void display() {
         //CLICK AND DRAG CALCULATIONS
-        if(isPressed){
-            sliderPosition = ((p.mouseX-posX)/(float)sizeX);
-            if(sliderPosition < 0)
+        if (isPressed) {
+            sliderPosition = ((p.mouseX - posX) / (float) sizeX);
+            if (sliderPosition < 0)
                 sliderPosition = 0;
-            if(sliderPosition > 1)
+            if (sliderPosition > 1)
                 sliderPosition = 1;
         }
 
         //ACTUAL DISPLAY
         p.fill(30);
         p.rectMode(p.CORNER);
-        p.rect(posX, posY-3,sizeX, 5);
-        if(!isPressed)
+        p.rect(posX, posY - 3, sizeX, 5);
+        if (!isPressed)
             p.fill(255);
         else
             p.fill(200);
         p.rectMode(p.CENTER);
-        p.rect(posX+sizeX*sliderPosition ,posY,  10,16 );
+        p.rect(posX + sizeX * sliderPosition, posY, 10, 16);
     }
 
-    public void clickParsing(){
+    public void clickParsing() {
         isPressed();
     }
 
-    public float getValue(){
-        return  valMin+(valMax-valMin)*sliderPosition;
+    public float getValue() {
+        return valMin + (valMax - valMin) * sliderPosition;
     }
 
-    public boolean isPressed(){
-        if(p.mouseX >= posX+sizeX*sliderPosition-5 && p.mouseX <= posX+sizeX*sliderPosition+5 && p.mouseY >= posY-8 && p.mouseY<= posY+8){
+    public boolean isPressed() {
+        if (p.mouseX >= posX + sizeX * sliderPosition - 5 && p.mouseX <= posX + sizeX * sliderPosition + 5 && p.mouseY >= posY - 8 && p.mouseY <= posY + 8) {
             isPressed = true;
             return true;
-        }
-        else{
+        } else {
             isPressed = false;
             return false;
         }
     }
 
-    public void release(){
+    public void release() {
         isPressed = false;
     }
 

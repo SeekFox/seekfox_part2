@@ -1,30 +1,33 @@
 package vue;
+
 import processing.core.*;
 
 
-public class ProcessingMain extends PApplet{
+public class ProcessingMain extends PApplet {
     private ScreenName currentScreen = ScreenName.MAIN;
     private MainScreen mainScreen;
+    private LoginScreen loginScreen;
 
-    public void settings(){
-        size(640,480);
+    public void settings() {
+        size(640, 480);
 
     }
 
-    public void setup(){
+    public void setup() {
         mainScreen = new MainScreen(this);
-
+        loginScreen = new LoginScreen(this);
 
     }
 
 
-
-
-    public void draw(){
+    public void draw() {
         //Check for change of screen
-        switch(currentScreen){
+        switch (currentScreen) {
             case MAIN:
                 currentScreen = mainScreen.getNextScreen();
+                break;
+            case ADMIN_CONNECTION:
+                currentScreen = loginScreen.getNextScreen();
                 break;
             case CONFIG:
                 break;
@@ -38,10 +41,14 @@ public class ProcessingMain extends PApplet{
 
 
         //Draw everything
-        switch(currentScreen){
+        switch (currentScreen) {
             case MAIN:
                 mainScreen.draw();
                 break;
+            case ADMIN_CONNECTION:
+                loginScreen.draw();
+                break;
+
             case CONFIG:
 
 
@@ -57,17 +64,17 @@ public class ProcessingMain extends PApplet{
         }
 
 
-
-}
-
+    }
 
 
-
-    public void mousePressed(){
-        switch(currentScreen){
+    public void mousePressed() {
+        switch (currentScreen) {
             case MAIN:
                 mainScreen.mousePressed();
                 break;
+            case ADMIN_CONNECTION:
+                loginScreen.mousePressed();
+                break;
             case CONFIG:
                 break;
             case HISTORY:
@@ -78,11 +85,15 @@ public class ProcessingMain extends PApplet{
                 break;
         }
     }
-    public void mouseReleased(){
-        switch(currentScreen){
+
+    public void mouseReleased() {
+        switch (currentScreen) {
             case MAIN:
                 mainScreen.mouseReleased();
                 break;
+            case ADMIN_CONNECTION:
+                loginScreen.mouseReleased();
+                break;
             case CONFIG:
                 break;
             case HISTORY:
@@ -94,10 +105,13 @@ public class ProcessingMain extends PApplet{
         }
     }
 
-    public void keyPressed(){
-        switch(currentScreen){
+    public void keyPressed() {
+        switch (currentScreen) {
             case MAIN:
                 break;
+            case ADMIN_CONNECTION:
+                loginScreen.keyPressed();
+                break;
             case CONFIG:
                 break;
             case HISTORY:
@@ -109,7 +123,7 @@ public class ProcessingMain extends PApplet{
         }
     }
 
-    public static void main(String... args){
+    public static void main(String... args) {
         PApplet.main("vue.ProcessingMain");
     }
 

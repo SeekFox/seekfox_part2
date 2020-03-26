@@ -8,7 +8,7 @@ package vue;
 import processing.core.*;
 
 
-public class Button{
+public class Button {
     private int posX;
     private int posY;
     private int sizeX;
@@ -21,49 +21,46 @@ public class Button{
     private boolean isPressed = false;
     private boolean isCentered;
 
-    public Button(int px, int py, int sx, int sy, int buttonColor, String buttonText, boolean isCentered,PApplet app){
+    public Button(int px, int py, int sx, int sy, int buttonColor, String buttonText, boolean isCentered, PApplet app) {
         p = app;
         this.isCentered = isCentered;
         posX = px;
         posY = py;
         sizeX = sx;
         sizeY = sy;
-        buttonColorWhenPressed =  p.color(50,50,50);
+        buttonColorWhenPressed = p.color(50, 50, 50);
         this.buttonColor = buttonColor;
         this.buttonText = buttonText;
     }
 
-    public void display(){
-        if(isCentered)
+    public void display() {
+        if (isCentered)
             p.rectMode(p.CENTER);
         else
             p.rectMode(p.CORNER);
 
-        if(!isPressed)
+        if (!isPressed)
             p.fill(buttonColor);
         else
             p.fill(buttonColorWhenPressed);
 
 
-        p.rect(posX, posY, sizeX, sizeY,5);
-        p.fill(0,0,0);
-        p.textAlign(p.CENTER,p.CENTER);
-        p.text(buttonText, posX+5, posY, sizeX, sizeY);
+        p.rect(posX, posY, sizeX, sizeY, 5);
+        p.fill(0, 0, 0);
+        p.textAlign(p.CENTER, p.CENTER);
+        p.text(buttonText, posX + 5, posY, sizeX, sizeY);
     }
 
-    public boolean isPressed(){
-        if(!isCentered)
-            return p.mouseX >= (posX) && p.mouseX <= (posX + sizeX) && p.mouseY >= (posY) && p.mouseY <= (posY + sizeY);
-        else
-            return p.mouseX >= (posX - sizeX/2) && p.mouseX <= (posX + sizeX/2) && p.mouseY >= (posY-sizeY/2) && p.mouseY <= (posY + sizeY/2);
+    public boolean isPressed() {
+        return Detection.isPressed(p.mouseX, p.mouseY, posX, posY, sizeX, sizeY, isCentered);
     }
 
-    public void clickParsing(){
+    public void clickParsing() {
         isPressed = isPressed();
     }
 
-    public boolean release(){
-        if(isPressed) {
+    public boolean release() {
+        if (isPressed) {
             isPressed = false;
             return true;
         }
