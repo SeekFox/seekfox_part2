@@ -6,12 +6,12 @@
 package vue;
 
 import controleur.requete.ControlRequete;
+import modele.java.Config;
 import modele.java.TypeRequete;
 
 import java.util.Scanner;
 
 public class Main {
-/*
 	public static void main(String[] args) throws Exception {
 		boolean isRunning = true;
 		ControlRequete controlRequete = new ControlRequete();
@@ -31,7 +31,8 @@ public class Main {
 						"\t0/ Lancer Recherche MotClef\n" +
 						"\t1/ Lancer Recherche Texte\n" +
 						"\t2/ Indexation Texte\n" +
-						"\t3/ Quitter"
+						"\t3/ Voir les configs\n" +
+						"\t4/ Quitter"
 				);
 
 				choix = sc.nextInt();
@@ -70,6 +71,12 @@ public class Main {
 
 						break;
 
+					case 3:
+						Config config = new Config();
+						config.loadConfig();
+						System.out.println(config);
+						break;
+
 					default:
 						controlRequete.stop();
 						isRunning = false;
@@ -85,5 +92,4 @@ public class Main {
 
 		System.out.println("Fin de Piste");
 	}
-*/
 }

@@ -13,7 +13,7 @@
 #include <stdlib.h> 
 #include <string.h>
 #include <unistd.h>
-//#include <crypt.h>
+#include <crypt.h>
 #include <math.h>
 
 #ifndef __CONFIG__
