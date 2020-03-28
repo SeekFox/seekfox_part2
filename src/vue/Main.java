@@ -74,6 +74,8 @@ public class Main {
 					case 3:
 						Config config = new Config();
 						config.loadConfig();
+						config.setPasswordAdmin("admin");
+						config.majConfig();
 						System.out.println(config);
 						break;
 

@@ -5,10 +5,7 @@
 
 package modele.java;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class Config {
 	//Attributs
@@ -27,7 +24,32 @@ public class Config {
 
 	//Méthodes
 	public void majConfig(){
+		try {
+			File f = new File(this.fichierConfig);
+			f.createNewFile();
 
+			//Vider le fichier
+			FileWriter fw;
+			fw = new FileWriter(f, false);
+			fw.write("");
+			fw.flush();
+			fw.close();
+
+			//Ecrire dans le fichier
+			fw = new FileWriter(f, true);
+			fw.write(this.passwordAdmin+"\n" +
+					this.TEXTE_tailleMin + "\n" +
+					this.TEXTE_val + "\n" +
+					this.TEXTE_seuil + "\n" +
+					this.IMAGE_nbBIts + "\n" +
+					this.AUDIO_n + "\n" +
+					this.AUDIO_m + "\n"
+			);
+			fw.flush();
+			fw.close();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
 
 	}
 
