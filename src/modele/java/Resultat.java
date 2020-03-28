@@ -10,17 +10,17 @@ import java.util.ArrayList;
 public class Resultat {
 	//Attributs
 	private String requete;
-	private TypeRecherche type;
+	private TypeRequete type;
 	private ArrayList<CelluleResultat> resultats = new ArrayList<>();
 
 	//Constructeur
-	public Resultat(String requete, TypeRecherche type){
+	public Resultat(String requete, TypeRequete type) {
 		this.requete = requete;
 		this.type = type;
 	}
 
 	//Méthodes
-	public void add(String fichier, float score){
+	public void add(String fichier, float score) {
 		boolean isResultatAdd = false;
 
 		for(int i=0; (i<this.resultats.size()&&!isResultatAdd);i++){
@@ -30,7 +30,7 @@ public class Resultat {
 			}
 		}
 
-		if(!isResultatAdd){
+		if (!isResultatAdd) {
 			this.resultats.add(new CelluleResultat(fichier, score));
 		}
 
@@ -40,7 +40,7 @@ public class Resultat {
 		return requete;
 	}
 
-	public TypeRecherche getType() {
+	public TypeRequete getType() {
 		return type;
 	}
 

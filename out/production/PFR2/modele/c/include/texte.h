@@ -137,3 +137,17 @@ float comparerDescripteurTexte(DescripteurTexte desc1, DescripteurTexte desc2);
  * @return int 
  */
 int chercherMotCleDansTexte(char * mot, DescripteurTexte descripteur);
+
+/**
+ * @brief reindexation de tout les fichiers indexés
+ *
+ */
+int indexationTotale();
+
+
+/**
+ * @brief Indexer un fichier
+ *
+ * @param cheminFichier
+ */
+int indexationFichier(char * cheminFichier);
