@@ -11,6 +11,10 @@
     #include "../include/recherche.h"
 #endif
 
+#ifndef __INDEXATION__
+    #include "../include/indexation.h"
+#endif
+
 
 /* callback associated to "Hello" messages */
 void EcouteCallback (IvyClientPtr app, void *data, int argc, char **argv){
@@ -39,13 +43,29 @@ void EcouteCallback (IvyClientPtr app, void *data, int argc, char **argv){
         }
 
 
-    }else if(strcmp(argv[0],"Recherche")==0){
+    }else if(strcmp(argv[0],"Indexation")==0){
         printf("Indexation\n");
+        if(strcmp("TEXTE",argv[1])==0){
+            retour = indexationTexte(argv[2]);
+
+        }else if(strcmp("IMAGE",argv[1])==0){
+            printf("%s\n",argv[1]);
+
+        }else if(strcmp("AUDIO",argv[1])==0){
+            printf("%s\n",argv[1]);
+
+        }else{
+            printf("ERREUR : %s\n",argv[1]);
+            retour = 1;
+
+        }
 
     }else{
         printf("Inconnu\n");
 
     }
+
+    printf("FIN\n\n");
 
     if(retour==0){
         IvySendMsg("HamsterJovial answer=OK");

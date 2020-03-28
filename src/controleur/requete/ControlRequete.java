@@ -93,7 +93,12 @@ public class ControlRequete {
 	 * @param type
 	 * @param argument
 	 */
-	public void runRecherche(TypeRequete type, String argument) {
+	public void runRecherche(TypeRequete type, String argument) throws Exception {
+		if (!this.isGoodExtension(argument, type)) {
+			throw new Exception(argument + "n'est pas supporté par le moteur de recherche");
+		}
+
+
 		String msg = "";
 		this.type = type;
 		this.argument = argument;
@@ -130,16 +135,21 @@ public class ControlRequete {
 	 * @param type
 	 * @param argument
 	 */
-	public void runIdexation(TypeRequete type, String argument) {
+	public void runIndexation(TypeRequete type, String argument) {
 		String msg = "";
 		this.type = type;
 		this.argument = argument;
-		this.resultat = null;
 		this.etatRequeteIvy = EtatRequeteIvy.WAIT;
 
 
 		//Configuration du message
 		switch (type) {
+			case TEXTE:
+			case AUDIO:
+			case IMAGE:
+				msg = "Impeesa type=Indexation_" + type + " argument=" + argument;
+
+				break;
 			default:
 				break;
 		}
@@ -197,6 +207,32 @@ public class ControlRequete {
 		}
 
 		return resultat;
+	}
+
+
+	/**
+	 * Renvoi True si le fichier est supporté par le moteur de recherche
+	 *
+	 * @param fichier
+	 * @param type
+	 * @return
+	 */
+	private boolean isGoodExtension(String fichier, TypeRequete type) {
+		if(fichier.equals("all") && (!type.equals(TypeRequete.MOTCLEF) && !type.equals(TypeRequete.FIN) )) return true;
+		switch (type) {
+			case TEXTE:
+				return fichier.endsWith(".xml");
+
+			case AUDIO:
+				return fichier.endsWith(".bin");
+
+			case IMAGE:
+				return (fichier.endsWith(".bmp") || fichier.endsWith(".jpg"));
+
+			default:
+				return true;
+		}
+
 	}
 
 	/**
