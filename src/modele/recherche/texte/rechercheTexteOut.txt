@@ -1,4 +1,0 @@
-./base_de_document/Texte/01.xml
-./base_de_document/Texte/01.xml;100
-./base_de_document/Texte/02.xml;77
-./base_de_document/Texte/03.xml;80
