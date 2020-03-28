@@ -48,7 +48,6 @@ public class ProcessingMain extends PApplet {
             case ADMIN_CONNECTION:
                 loginScreen.draw();
                 break;
-
             case CONFIG:
 
 

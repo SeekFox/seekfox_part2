@@ -48,7 +48,7 @@ public class Button {
         p.rect(posX, posY, sizeX, sizeY, 5);
         p.fill(0, 0, 0);
         p.textAlign(p.CENTER, p.CENTER);
-        p.text(buttonText, posX + 5, posY, sizeX, sizeY);
+        p.text(buttonText, posX, posY, sizeX, sizeY);
     }
 
     public boolean isPressed() {

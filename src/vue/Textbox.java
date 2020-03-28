@@ -22,6 +22,11 @@ public class Textbox {
     private boolean isPassword;
     private boolean isCentered;
 
+
+    public String getWrittenText() {
+        return writtenText;
+    }
+
     public Textbox(int px, int py, int sx, int sy, String textBoxText, boolean isPassword, boolean isCentered, PApplet app) {
         p = app;
         this.isPassword = isPassword;
@@ -49,14 +54,14 @@ public class Textbox {
         p.fill(0, 0, 0);
         p.textAlign(p.CENTER, p.CENTER);
         if (!isPressed && writtenText.length() == 0) {
-
-            p.text(textBoxText, posX + 5, posY, sizeX, sizeY);
+            p.fill(150);
+            p.text(textBoxText, posX, posY, sizeX, sizeY);
 
         } else {
             if(!isPassword)
-                p.text(writtenText, posX + 5, posY, sizeX, sizeY);
+                p.text(writtenText, posX, posY, sizeX, sizeY);
             else{
-                p.text("* ".repeat(writtenText.length()), posX + 5, posY, sizeX, sizeY);   //Écrire des étoiles si mdp
+                p.text("* ".repeat(writtenText.length()), posX, posY, sizeX, sizeY);   //Écrire des étoiles si mdp
             }
         }
     }
