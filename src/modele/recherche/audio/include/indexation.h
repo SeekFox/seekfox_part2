@@ -9,16 +9,5 @@
  * 
  */
 
-/**
- * @brief 
- * 
- */
-int indexationTotale();
 
-
-/**
- * @brief 
- * 
- * @param cheminFichier 
- */
-int indexationFichier(char * cheminFichier);
+int indexationAudio(char * argument);
