@@ -8,10 +8,11 @@
  * 
  */
 
-#ifndef AUDIO_H
-#define AUDIO_H
-#include "pile_dynamiqueAudio.h"
+#define __AUDIO__
 
+#ifndef __PILE_AUDIO__
+    #include "../include/pile_dynamiqueAudio.h"
+#endif
 
 #define WAV_OFFSET 56
 
@@ -111,4 +112,8 @@ PILE comparerDescripteursAudio(DescripteurAudio jingle, DescripteurAudio fichier
 char* fenetreToString(Fenetre workingFenetre, int* size);
 char* descripteurAudioToString(DescripteurAudio descToString); //Attention, cela détruit l'intérieur du descripteur, il est inutilisable après
 DescripteurAudio stringToDescripteurAudio(char* stringToParse);
-#endif
+
+
+int indexationTotaleAudio();
+
+int indexationFichierAudio(char * cheminFichier);

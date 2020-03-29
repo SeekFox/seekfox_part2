@@ -8,8 +8,8 @@
  * 
  */
 
-#ifndef DYNAMIQUE_H
-#define DYNAMIQUE_H
+#ifndef __PILE_AUDIO__
+
 #include "elementAudio.h"
 
 typedef struct CELLULE{

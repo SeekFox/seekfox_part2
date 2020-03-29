@@ -8,8 +8,10 @@
  * 
  */
 
-#ifndef ELEMENT_H
-#define ELEMENT_H
+
+#define __ELEMENT_AUDIO__
+
+
 typedef struct ELEMENT{
 	int val;
 }ELEMENT;

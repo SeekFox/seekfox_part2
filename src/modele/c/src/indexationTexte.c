@@ -49,12 +49,12 @@ int indexationTexte (char * argument){
     if(strcmp(argument,"all")==0){ //Indexation Totale du fichier fichiersIndexesTexte
         fprintf(output,"Indexation Totale\n");
 
-        codeErreur = indexationTotale();
+        codeErreur = indexationTotaleTexte();
 
     }else{ //Indexation du fichier
         fprintf(output,"Indexation Unique de %s\n",argument);
 
-        codeErreur = indexationFichier(argument);
+        codeErreur = indexationFichierTexte(argument);
     }
 
     if(codeErreur!=0) fprintf(output,"Code Erreur : #%d\n",codeErreur);

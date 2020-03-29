@@ -10,7 +10,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "elementAudio.h"
+
+#ifndef __ELEMENT_AUDIO__
+    #include "../include/elementAudio.h"
+#endif
+
 
 void affiche_ELEMENT(ELEMENT display){
 	printf("%3d", display.val);
