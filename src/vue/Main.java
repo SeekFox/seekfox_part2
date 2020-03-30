@@ -12,7 +12,7 @@ import modele.java.TypeRequete;
 import java.util.Scanner;
 
 public class Main {
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		boolean isRunning = true;
 		ControlRequete controlRequete = new ControlRequete();
 		Scanner sc = new Scanner(System.in);

@@ -341,7 +341,7 @@ int chercherMotCleDansTexte(char * mot, DescripteurTexte descripteur){
  *
  * @return int
  */
-int indexationTotale(){
+int indexationTotaleTexte(){
     // Ouverture du fichier fichiersIndexesTexte
     FILE * fichierIndexes = NULL;
     fichierIndexes = fopen("./data/fichiersIndexesTexte","r+");
@@ -400,7 +400,7 @@ int indexationTotale(){
 }
 
 
-int indexationFichier(char * cheminFichier){
+int indexationFichierTexte(char * cheminFichier){
     // Ouverture du fichier fichiersIndexesTexte
     FILE * fichierIndexes = NULL;
     fichierIndexes = fopen("./data/fichiersIndexesTexte","a+");

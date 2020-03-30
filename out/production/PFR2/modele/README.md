@@ -2,10 +2,11 @@
 
 ## Recherche    
 + Texte   
-  + Recherche Texte *[En Cours]*   
+  + Recherche Texte *[Fini]*   
 + MotClef   
-  + Recherche Audio *[Fini]*   
+  + Recherche Mot Clef *[Fini]*   
 + Image   
   + Recherche Image *[A Faire]*   
 + Audio   
   + Recherche Audio *[A Faire]*   
+
