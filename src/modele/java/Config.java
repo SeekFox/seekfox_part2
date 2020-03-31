@@ -142,7 +142,9 @@ public class Config {
 	}
 
 	public void setTEXTE_tailleMin(int TEXTE_tailleMin) {
-		this.TEXTE_tailleMin = TEXTE_tailleMin;
+		if(TEXTE_tailleMin>0){
+			this.TEXTE_tailleMin = TEXTE_tailleMin;
+		}
 	}
 
 	public int getTEXTE_val() {
@@ -150,7 +152,9 @@ public class Config {
 	}
 
 	public void setTEXTE_val(int TEXTE_val) {
-		this.TEXTE_val = TEXTE_val;
+		if(TEXTE_val>0) {
+			this.TEXTE_val = TEXTE_val;
+		}
 	}
 
 	public int getTEXTE_seuil() {
@@ -158,7 +162,9 @@ public class Config {
 	}
 
 	public void setTEXTE_seuil(int TEXTE_seuil) {
-		this.TEXTE_seuil = TEXTE_seuil;
+		if(TEXTE_seuil>0){
+			this.TEXTE_seuil = TEXTE_seuil;
+		}
 	}
 
 	public int getIMAGE_nbBIts() {
@@ -166,7 +172,10 @@ public class Config {
 	}
 
 	public void setIMAGE_nbBIts(int IMAGE_nbBIts) {
-		this.IMAGE_nbBIts = IMAGE_nbBIts;
+		if(IMAGE_nbBIts>0)
+		{
+			this.IMAGE_nbBIts = IMAGE_nbBIts;
+		}
 	}
 
 	public int getAUDIO_n() {
@@ -174,7 +183,9 @@ public class Config {
 	}
 
 	public void setAUDIO_n(int AUDIO_n) {
-		this.AUDIO_n = AUDIO_n;
+		if(AUDIO_n>0){
+			this.AUDIO_n = AUDIO_n;
+		}
 	}
 
 	public int getAUDIO_m() {
@@ -182,6 +193,8 @@ public class Config {
 	}
 
 	public void setAUDIO_m(int AUDIO_m) {
-		this.AUDIO_m = AUDIO_m;
+		if(AUDIO_m>0){
+			this.AUDIO_m = AUDIO_m;
+		}
 	}
 }
