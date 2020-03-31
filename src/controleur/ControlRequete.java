@@ -3,7 +3,7 @@
  * Clément Truillet (clement@ctruillet.eu)
  */
 
-package controleur.requete;
+package controleur;
 
 import fr.dgac.ivy.Ivy;
 import fr.dgac.ivy.IvyClient;

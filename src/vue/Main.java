@@ -73,7 +73,7 @@ public class Main {
 						break;
 
 					case 3:
-						Config config = new Config();
+						Config config = Config.getInstance();
 						config.loadConfig();
 						config.setPasswordAdmin("admin");
 						config.majConfig();
