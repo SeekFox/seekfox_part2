@@ -32,7 +32,8 @@ public class Main {
 						"\t1/ Lancer Recherche Texte\n" +
 						"\t2/ Indexation Texte\n" +
 						"\t3/ Voir les configs\n" +
-						"\t4/ Quitter"
+						"\t4/ Voir les fichiers Textes indexes\n" +
+						"\t5/ Quitter"
 				);
 
 				choix = sc.nextInt();
@@ -77,6 +78,15 @@ public class Main {
 						config.setPasswordAdmin("admin");
 						config.majConfig();
 						System.out.println(config);
+						break;
+
+					case 4:
+						System.out.println("Fichiers Textes Indexes = {");
+						for(String s : controlRequete.getListeFichierIndexesTexte()){
+							System.out.println("\t" + s);
+						}
+						System.out.println("}");
+
 						break;
 
 					default:

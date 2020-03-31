@@ -17,6 +17,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 /**
  * Classe de controle d'une requete
@@ -264,5 +265,27 @@ public class ControlRequete {
 	 */
 	public EtatRequeteIvy getEtatRequeteIvy() {
 		return etatRequeteIvy;
+	}
+
+
+	public ArrayList<String> getListeFichierIndexesTexte(){
+		ArrayList<String> listefichiers = new ArrayList<>();
+
+		try (
+				InputStream ips = new FileInputStream("./src/modele/c/data/fichiersIndexesTexte");
+				InputStreamReader ipsr = new InputStreamReader(ips);
+				BufferedReader br = new BufferedReader(ipsr)
+		){
+
+			String ligne;
+
+			while ((ligne = br.readLine()) != null) {
+				listefichiers.add(ligne);
+			}
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+
+		return listefichiers;
 	}
 }
