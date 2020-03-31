@@ -10,7 +10,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "pile_dynamiqueAudio.h"
+
+#ifndef __PILE_AUDIO__
+    #include "../include/pile_dynamiqueAudio.h"
+#endif
 
 
 PILE init_PILE(){

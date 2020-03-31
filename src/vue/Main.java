@@ -5,14 +5,14 @@
 
 package vue;
 
-import controleur.requete.ControlRequete;
+import controleur.ControlRequete;
 import modele.java.Config;
 import modele.java.TypeRequete;
 
 import java.util.Scanner;
 
 public class Main {
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		boolean isRunning = true;
 		ControlRequete controlRequete = new ControlRequete();
 		Scanner sc = new Scanner(System.in);
@@ -32,7 +32,8 @@ public class Main {
 						"\t1/ Lancer Recherche Texte\n" +
 						"\t2/ Indexation Texte\n" +
 						"\t3/ Voir les configs\n" +
-						"\t4/ Quitter"
+						"\t4/ Voir les fichiers Textes indexes\n" +
+						"\t5/ Quitter"
 				);
 
 				choix = sc.nextInt();
@@ -72,11 +73,20 @@ public class Main {
 						break;
 
 					case 3:
-						Config config = new Config();
+						Config config = Config.getInstance();
 						config.loadConfig();
 						config.setPasswordAdmin("admin");
 						config.majConfig();
 						System.out.println(config);
+						break;
+
+					case 4:
+						System.out.println("Fichiers Textes Indexes = {");
+						for(String s : controlRequete.getListeFichierIndexesTexte()){
+							System.out.println("\t" + s);
+						}
+						System.out.println("}");
+
 						break;
 
 					default:

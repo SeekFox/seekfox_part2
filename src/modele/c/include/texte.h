@@ -142,7 +142,7 @@ int chercherMotCleDansTexte(char * mot, DescripteurTexte descripteur);
  * @brief reindexation de tout les fichiers indexés
  *
  */
-int indexationTotale();
+int indexationTotaleTexte();
 
 
 /**
@@ -150,4 +150,4 @@ int indexationTotale();
  *
  * @param cheminFichier
  */
-int indexationFichier(char * cheminFichier);
+int indexationFichierTexte(char * cheminFichier);
