@@ -5,7 +5,7 @@
 
 package vue;
 
-import controleur.requete.ControlRequete;
+import controleur.ControlRequete;
 import modele.java.Config;
 import modele.java.TypeRequete;
 
