@@ -19,10 +19,23 @@ public class Config {
 	private int AUDIO_n;
 	private int AUDIO_m;
 
-	//Constructeur
+	private static Config INSTANCE = null;
 
+	//Constructeur
+	private Config(){
+
+	}
 
 	//Méthodes
+	public static Config getInstance(){
+		if(INSTANCE==null){
+			INSTANCE = new Config();
+		}
+
+		return INSTANCE;
+	}
+
+
 	public void majConfig(){
 		try {
 			File f = new File(this.fichierConfig);
