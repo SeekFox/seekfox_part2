@@ -9,9 +9,9 @@ import fr.dgac.ivy.Ivy;
 import fr.dgac.ivy.IvyClient;
 import fr.dgac.ivy.IvyException;
 import fr.dgac.ivy.IvyMessageListener;
-import modele.java.EtatRequeteIvy;
-import modele.java.Resultat;
-import modele.java.TypeRequete;
+import modele.EtatRequeteIvy;
+import modele.Resultat;
+import modele.TypeRequete;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
  */
 public class ControlRequete {
 	//Attributs
-	private String fichierResultatRecherche = "./src/modele/c/rechercheOut.txt";
+	private String fichierResultatRecherche = "./impeesa/rechercheOut.txt";
 	private Resultat resultat;
 	private TypeRequete type;
 	private String argument;
@@ -71,9 +71,9 @@ public class ControlRequete {
 						System.err.println("Impeesa a rencontré un problème.");
 
 					} else {
-
-						etatRequeteIvy = EtatRequeteIvy.OK;
 						resultat = lireResultat();
+						etatRequeteIvy = EtatRequeteIvy.OK;
+
 					}
 
 
@@ -272,7 +272,7 @@ public class ControlRequete {
 		ArrayList<String> listefichiers = new ArrayList<>();
 
 		try (
-				InputStream ips = new FileInputStream("./src/modele/c/data/fichiersIndexesTexte");
+				InputStream ips = new FileInputStream("./impeesa/data/fichiersIndexesTexte");
 				InputStreamReader ipsr = new InputStreamReader(ips);
 				BufferedReader br = new BufferedReader(ipsr)
 		){

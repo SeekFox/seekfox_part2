@@ -1,5 +1,13 @@
 # Projet Fil Rouge 2 - Seekfox
 
+## Arborescence du projet
++ **Impeesa** *[C]*
+    + Moteur de recherche codé en C.
++ **HamsterJovial** *[Java]*
+    + Interface Utilisateur codée en Java. 
++ **Ivy**
+
+
 ## Run
 Pour lancer le projet, il vous suffit de lancer la commande à la racine du projet
 
@@ -8,7 +16,11 @@ Pour lancer le projet, il vous suffit de lancer la commande à la racine du proj
 ```
 
 ## Compile
-Pour compiler le projet, il est necessaire d'installer la librairie d'Ivy disponible à cette [adresse](https://github.com/truillet/upssitech/blob/master/SRI/3A/IHM/TP/ivy-java-1.2.18.jar)
+Pour compiler le projet, il est necessaire d'installer la librairie d'Ivy.   
+Pour cela, vous trouverez un tutoriel pour installer la librairie dans le repertoire */ivy*.   
+L'execution du projet est impossible sans compilation de la librairie ivy pour le C.
+
+
 ### Version Alpha - 22.03.2020
 La version du *22/03/2020* est orientée sur la liaison Java/C.   
 Cette liaison se fait avec un bus logiciel **Ivy** sur le port 2010.
