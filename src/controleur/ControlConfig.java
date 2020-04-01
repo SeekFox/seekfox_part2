@@ -5,7 +5,7 @@
 
 package controleur;
 
-import modele.java.Config;
+import modele.Config;
 
 /**
  * Classe de control des Configs

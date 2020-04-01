@@ -6,8 +6,8 @@
 package vue;
 
 import controleur.ControlRequete;
-import modele.java.Config;
-import modele.java.TypeRequete;
+import modele.Config;
+import modele.TypeRequete;
 
 import java.util.Scanner;
 
