@@ -4,6 +4,7 @@ import processing.core.*;
 
 
 public class ProcessingMain extends PApplet {
+    private ScreenName previousScreen;
     private ScreenName currentScreen = ScreenName.MAIN;
     private MainScreen mainScreen;
     private LoginScreen loginScreen;
@@ -19,9 +20,8 @@ public class ProcessingMain extends PApplet {
 
     }
 
-
-    public void draw() {
-        //Check for change of screen
+    public void changeScreen(){
+        previousScreen = currentScreen;
         switch (currentScreen) {
             case MAIN:
                 currentScreen = mainScreen.getNextScreen();
@@ -38,7 +38,35 @@ public class ProcessingMain extends PApplet {
             case RESULTS:
                 break;
         }
+    }
 
+    public void initScreen(){
+        if(currentScreen!=previousScreen) {
+            switch (currentScreen) {
+                case MAIN:
+                    break;
+                case ADMIN_CONNECTION:
+                    loginScreen.init();
+                    break;
+                case CONFIG:
+                    break;
+                case HISTORY:
+                    break;
+                case SEARCH_CONFIG:
+                    break;
+                case RESULTS:
+                    break;
+            }
+        }
+
+    }
+
+
+
+    public void draw() {
+        //Check if we need to change screens
+        changeScreen();
+        initScreen();
 
         //Draw everything
         switch (currentScreen) {
@@ -49,8 +77,6 @@ public class ProcessingMain extends PApplet {
                 loginScreen.draw();
                 break;
             case CONFIG:
-
-
                 break;
             case HISTORY:
                 break;

@@ -73,14 +73,12 @@ public class LoginScreen {
     }
 
     public ScreenName getNextScreen() {
-        if(nextScreen != ScreenName.ADMIN_CONNECTION)
-            screenReset();
         ScreenName temp = nextScreen;
         nextScreen = ScreenName.ADMIN_CONNECTION;
         return temp;
     }
 
-    private void screenReset() {
+    public void init() {
         errorTextIsVisible = false;
     }
 }
