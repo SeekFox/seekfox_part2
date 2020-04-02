@@ -1,5 +1,5 @@
 /**
- * @file main.c
+ * @file rechercheMotClef.c
  * @author Clement Truillet (clement.truillet@univ-tlse3.fr)
  * @brief Comparaison d'un texte .xml (en entrée) avec les fichiers textes déjà indexés
  * @brief Ces descripeurs sont stockés dans le fichier ./data/descripteursTexte
