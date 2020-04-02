@@ -52,6 +52,7 @@ public class ResultsViewer {
         elementCaseSizeY = (sizeY-footerSizeY)/nbItemsPerPage;
     }
 
+    @SuppressWarnings("IntegerDivisionInFloatingPointContext")
     public void draw() {
         int currentYPosition = posY;
         int currentIndex;
@@ -67,11 +68,11 @@ public class ResultsViewer {
             p.rectMode(p.CORNER);
             p.rect(posX, currentYPosition, sizeX, elementCaseSizeY);
             p.fill(0);
-            p.textAlign(p.LEFT);
-            p.text("Fichier : "+listOfElementsLeft.get(currentIndex),posX+10,currentYPosition+25);
+            p.textAlign(p.LEFT,p.CENTER);
+            p.text("Fichier : "+listOfElementsLeft.get(currentIndex),posX+10,currentYPosition+elementCaseSizeY/2);
 
-            p.textAlign(p.RIGHT);
-            p.text(listOfElementsRight.get(currentIndex) + "%",posX+sizeX-10,currentYPosition+25);
+            p.textAlign(p.RIGHT,p.CENTER);
+            p.text(listOfElementsRight.get(currentIndex) + "%",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
 
             currentYPosition += elementCaseSizeY;
         }
