@@ -1,4 +1,3 @@
-victoire
-./baseDeDocuments/Texte/05-Au_stade_d_Abidjan,_la_defaite.xml;5
-./baseDeDocuments/Texte/05-Le_Colombien_Juan_Pablo_Montoya.xml;3
-./baseDeDocuments/Texte/12-Agassi_plie_face_au_meilleur.xml;4
+./baseDeDocuments/Image/NB/51.bmp
+./baseDeDocuments/Image/NB/52.bmp;87.56
+./baseDeDocuments/Image/NB/53.bmp;53.12
