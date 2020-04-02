@@ -5,7 +5,7 @@
 
 package vue;
 
-import modele.java.Resultat;
+import modele.Resultat;
 import processing.core.PApplet;
 import java.util.ArrayList;
 
