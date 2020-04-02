@@ -1,6 +1,0 @@
-./rechercheTexte.out
-ceci
-est
-un
-test
-CONFIG gedit
