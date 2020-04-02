@@ -15,23 +15,26 @@ public class ResultsViewer {
 
 
     //Config de l'element
-    private final int elementCaseSizeY = 30;
+    private int elementCaseSizeY;
     private final int buttonSizeX = 80;
     private final int buttonSizeY = 30;
     private final int footerSizeY = 50;
+    private final int nbItemsPerPage = 10;
 
     private int posX;
     private int posY;
     private int sizeX;
     private int sizeY;
 
-    private boolean nextButtonIsNeeded = true;
-    private boolean previousButtonIsNeeded = true;
+    private boolean nextButtonIsNeeded = false;
+    private boolean previousButtonIsNeeded = false;
 
     private Button nextButton;
     private Button previousButton;
     private int currentPage = 1;
     private int nbPages;
+    private int nbItems;
+
 
     private ArrayList<String> listOfElementsLeft = new ArrayList<>();     //Ce qu'il y a écrit a gauche de la case
     private ArrayList<String> listOfElementsRight = new ArrayList<>();    //Ce qu'il y a écrit sur la droite de la case
@@ -43,22 +46,46 @@ public class ResultsViewer {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
 
-        nextButton = new Button(posX + sizeX - 10 - buttonSizeX, posY + sizeY - 10 - buttonSizeY, buttonSizeX, buttonSizeY, p.color(240), "Suivant", false, p);
-        previousButton = new Button(posX + 10, posY + sizeY - 10 - buttonSizeY, buttonSizeX, buttonSizeY, p.color(240), "Précédent", false, p);
+        nextButton = new Button(posX + sizeX - 10 - buttonSizeX, posY + sizeY - 10 - buttonSizeY, buttonSizeX, buttonSizeY, p.color(255), "Suivant", false, p);
+        previousButton = new Button(posX + 10, posY + sizeY - 10 - buttonSizeY, buttonSizeX, buttonSizeY, p.color(255), "Précédent", false, p);
+
+        elementCaseSizeY = (sizeY-footerSizeY)/nbItemsPerPage;
     }
 
     public void draw() {
-
-
+        int currentYPosition = posY;
+        int currentIndex;
         p.fill(150);
         p.rectMode(p.CORNER);
         p.rect(posX, posY, sizeX, sizeY, 3);
 
-        if (nextButtonIsNeeded || previousButtonIsNeeded) {
+        for(int i = 0; i < nbItemsPerPage; i++){
+            currentIndex = (currentPage-1)*nbItemsPerPage + i;
+            if(currentIndex >= nbItems)
+                break;
             p.fill(200);
+            p.rectMode(p.CORNER);
+            p.rect(posX, currentYPosition, sizeX, elementCaseSizeY);
+            p.fill(0);
+            p.textAlign(p.LEFT);
+            p.text("Fichier : "+listOfElementsLeft.get(currentIndex),posX+10,currentYPosition+25);
+
+            p.textAlign(p.RIGHT);
+            p.text(listOfElementsRight.get(currentIndex) + "%",posX+sizeX-10,currentYPosition+25);
+
+            currentYPosition += elementCaseSizeY;
+        }
+
+
+
+        //Draw footer
+        if (nextButtonIsNeeded || previousButtonIsNeeded) {
+            p.fill(240);
             p.rect(posX, posY + sizeY - footerSizeY, sizeX, footerSizeY);
         }
 
+
+        //Draw buttons
         if (nextButtonIsNeeded)
             nextButton.display();
         if (previousButtonIsNeeded)
@@ -67,13 +94,17 @@ public class ResultsViewer {
     }
 
     private int nbPagesNeeded(ArrayList<String> listOfElements) {
-        return (listOfElements.size() * elementCaseSizeY) / (sizeY - footerSizeY);
+        return (listOfElements.size() * elementCaseSizeY) / (sizeY - footerSizeY) +1;
     }
     public void init(Resultat resultat){
         listOfElementsLeft.clear();
         listOfElementsRight.clear();
         fillResultsWindow(resultat);
         nbPages = nbPagesNeeded(listOfElementsLeft);
+        nbItems = listOfElementsLeft.size();
+        nextButtonIsNeeded = nextButtonIsNeeded();
+        previousButtonIsNeeded = previousButtonIsNeeded();
+
     }
     private void fillResultsWindow(Resultat resultats) {
         ArrayList<Resultat.CelluleResultat> everyResults = resultats.getResultats();
@@ -114,6 +145,5 @@ public class ResultsViewer {
         nextButtonIsNeeded = nextButtonIsNeeded();
         previousButtonIsNeeded = previousButtonIsNeeded();
     }
-
 
 }
