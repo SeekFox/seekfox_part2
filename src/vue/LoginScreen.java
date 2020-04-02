@@ -39,6 +39,7 @@ public class LoginScreen {
         if(errorTextIsVisible) {
             p.fill(255,0,0);
             p.rectMode(p.CENTER);
+            //noinspection IntegerDivisionInFloatingPointContext
             p.text("Mot de passe incorrect", p.width / 2, p.height - 100);
         }
     }
