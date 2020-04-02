@@ -123,7 +123,7 @@ public class ControlRequete {
 
 		//Envoi du message
 		try {
-			int i = bus.sendMsg(msg);
+			bus.sendMsg(msg);
 		} catch (IvyException ie) {
 			System.err.println("Error : " + ie.getMessage());
 			this.etatRequeteIvy = EtatRequeteIvy.ERROR;
