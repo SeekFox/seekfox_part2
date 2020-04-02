@@ -10,7 +10,7 @@ unzip pcre-7-7.zip
 
 Utiliser les commandes suivantes : compiler la librairie PCRE puis ivy
 
-`````shell script
+`````shell  script
 cd pcre-7-7
 chmod 777 configure && ./configure
 sudo make

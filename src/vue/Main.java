@@ -19,8 +19,6 @@ public class Main {
 		int choix;
 		String argument = "";
 
-		controlRequete.initBus("HamsterJovial", "HamsterJovial toujours pret");
-
 		System.out.println("============================\n" +
 				"           SEEKFOX          \n" +
 				"============================");
@@ -82,7 +80,7 @@ public class Main {
 
 					case 4:
 						System.out.println("Fichiers Textes Indexes = {");
-						for(String s : controlRequete.getListeFichierIndexesTexte()){
+						for (String s : controlRequete.getListeFichierIndexesTexte()) {
 							System.out.println("\t" + s);
 						}
 						System.out.println("}");
