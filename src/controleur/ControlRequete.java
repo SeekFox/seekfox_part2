@@ -40,7 +40,7 @@ public class ControlRequete {
 	 * Initialisation du bus logiciel Ivy
 	 *
 	 * @param name
-	 * @param msg
+	 * @param msg☺
 	 * @return
 	 */
 	public Ivy initBus(String name, String msg) {
@@ -65,7 +65,7 @@ public class ControlRequete {
 						System.err.println("Impeesa a rencontré un problème.");
 
 					}
-					if(!strings[0].equals("OK")) {
+					if (!strings[0].equals("OK")) {
 
 						etatRequeteIvy = EtatRequeteIvy.ERROR;
 						System.err.println("Impeesa a rencontré un problème.");
@@ -194,7 +194,7 @@ public class ControlRequete {
 				InputStream ips = new FileInputStream(this.fichierResultatRecherche);
 				InputStreamReader ipsr = new InputStreamReader(ips);
 				BufferedReader br = new BufferedReader(ipsr)
-		){
+		) {
 
 			String ligne = br.readLine();
 
@@ -219,7 +219,7 @@ public class ControlRequete {
 	 * @return
 	 */
 	private boolean isGoodExtension(String fichier, TypeRequete type) {
-		if(fichier.equals("all") && (!type.equals(TypeRequete.MOTCLEF) && !type.equals(TypeRequete.FIN) )) return true;
+		if (fichier.equals("all") && (!type.equals(TypeRequete.MOTCLEF) && !type.equals(TypeRequete.FIN))) return true;
 		switch (type) {
 			case TEXTE:
 				return fichier.endsWith(".xml");
@@ -261,6 +261,7 @@ public class ControlRequete {
 
 	/**
 	 * Get EtatRequeteIvy
+	 *
 	 * @return
 	 */
 	public EtatRequeteIvy getEtatRequeteIvy() {
@@ -268,14 +269,14 @@ public class ControlRequete {
 	}
 
 
-	public ArrayList<String> getListeFichierIndexesTexte(){
+	public ArrayList<String> getListeFichierIndexesTexte() {
 		ArrayList<String> listefichiers = new ArrayList<>();
 
 		try (
 				InputStream ips = new FileInputStream("./impeesa/data/fichiersIndexesTexte");
 				InputStreamReader ipsr = new InputStreamReader(ips);
 				BufferedReader br = new BufferedReader(ipsr)
-		){
+		) {
 
 			String ligne;
 

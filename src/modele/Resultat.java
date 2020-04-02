@@ -58,7 +58,7 @@ public class Resultat {
 	}
 
 	//Inner class
-	private class CelluleResultat{
+	public class CelluleResultat{
 		//Attributs
 		private String fichier;
 		private float score;

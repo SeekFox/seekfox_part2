@@ -17,16 +17,14 @@ public class ControlConfig {
 
 
 	//Constructeur
-	public ControlConfig(ControlRequete controlRequete){
-		this.controlRequete=controlRequete;
+	public ControlConfig(ControlRequete controlRequete) {
+		this.controlRequete = controlRequete;
 	}
 
 
 	//Méthodes
+	public void truc(){
 
-
-
-
-
+	}
 
 }
