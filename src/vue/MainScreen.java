@@ -36,7 +36,7 @@ public class MainScreen {
 
     public void mouseReleased() {
         if (launchButton.release())
-            nextScreen = ScreenName.SEARCH_CONFIG;
+            nextScreen = ScreenName.SEARCH_CONFIG_TXT;
         if (historiqueButton.release())
             nextScreen = ScreenName.HISTORY;
         if (settingsButton.release())
