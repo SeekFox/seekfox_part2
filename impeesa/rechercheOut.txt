@@ -1,3 +1,2 @@
-./baseDeDocuments/Image/NB/51.bmp
-./baseDeDocuments/Image/NB/52.bmp;87.56
-./baseDeDocuments/Image/NB/53.bmp;53.12
+science
+./baseDeDocuments/Texte/15-La_mort_de_Robert_Wise,.xml;3

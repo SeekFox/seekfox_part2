@@ -5,6 +5,7 @@
 
 package vue;
 
+import modele.CelluleResultat;
 import modele.Resultat;
 import processing.core.PApplet;
 
@@ -108,9 +109,9 @@ public class ResultsViewer {
 
     }
     private void fillResultsWindow(Resultat resultats) {
-        ArrayList<Resultat.CelluleResultat> everyResults = resultats.getResultats();
+        ArrayList<CelluleResultat> everyResults = resultats.getResultats();
 
-        for (Resultat.CelluleResultat current : everyResults) {
+        for (CelluleResultat current : everyResults) {
             listOfElementsLeft.add(current.getFichier());
             listOfElementsRight.add(String.valueOf(current.getScore()));
         }
