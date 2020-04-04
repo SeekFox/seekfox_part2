@@ -14,6 +14,7 @@ public class ProcessingMain extends PApplet {
     private SearchConfigTxtScreen searchConfigTxtScreen;
     private SearchConfigSndScreen searchConfigSndScreen;
     private SearchConfigImgScreen searchConfigImgScreen;
+    private LoadingScreen loadingScreen;
 
 
     public void settings() {
@@ -28,6 +29,7 @@ public class ProcessingMain extends PApplet {
         searchConfigTxtScreen = new SearchConfigTxtScreen(this);
         searchConfigImgScreen = new SearchConfigImgScreen(this);
         searchConfigSndScreen = new SearchConfigSndScreen(this);
+        loadingScreen = new LoadingScreen(this);
     }
 
     public void changeScreen(){
@@ -41,6 +43,9 @@ public class ProcessingMain extends PApplet {
                 break;
             case SEARCH_CONFIG_SND:
                 currentScreen = searchConfigSndScreen.getNextScreen();
+                break;
+            case LOADING:
+                currentScreen = loadingScreen.getNextScreen();
                 break;
             case ADMIN_CONNECTION:
                 currentScreen = loginScreen.getNextScreen();
@@ -68,6 +73,9 @@ public class ProcessingMain extends PApplet {
                 case SEARCH_CONFIG_IMG:
                     break;
                 case SEARCH_CONFIG_SND:
+                    break;
+                case LOADING:
+                    loadingScreen.init();
                     break;
                 case ADMIN_CONNECTION:
                     loginScreen.init();
@@ -103,6 +111,9 @@ public class ProcessingMain extends PApplet {
                 break;
             case SEARCH_CONFIG_SND:
                 searchConfigSndScreen.draw();
+                break;
+            case LOADING:
+                loadingScreen.draw();
                 break;
             case ADMIN_CONNECTION:
                 loginScreen.draw();

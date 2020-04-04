@@ -12,6 +12,7 @@ public enum ScreenName {
     SEARCH_CONFIG_TXT,
     SEARCH_CONFIG_IMG,
     SEARCH_CONFIG_SND,
+    LOADING,
     ADMIN_CONNECTION,
     RESULTS
 }

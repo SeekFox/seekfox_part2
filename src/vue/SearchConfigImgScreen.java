@@ -103,7 +103,7 @@ public class SearchConfigImgScreen {
             nextScreen = ScreenName.MAIN;
 
         if(validerRecherche.release())
-            nextScreen = ScreenName.RESULTS;    //TODO lancer la recherche
+            nextScreen = ScreenName.LOADING;    //TODO lancer la recherche
 
         rouge.release();
         vert.release();

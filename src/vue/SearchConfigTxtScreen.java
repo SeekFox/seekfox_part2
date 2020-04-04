@@ -64,7 +64,7 @@ public class SearchConfigTxtScreen {
             nextScreen = ScreenName.SEARCH_CONFIG_SND;
 
         if(validerRecherche.release())
-            nextScreen = ScreenName.RESULTS;    //TODO activer la recherche ptdr & gérer les erreurs
+            nextScreen = ScreenName.LOADING;    //TODO activer la recherche ptdr & gérer les erreurs
 
         if(retour.release())
             nextScreen = ScreenName.MAIN;
