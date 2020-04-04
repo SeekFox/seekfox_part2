@@ -1,58 +1,106 @@
+/*
+ * Copyright (c) 2020.
+ * Clément Truillet (clement@ctruillet.eu)
+ */
+
 package vue;
 
-
-import controleur.recherche.ControlRecherche;
-import fr.dgac.ivy.Ivy;
-import fr.dgac.ivy.IvyException;
-import modele.java.TypeRecherche;
+import controleur.ControlRequete;
+import modele.Config;
+import modele.TypeRequete;
 
 import java.util.Scanner;
 
 public class Main {
-
 	public static void main(String[] args) {
 		boolean isRunning = true;
-		ControlRecherche controlRecherche = new ControlRecherche();
+		ControlRequete controlRequete = new ControlRequete();
+		controlRequete.initBus("HamsterJovial", "HamsterJovial est pret !");
 		Scanner sc = new Scanner(System.in);
 		int choix;
 		String argument = "";
 
-		Ivy bus  = controlRecherche.initBus("HamsterJovial","HamsterJovial toujours pret");
 		System.out.println("============================\n" +
-						   "           SEEKFOX          \n" +
-						   "============================");
+				"           SEEKFOX          \n" +
+				"============================");
 
+		try {
+			while (isRunning) {
+				System.out.println("CHOIX \n" +
+						"\t0/ Lancer Recherche MotClef\n" +
+						"\t1/ Lancer Recherche Texte\n" +
+						"\t2/ Indexation Texte\n" +
+						"\t3/ Voir les configs\n" +
+						"\t4/ Voir les fichiers Textes indexes\n" +
+						"\t5/ Quitter"
+				);
 
+				choix = sc.nextInt();
+				sc.nextLine();
 
-		while(isRunning){
-			System.out.println("CHOIX \n" +
-					"\t0/ Lancer Recherche MotClef\n" +
-					"\t1/ Quitter"
-			);
+				switch (choix) {
+					case 0:
+						System.out.println("Entrez le mot clef");
 
-			choix = sc.nextInt();
-			sc.nextLine();
+						argument = sc.nextLine();
 
-			if(choix==0){
-				System.out.println("Entrez le mot clef");
+						System.out.println(argument);
+						controlRequete.runRecherche(TypeRequete.MOTCLEF, argument);
 
-				argument = sc.nextLine();
+						System.out.println(controlRequete.getResultat());
 
-				System.out.println(argument);
-				controlRecherche.runRecherche(bus, TypeRecherche.MOTCLEF,argument);
+						break;
 
-				System.out.println(controlRecherche.getResultat());
+					case 1:
+						System.out.println("Entrez le chemin vers le fichier");
 
+						argument = sc.nextLine();
 
+						System.out.println(argument);
+						controlRequete.runRecherche(TypeRequete.TEXTE, argument);
 
-			}else if(choix==1){
-				controlRecherche.runRecherche(bus, TypeRecherche.FIN,"");
-				isRunning=false;
+						break;
+
+					case 2:
+						System.out.println("[all/fichier.xml]");
+
+						argument = sc.nextLine();
+
+						System.out.println(argument);
+						controlRequete.runIndexation(TypeRequete.TEXTE, argument);
+
+						break;
+
+					case 3:
+						Config config = Config.getInstance();
+						config.loadConfig();
+						config.setPasswordAdmin("admin");
+						config.majConfig();
+						System.out.println(config);
+						break;
+
+					case 4:
+						System.out.println("Fichiers Textes Indexes = {");
+						for (String s : controlRequete.getListeFichierIndexesTexte()) {
+							System.out.println("\t" + s);
+						}
+						System.out.println("}");
+
+						break;
+
+					default:
+						controlRequete.stop();
+						isRunning = false;
+						break;
+				}
 			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			controlRequete.stop();
 		}
 
-		bus.stop();
-		System.out.println("FIN\n");
+		System.out.println("Fin de Piste");
 	}
-
 }
