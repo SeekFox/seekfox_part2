@@ -78,6 +78,9 @@ public class LoginScreen {
     }
 
     public void init() {
+        usernameBox.resetText();
+        passwordBox.resetText();
         errorTextIsVisible = false;
+
     }
 }

@@ -59,6 +59,8 @@ public class ProcessingMain extends PApplet {
     }
 
     public void initScreen(){
+
+        //TODO Setup tous les init
         if(currentScreen!=previousScreen) {
             switch (currentScreen) {
                 case MAIN:
@@ -75,6 +77,7 @@ public class ProcessingMain extends PApplet {
                 case HISTORY:
                     break;
                 case SEARCH_CONFIG_TXT:
+                    searchConfigTxtScreen.init();
                     break;
                 case RESULTS:
                     break;
