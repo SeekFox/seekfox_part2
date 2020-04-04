@@ -6,8 +6,12 @@ import processing.core.*;
 public class ProcessingMain extends PApplet {
     private ScreenName previousScreen;
     private ScreenName currentScreen = ScreenName.MAIN;
+
+
     private MainScreen mainScreen;
     private LoginScreen loginScreen;
+    private SearchConfigScreen searchConfigScreen;
+    private HistoryScreen historyScreen;
 
     public void settings() {
         size(640, 480);
@@ -17,7 +21,8 @@ public class ProcessingMain extends PApplet {
     public void setup() {
         mainScreen = new MainScreen(this);
         loginScreen = new LoginScreen(this);
-
+        searchConfigScreen = new SearchConfigScreen(this);
+        historyScreen = new HistoryScreen(this);
     }
 
     public void changeScreen(){
@@ -32,8 +37,10 @@ public class ProcessingMain extends PApplet {
             case CONFIG:
                 break;
             case HISTORY:
+                historyScreen.getNextScreen();
                 break;
             case SEARCH_CONFIG:
+                searchConfigScreen.getNextScreen();
                 break;
             case RESULTS:
                 break;
@@ -79,10 +86,10 @@ public class ProcessingMain extends PApplet {
             case CONFIG:
                 break;
             case HISTORY:
+                historyScreen.draw();
                 break;
             case SEARCH_CONFIG:
-                background(0);
-                currentScreen = ScreenName.MAIN;
+                searchConfigScreen.draw();
                 break;
             case RESULTS:
                 break;
@@ -103,8 +110,10 @@ public class ProcessingMain extends PApplet {
             case CONFIG:
                 break;
             case HISTORY:
+                historyScreen.mousePressed();
                 break;
             case SEARCH_CONFIG:
+                searchConfigScreen.mousePressed();
                 break;
             case RESULTS:
                 break;
@@ -122,8 +131,10 @@ public class ProcessingMain extends PApplet {
             case CONFIG:
                 break;
             case HISTORY:
+                historyScreen.mouseReleased();
                 break;
             case SEARCH_CONFIG:
+                searchConfigScreen.mouseReleased();
                 break;
             case RESULTS:
                 break;
