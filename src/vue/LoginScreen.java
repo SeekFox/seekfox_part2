@@ -66,8 +66,7 @@ public class LoginScreen {
 
     }
 
-    public void keyPressed() {
-        char key = p.key;
+    public void keyPressed(char key) {
         usernameBox.keyPressedParsing(key);
         passwordBox.keyPressedParsing(key);
     }
@@ -79,6 +78,9 @@ public class LoginScreen {
     }
 
     public void init() {
+        usernameBox.resetText();
+        passwordBox.resetText();
         errorTextIsVisible = false;
+
     }
 }

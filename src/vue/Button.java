@@ -28,7 +28,7 @@ public class Button {
         posY = py;
         sizeX = sx;
         sizeY = sy;
-        buttonColorWhenPressed = p.color(50, 50, 50);
+        buttonColorWhenPressed = p.color(100);
         this.buttonColor = buttonColor;
         this.buttonText = buttonText;
     }
@@ -46,7 +46,7 @@ public class Button {
 
 
         p.rect(posX, posY, sizeX, sizeY, 5);
-        p.fill(0, 0, 0);
+        p.fill(0);
         p.textAlign(p.CENTER, p.CENTER);
         p.text(buttonText, posX, posY, sizeX, sizeY);
     }

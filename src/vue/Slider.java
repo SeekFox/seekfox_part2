@@ -12,7 +12,7 @@ public class Slider {
     private int posY;
     private int sizeX;
     private PApplet p;
-    public float sliderPosition = (float) 0.5; //goes between 0 and 1
+    public float sliderPosition = 0f; //goes between 0 and 1
 
     private float valMin;
     private float valMax;
@@ -60,14 +60,8 @@ public class Slider {
         return valMin + (valMax - valMin) * sliderPosition;
     }
 
-    public boolean isPressed() {
-        if (p.mouseX >= posX + sizeX * sliderPosition - 5 && p.mouseX <= posX + sizeX * sliderPosition + 5 && p.mouseY >= posY - 8 && p.mouseY <= posY + 8) {
-            isPressed = true;
-            return true;
-        } else {
-            isPressed = false;
-            return false;
-        }
+    public void isPressed() {
+        isPressed = p.mouseX >= posX + sizeX * sliderPosition - 5 && p.mouseX <= posX + sizeX * sliderPosition + 5 && p.mouseY >= posY - 8 && p.mouseY <= posY + 8;
     }
 
     public void release() {

@@ -93,4 +93,8 @@ public class Textbox {
         }
     }
 
+    public void resetText(){
+        writtenText = "";
+    }
+
 }
