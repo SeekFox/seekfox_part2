@@ -1,5 +1,7 @@
 package vue;
 
+import modele.Resultat;
+import modele.TypeRequete;
 import processing.core.*;
 
 
@@ -15,6 +17,7 @@ public class ProcessingMain extends PApplet {
     private SearchConfigSndScreen searchConfigSndScreen;
     private SearchConfigImgScreen searchConfigImgScreen;
     private LoadingScreen loadingScreen;
+    private ResultsScreen resultsScreen;
 
 
     public void settings() {
@@ -30,6 +33,7 @@ public class ProcessingMain extends PApplet {
         searchConfigImgScreen = new SearchConfigImgScreen(this);
         searchConfigSndScreen = new SearchConfigSndScreen(this);
         loadingScreen = new LoadingScreen(this);
+        resultsScreen = new ResultsScreen(this);
     }
 
     public void changeScreen(){
@@ -59,6 +63,7 @@ public class ProcessingMain extends PApplet {
                 currentScreen = searchConfigTxtScreen.getNextScreen();
                 break;
             case RESULTS:
+                currentScreen = resultsScreen.getNextScreen();
                 break;
         }
     }
@@ -88,6 +93,23 @@ public class ProcessingMain extends PApplet {
                     searchConfigTxtScreen.init();
                     break;
                 case RESULTS:
+                    Resultat testResults =  new Resultat("ptdr", TypeRequete.TEXTE);
+                    testResults.add("Fichier 1", 0.50f);
+                    testResults.add("Fichier 2", 0.40f);
+                    testResults.add("Fichier 3", 0.30f);
+                    testResults.add("Fichier 4", 0.20f);
+                    testResults.add("Fichier 5", 0.10f);
+                    testResults.add("Fichier 6", 0.09f);
+                    testResults.add("Fichier 7", 0.08f);
+                    testResults.add("Fichier 8", 0.07f);
+                    testResults.add("Fichier 9", 0.06f);
+                    testResults.add("Fichier 10", 0.05f);
+                    testResults.add("Fichier 11", 0.04f);
+                    testResults.add("Fichier 12", 0.03f);
+                    testResults.add("Fichier 13", 0.02f);
+                    testResults.add("Fichier 14", 0.01f);
+                    testResults.add("Fichier 15", 0.001f);
+                    resultsScreen.init(testResults);
                     break;
             }
         }
@@ -127,6 +149,7 @@ public class ProcessingMain extends PApplet {
                 searchConfigTxtScreen.draw();
                 break;
             case RESULTS:
+                resultsScreen.draw();
                 break;
         }
 
@@ -157,6 +180,7 @@ public class ProcessingMain extends PApplet {
                 searchConfigTxtScreen.mousePressed();
                 break;
             case RESULTS:
+                resultsScreen.mousePressed();
                 break;
         }
     }
@@ -184,6 +208,7 @@ public class ProcessingMain extends PApplet {
                 searchConfigTxtScreen.mouseReleased();
                 break;
             case RESULTS:
+                resultsScreen.mouseReleased();
                 break;
         }
     }
