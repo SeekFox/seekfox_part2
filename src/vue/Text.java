@@ -14,10 +14,11 @@ public class Text {
     public int textY;
 
 
-    public Text(int textX,int textY,String text){
+    public Text(int textX,int textY,String text,PApplet p){
         this.text = text;
         this.textX = textX;
         this.textY = textY;
+        this.p = p;
     }
 
     public void display(){
