@@ -106,9 +106,7 @@ public class HistoryScreen {
     }
 
     public ScreenName getNextScreen() {
-        ScreenName temp = nextScreen;
-        nextScreen = ScreenName.HISTORY;
-        return temp;
+        return ScreenName.HISTORY;
     }
 
     public boolean buttonIsReleased(ArrayList<Button> boutonsDeRecherches){

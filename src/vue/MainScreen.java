@@ -48,8 +48,6 @@ public class MainScreen {
     }
 
     public ScreenName getNextScreen() {
-        ScreenName temp = nextScreen;
-        nextScreen = ScreenName.MAIN;
-        return temp;
+        return ScreenName.MAIN;
     }
 }

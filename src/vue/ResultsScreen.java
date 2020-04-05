@@ -46,9 +46,7 @@ public class ResultsScreen {
     }
 
     public ScreenName getNextScreen() {
-        ScreenName temp = nextScreen;
-        nextScreen = ScreenName.RESULTS;
-        return temp;
+        return ScreenName.RESULTS;
     }
 
     public void init(modele.Resultat searchResults){

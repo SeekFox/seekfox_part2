@@ -34,9 +34,7 @@ public class LoadingScreen {
     }
 
     public ScreenName getNextScreen() {
-        ScreenName temp = nextScreen;
-        nextScreen = ScreenName.LOADING;
-        return temp;
+        return ScreenName.LOADING;
     }
 
     public void init(){
