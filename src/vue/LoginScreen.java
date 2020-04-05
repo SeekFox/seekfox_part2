@@ -72,7 +72,9 @@ public class LoginScreen {
     }
 
     public ScreenName getNextScreen() {
-        return ScreenName.ADMIN_CONNECTION;
+        ScreenName temp = nextScreen;
+        nextScreen = ScreenName.ADMIN_CONNECTION;
+        return temp;
     }
 
     public void init() {

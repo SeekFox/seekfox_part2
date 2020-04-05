@@ -171,13 +171,13 @@ public class ControlRequete {
 	public void stop() {
 		//Envoi du message
 		try {
-			int i = bus.sendMsg("Impeesa Bye");
+			bus.sendMsg("Impeesa Bye");
 		} catch (IvyException ie) {
 			System.err.println("Error : " + ie.getMessage());
 			this.etatRequeteIvy = EtatRequeteIvy.ERROR;
 		}
 
-		bus.stop();
+
 
 	}
 

@@ -5,6 +5,7 @@
 
 package vue;
 
+import controleur.ControlRequete;
 import processing.core.PApplet;
 //TODO Drag & Drop
 public class SearchConfigImgScreen {
@@ -21,8 +22,11 @@ public class SearchConfigImgScreen {
 
     private ScreenName nextScreen = ScreenName.SEARCH_CONFIG_IMG;
 
-    public SearchConfigImgScreen(PApplet p){
+    private ControlRequete controlRequete;
+
+    public SearchConfigImgScreen(PApplet p, ControlRequete controlRequete){
         this.p = p;
+        this.controlRequete = controlRequete;
         ongletTxt = new Button(0,0,p.width/3,40,255,"Texte",false,p);
         ongletSnd = new Button(2*(p.width/3),0,p.width/3,40,255,"Son",false,p);
         retour = new Button(10, p.height-50, 100, 40, 255, "Retour", false, p);

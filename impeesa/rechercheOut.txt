@@ -1,2 +1,3 @@
-science
-./baseDeDocuments/Texte/15-La_mort_de_Robert_Wise,.xml;3
+Paris
+./baseDeDocuments/Texte/05-Tours_d_honneur_pour_les_athletes.xml;3
+./baseDeDocuments/Texte/15-Danse___Preljocaj_emmene_l_Opera.xml;3

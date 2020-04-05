@@ -5,15 +5,20 @@
 
 package vue;
 
+import controleur.ControlRequete;
 import processing.core.PApplet;
 
 public class LoadingScreen {
     private PApplet p;
     private ScreenName nextScreen = ScreenName.LOADING;
     private int loadingSize =0;
+    private ControlRequete controlRequete;
+    private ResultsScreen resultsScreen;
 
-    public LoadingScreen(PApplet p) {
+    public LoadingScreen(PApplet p, ControlRequete controlRequete, ResultsScreen resultsScreen) {
         this.p = p;
+        this.controlRequete = controlRequete;
+        this.resultsScreen = resultsScreen;
 
     }
 
@@ -27,17 +32,27 @@ public class LoadingScreen {
         p.textAlign(p.CENTER, p.CENTER);
         p.fill(0);
         p.text("Veuillez patienter, SeekFox travaille", p.width/2f, 380);
-        loadingSize+=2;
+        loadingSize+=5;
 
         if(loadingSize >= p.width-60)
             nextScreen = ScreenName.RESULTS;
     }
 
     public ScreenName getNextScreen() {
-        return ScreenName.LOADING;
+        ScreenName temp = nextScreen;
+        nextScreen = ScreenName.LOADING;
+        return temp;
     }
 
     public void init(){
         loadingSize = 0;
+
+        // Recuperation des resultats
+        try {
+            resultsScreen.init(controlRequete.getResultat());
+            System.out.println(controlRequete.getResultat().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
