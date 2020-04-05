@@ -75,7 +75,8 @@ public class ResultsViewer {
             //ToDo -> Recherche motClef, c'est des occurences, pas des %
             // Same avec l'audio
             p.textAlign(p.RIGHT,p.CENTER);
-            p.text(listOfElementsRight.get(currentIndex) + "%",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
+            p.text((Math.round(Float.parseFloat(listOfElementsRight.get(currentIndex)))) + " occur.",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
+            //p.text(listOfElementsRight.get(currentIndex) + "%",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
 
             currentYPosition += elementCaseSizeY;
         }

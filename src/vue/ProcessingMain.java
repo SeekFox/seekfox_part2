@@ -244,11 +244,8 @@ public class ProcessingMain extends PApplet {
         }
     }
 
-    public void stop(){
-        controlRequete.stop();
-    }
-
     public void exit(){
         controlRequete.stop();
+        super.exit();
     }
 }
