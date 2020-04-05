@@ -36,7 +36,7 @@ public class ConfigScreen {
         sliderImage = new Slider(p.width/2 - 40,p.height/5,50,2,8,p);
         valConfigImage = new Text(p.width/2 + 20 ,p.height/5,(String.valueOf(sliderImage.getValue())),p);
 
-        sliderNameAn = new Text(p.width/2 - 80,p.height * 2/5, "insert parameter name",p);
+        sliderNameAn = new Text(p.width/2 - 80,p.height * 2/5, "Nb subdivisions",p);
         sliderAudio_n = new Slider(p.width/2 - 40,p.height * 2/5,50,10,100,p);
         valConfigAudio_n = new Text(p.width/2 +20, p.height * 2/5 , String.valueOf(sliderAudio_n.getValue()),p);
 
