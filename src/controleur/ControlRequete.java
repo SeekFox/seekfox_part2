@@ -18,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 /**
  * Classe de controle d'une requete
@@ -53,36 +54,62 @@ public class ControlRequete {
 			this.etatRequeteIvy = EtatRequeteIvy.ERROR;
 		}
 
-		//Abonnement à l'acquittement
+		//Abonnement au retour d'Impeesa
 		try {
-			bus.bindMsg("^HamsterJovial answer=(.*)$", new IvyMessageListener() {
+			bus.bindMsg("^HamsterJovial type=(.*) file=(.*) score=(.*)$", new IvyMessageListener() {
 				@Override
 				public void receive(IvyClient ivyClient, String[] strings) {
-					//Control d'erreur
-					if (strings.length != 1) {
-
+					if (strings.length !=3){
 						etatRequeteIvy = EtatRequeteIvy.ERROR;
 						System.err.println("Impeesa a rencontré un problème.");
-
 					}
-					if (!strings[0].equals("OK")) {
 
+					switch (strings[0]){
+						case "RESULT":
+							for (int i = 0; i < strings.length; i++) {
+								System.out.println("\t -" + strings[i] + "-");
+
+							}
+							System.out.println("\n");
+							resultat.add(strings[1],strings[2]);
+							break;
+
+						case "ERROR":
+						default:
+							etatRequeteIvy = EtatRequeteIvy.ERROR;
+							System.err.println("Impeesa a rencontré un problème.");
+							break;
+					}
+				}
+			});
+
+			bus.bindMsg("^HamsterJovial type=(OK|ERROR)", new IvyMessageListener() {
+				@Override
+				public void receive(IvyClient ivyClient, String[] strings) {
+					if(strings.length!=1){
 						etatRequeteIvy = EtatRequeteIvy.ERROR;
 						System.err.println("Impeesa a rencontré un problème.");
+					}
+					switch (strings[0]){
+						case "OK":
+						case "END":
+							etatRequeteIvy = EtatRequeteIvy.OK;
+							break;
 
-					} else {
-						resultat = lireResultat();
-						etatRequeteIvy = EtatRequeteIvy.OK;
+						case "ERROR":
+						default:
+							etatRequeteIvy = EtatRequeteIvy.ERROR;
+							System.err.println("Impeesa a rencontré un problème.");
+							break;
 
 					}
-
-
 				}
 			});
 		} catch (IvyException e) {
 			e.printStackTrace();
 			this.etatRequeteIvy = EtatRequeteIvy.ERROR;
 		}
+
 
 		return bus;
 	}
@@ -103,8 +130,9 @@ public class ControlRequete {
 		String msg = "";
 		this.type = type;
 		this.argument = argument;
-		this.resultat = null;
+		this.resultat = new Resultat(argument, type);
 		this.etatRequeteIvy = EtatRequeteIvy.WAIT;
+
 
 
 		//Configuration du message
@@ -181,11 +209,7 @@ public class ControlRequete {
 
 	}
 
-	/**
-	 * Recuperation du resultat
-	 *
-	 * @return
-	 */
+	@Deprecated
 	private Resultat lireResultat() {
 		String[] res;
 		Resultat resultat = new Resultat(argument, type);

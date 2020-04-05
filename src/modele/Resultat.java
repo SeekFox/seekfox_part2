@@ -20,6 +20,10 @@ public class Resultat {
 	}
 
 	//Méthodes
+	public void add(String fichier, String score){
+		this.add(fichier,Float.valueOf(score));
+	}
+
 	public void add(String fichier, float score) {
 		boolean isResultatAdd = false;
 

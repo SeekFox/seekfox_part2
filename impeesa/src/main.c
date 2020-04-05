@@ -67,9 +67,9 @@ void EcouteCallback (IvyClientPtr app, void *data, int argc, char **argv){
     printf("FIN\n\n");
 
     if(retour==0){
-        IvySendMsg("HamsterJovial answer=OK");
+        IvySendMsg("HamsterJovial type=OK");
     }else{
-        IvySendMsg("HamsterJovial answer=ERREUR");
+        IvySendMsg("HamsterJovial type=ERREUR");
     }
 
 

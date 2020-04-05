@@ -2,7 +2,7 @@
  * Copyright (c) 2020.
  * Clément Truillet (clement@ctruillet.eu)
  */
-/*
+
 package vue;
 
 import controleur.ControlRequete;
@@ -104,4 +104,3 @@ public class Main {
 		System.out.println("Fin de Piste");
 	}
 }
-*/

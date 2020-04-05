@@ -14,6 +14,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../include/pcre.h"
+#include "../include/ivy.h"
+#include "../include/ivyloop.h"
+
 #ifndef __CONFIG__
     #include "../include/config.h"
 #endif
@@ -70,6 +74,8 @@ int rechercheMotClef(char * motClef){
         //fprintf(output,"%s\n",descripteurTexteToString(descripteurCourant));
         int comparaison = chercherMotCleDansTexte(motClef,descripteurCourant);
         if(comparaison > 0){
+            IvySendMsg("HamsterJovial type=RESULT file=%s score=%d",getNameDescripteurTexte(descripteurCourant)
+                                                                    ,comparaison);
             fprintf(output,"%s;%d\n",getNameDescripteurTexte(descripteurCourant)
                                     ,comparaison
                                     );
