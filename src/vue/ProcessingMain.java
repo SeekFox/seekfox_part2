@@ -1,5 +1,6 @@
 package vue;
 
+import modele.Config;
 import modele.Resultat;
 import modele.TypeRequete;
 import processing.core.*;
@@ -18,6 +19,7 @@ public class ProcessingMain extends PApplet {
     private SearchConfigImgScreen searchConfigImgScreen;
     private LoadingScreen loadingScreen;
     private ResultsScreen resultsScreen;
+    private ConfigScreen configScreen;
 
 
     public void settings() {
@@ -34,6 +36,7 @@ public class ProcessingMain extends PApplet {
         searchConfigSndScreen = new SearchConfigSndScreen(this);
         loadingScreen = new LoadingScreen(this);
         resultsScreen = new ResultsScreen(this);
+        configScreen = new ConfigScreen(this);
     }
 
     public void changeScreen(){
@@ -55,6 +58,7 @@ public class ProcessingMain extends PApplet {
                 currentScreen = loginScreen.getNextScreen();
                 break;
             case CONFIG:
+                currentScreen = configScreen.getNextScreen();
                 break;
             case HISTORY:
                 currentScreen = historyScreen.getNextScreen();
@@ -141,6 +145,7 @@ public class ProcessingMain extends PApplet {
                 loginScreen.draw();
                 break;
             case CONFIG:
+                configScreen.draw();
                 break;
             case HISTORY:
                 historyScreen.draw();
@@ -172,6 +177,7 @@ public class ProcessingMain extends PApplet {
                 loginScreen.mousePressed();
                 break;
             case CONFIG:
+                configScreen.mousePressed();
                 break;
             case HISTORY:
                 historyScreen.mousePressed();
@@ -200,6 +206,7 @@ public class ProcessingMain extends PApplet {
                 loginScreen.mouseReleased();
                 break;
             case CONFIG:
+                configScreen.mouseReleased();
                 break;
             case HISTORY:
                 historyScreen.mouseReleased();

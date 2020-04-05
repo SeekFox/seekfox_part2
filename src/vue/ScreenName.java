@@ -16,3 +16,4 @@ public enum ScreenName {
     ADMIN_CONNECTION,
     RESULTS
 }
+
