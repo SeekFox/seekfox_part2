@@ -68,7 +68,6 @@ public class ControlRequete {
 						case "RESULT":
 							for (int i = 0; i < strings.length; i++) {
 								System.out.println("\t -" + strings[i] + "-");
-
 							}
 							System.out.println("\n");
 							resultat.add(strings[1],strings[2]);

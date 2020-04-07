@@ -59,6 +59,8 @@ public class Main {
 						System.out.println(argument);
 						controlRequete.runRecherche(TypeRequete.TEXTE, argument);
 
+						System.out.println(controlRequete.getResultat());
+
 						break;
 
 					case 2:
