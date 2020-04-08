@@ -85,7 +85,6 @@ int rechercheAudio(char * cheminFichier){
                               ,28.79
                               );*/
 
-
 //    FIN DONNEES EN DUR
 
 

@@ -18,7 +18,6 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 /**
  * Classe de controle d'une requete
@@ -66,10 +65,6 @@ public class ControlRequete {
 
 					switch (strings[0]){
 						case "RESULT":
-							for (int i = 0; i < strings.length; i++) {
-								System.out.println("\t -" + strings[i] + "-");
-							}
-							System.out.println("\n");
 							resultat.add(strings[1],strings[2]);
 							break;
 
@@ -203,6 +198,7 @@ public class ControlRequete {
 			System.err.println("Error : " + ie.getMessage());
 			this.etatRequeteIvy = EtatRequeteIvy.ERROR;
 		}
+		bus.stop();
 
 
 
