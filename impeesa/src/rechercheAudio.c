@@ -14,6 +14,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../include/pcre.h"
+#include "../include/ivy.h"
+#include "../include/ivyloop.h"
+
+
 #ifndef __CONFIG__
     #include "../include/config.h"
 #endif
@@ -37,6 +42,7 @@ Config config;
 int rechercheAudio(char * cheminFichier){
 
     //Initialisation
+    /*
     FILE * output = NULL;
     output = fopen("./rechercheOut.txt","w+");
 
@@ -48,7 +54,7 @@ int rechercheAudio(char * cheminFichier){
 
 //    fprintf(output,"%s\n",cheminFichier);
     fprintf(output,"%s\n","./baseDeDocuments/Audio/corpus_fi.bin");
-
+*/
 
     FILE * fichier = NULL;
 
@@ -72,11 +78,12 @@ int rechercheAudio(char * cheminFichier){
 
 
 //    DONNEES EN DUR
+    IvySendMsg("HamsterJovial type=RESULT file=%s score=%f","./baseDeDocuments/Audio/corpus_fi.bin"
+                                                                        ,28.79);
 
-    fprintf(output,"%s;%.2f\n","./baseDeDocuments/Audio/corpus_fi.bin"
+    /*fprintf(output,"%s;%.2f\n","./baseDeDocuments/Audio/corpus_fi.bin"
                               ,28.79
-                              );
-
+                              );*/
 
 //    FIN DONNEES EN DUR
 
@@ -127,7 +134,7 @@ int rechercheAudio(char * cheminFichier){
 
 
 //    fclose(fDescripteur);
-    fclose(output);
+    //fclose(output);
 
     return 0;
 }

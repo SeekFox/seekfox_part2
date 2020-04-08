@@ -14,6 +14,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../include/pcre.h"
+#include "../include/ivy.h"
+#include "../include/ivyloop.h"
+
 #ifndef __CONFIG__
     #include "../include/config.h"
 #endif
@@ -35,18 +39,6 @@ Config config;
 int rechercheMotClef(char * motClef){
 
     //Initialisation
-    FILE * output = NULL;
-    output = fopen("./rechercheOut.txt","w+");
-
-    //Le fichier de sortie est ouvert ?
-    if(output==NULL){
-        printf("ERREUR : \'rechercheOut.txt\' doesn\'t exist.\n");
-        return 1;
-    }
-
-    fprintf(output,"%s\n",motClef);
-
-    
     //recuperation des parametres de config
     config = loadConfig();
 
@@ -57,7 +49,6 @@ int rechercheMotClef(char * motClef){
 
     //Fichier des descripteurs Textes inexistant ?
     if(fDescripteur==NULL){
-        fprintf(output,"ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "./data/descripteursTexte");
         printf("ERREUR : \'%s\' can\'t be read or doesn\'t exist.\n", "./data/descripteursTexte");
         return 2;
     }
@@ -67,12 +58,11 @@ int rechercheMotClef(char * motClef){
 
     while(fgets(stringDescripteurCourant,1024,fDescripteur)!=NULL){
         descripteurCourant = StringTodescripteurText(stringDescripteurCourant);
-        //fprintf(output,"%s\n",descripteurTexteToString(descripteurCourant));
+
         int comparaison = chercherMotCleDansTexte(motClef,descripteurCourant);
         if(comparaison > 0){
-            fprintf(output,"%s;%d\n",getNameDescripteurTexte(descripteurCourant)
-                                    ,comparaison
-                                    );
+            IvySendMsg("HamsterJovial type=RESULT file=%s score=%d",getNameDescripteurTexte(descripteurCourant)
+                                                                    ,comparaison);
             /*printf("%s;%d\n",getNameDescripteurTexte(descripteurCourant)
                                                  ,comparaison
                                                  );*/
@@ -82,7 +72,6 @@ int rechercheMotClef(char * motClef){
 
 
     fclose(fDescripteur);
-    fclose(output);
 
     return 0;
 }

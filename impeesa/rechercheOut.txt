@@ -1,3 +1,0 @@
-Paris
-./baseDeDocuments/Texte/05-Tours_d_honneur_pour_les_athletes.xml;3
-./baseDeDocuments/Texte/15-Danse___Preljocaj_emmene_l_Opera.xml;3
