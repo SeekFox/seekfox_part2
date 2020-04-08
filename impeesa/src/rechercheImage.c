@@ -14,6 +14,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../include/pcre.h"
+#include "../include/ivy.h"
+#include "../include/ivyloop.h"
+
+
 #ifndef __CONFIG__
     #include "../include/config.h"
 #endif
@@ -37,6 +42,7 @@ Config config;
 int rechercheImage(char * cheminFichier){
 
     //Initialisation
+    /*
     FILE * output = NULL;
     output = fopen("./rechercheOut.txt","w+");
 
@@ -46,9 +52,9 @@ int rechercheImage(char * cheminFichier){
         return 1;
     }
 
-//    fprintf(output,"%s\n",cheminFichier);
+    //fprintf(output,"%s\n",cheminFichier);
     fprintf(output,"%s\n","./baseDeDocuments/Image/NB/51.bmp");
-
+    */
     FILE * fichier = NULL;
 
     fichier = fopen(cheminFichier,"r");
@@ -71,13 +77,18 @@ int rechercheImage(char * cheminFichier){
 
 
 //    DONNEES EN DUR
+    IvySendMsg("HamsterJovial type=RESULT file=%s score=%f","./baseDeDocuments/Image/NB/52.bmp"
+                                                                        ,87.56);
 
-    fprintf(output,"%s;%.2f\n","./baseDeDocuments/Image/NB/52.bmp"
+    IvySendMsg("HamsterJovial type=RESULT file=%s score=%f","./baseDeDocuments/Image/NB/53.bmp"
+                                                                        ,53.12);
+/*
+    fprintf(output,"%s;%.2f\n",""
                               ,87.56
                               );
     fprintf(output,"%s;%.2f\n","./baseDeDocuments/Image/NB/53.bmp"
                               ,53.12
-                               );
+                               );*/
 
 
 //    FIN DONNEES EN DUR
@@ -129,7 +140,7 @@ int rechercheImage(char * cheminFichier){
 
 
 //    fclose(fDescripteur);
-    fclose(output);
+//    fclose(output);
 
     return 0;
 }
