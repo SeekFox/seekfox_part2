@@ -170,7 +170,7 @@ public class Historique {
 	
 	
 	
-	public static void main (String[] args) {
+	/*public static void main (String[] args) {
 		Resultat rech = new Resultat("Test", TypeRequete.AUDIO);
 		rech.add("fich1", 90);
 		rech.add("fich2", 50);
@@ -180,13 +180,5 @@ public class Historique {
 			System.out.println(s.toString()+"\n");
 		}
 		resetHistorique();
-		
-		/*addHistorique("Recherche 1");
-		addHistorique("Recherche :\nFichier 1\nFichier 2");
-		List<String> liste = getHistorique();
-		for(String s:liste) {
-			System.out.println(s+"\n");
-		}
-		//resetHistorique();*/
-	}
+	}*/
 }
