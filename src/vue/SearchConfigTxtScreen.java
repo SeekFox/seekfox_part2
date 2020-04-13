@@ -5,6 +5,8 @@
 
 package vue;
 
+import controleur.ControlRequete;
+import modele.TypeRequete;
 import processing.core.PApplet;
 //TODO Drag&Drop
 public class SearchConfigTxtScreen {
@@ -15,11 +17,14 @@ public class SearchConfigTxtScreen {
     private Textbox searchBox;
     private Button validerRecherche;
     private Button retour;
+    private ControlRequete controlRequete;
+    private boolean isRechercheLaunch = false;
 
     private ScreenName nextScreen = ScreenName.SEARCH_CONFIG_TXT;
 
-    public SearchConfigTxtScreen(PApplet p){
+    public SearchConfigTxtScreen(PApplet p, ControlRequete controlRequete){
         this.p = p;
+        this.controlRequete = controlRequete;
         ongletImg = new Button(p.width/3,0,p.width/3,40,255,"Image",false,p);
         ongletSnd = new Button(2*(p.width/3),0,p.width/3,40,255,"Son",false,p);
 
@@ -63,8 +68,10 @@ public class SearchConfigTxtScreen {
         if(ongletSnd.release())
             nextScreen = ScreenName.SEARCH_CONFIG_SND;
 
-        if(validerRecherche.release())
+        if(validerRecherche.release()) {
+            this.runRecherche();
             nextScreen = ScreenName.LOADING;    //TODO activer la recherche ptdr & gérer les erreurs
+        }
 
         if(retour.release())
             nextScreen = ScreenName.MAIN;
@@ -85,5 +92,18 @@ public class SearchConfigTxtScreen {
 
     public void init() {
         searchBox.resetText();
+        this.isRechercheLaunch = false;
+    }
+
+    public void runRecherche(){
+        if(!isRechercheLaunch) {
+            try { //Lancer la recherche
+                this.isRechercheLaunch = true;
+                controlRequete.runRecherche(TypeRequete.MOTCLEF, searchBox.getWrittenText());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

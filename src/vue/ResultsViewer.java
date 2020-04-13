@@ -5,6 +5,7 @@
 
 package vue;
 
+import modele.CelluleResultat;
 import modele.Resultat;
 import processing.core.PApplet;
 
@@ -71,8 +72,11 @@ public class ResultsViewer {
             p.textAlign(p.LEFT,p.CENTER);
             p.text("Fichier : "+listOfElementsLeft.get(currentIndex),posX+10,currentYPosition+elementCaseSizeY/2);
 
+            //ToDo -> Recherche motClef, c'est des occurences, pas des %
+            // Same avec l'audio
             p.textAlign(p.RIGHT,p.CENTER);
-            p.text(listOfElementsRight.get(currentIndex) + "%",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
+            p.text((Math.round(Float.parseFloat(listOfElementsRight.get(currentIndex)))) + " occur.",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
+            //p.text(listOfElementsRight.get(currentIndex) + "%",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
 
             currentYPosition += elementCaseSizeY;
         }
@@ -108,9 +112,9 @@ public class ResultsViewer {
 
     }
     private void fillResultsWindow(Resultat resultats) {
-        ArrayList<Resultat.CelluleResultat> everyResults = resultats.getResultats();
+        ArrayList<CelluleResultat> everyResults = resultats.getResultats();
 
-        for (Resultat.CelluleResultat current : everyResults) {
+        for (CelluleResultat current : everyResults) {
             listOfElementsLeft.add(current.getFichier());
             listOfElementsRight.add(String.valueOf(current.getScore()));
         }

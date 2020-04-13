@@ -9,11 +9,13 @@
 
 
 ## Run
-Pour lancer le projet, il vous suffit de lancer la commande à la racine du projet
+Pour lancer le projet, il faut lancer la commande à la racine du projet
 
 ```
 ./run.sh
 ```
+
+Ainsi que executer le fichier *seekfox.jar*
 
 ## Compile
 Pour compiler le projet, il est necessaire d'installer la librairie d'Ivy.   

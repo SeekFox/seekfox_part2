@@ -15,6 +15,7 @@ public class Main {
 	public static void main(String[] args) {
 		boolean isRunning = true;
 		ControlRequete controlRequete = new ControlRequete();
+		controlRequete.initBus("HamsterJovial", "HamsterJovial est pret !");
 		Scanner sc = new Scanner(System.in);
 		int choix;
 		String argument = "";
@@ -57,6 +58,8 @@ public class Main {
 
 						System.out.println(argument);
 						controlRequete.runRecherche(TypeRequete.TEXTE, argument);
+
+						System.out.println(controlRequete.getResultat());
 
 						break;
 

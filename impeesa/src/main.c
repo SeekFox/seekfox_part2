@@ -28,10 +28,9 @@ void EcouteCallback (IvyClientPtr app, void *data, int argc, char **argv){
             retour = rechercheTexte(argv[2]);
 
         }else if(strcmp("IMAGE",argv[1])==0){
-            printf("%s\n",argv[1]);
-
+            retour = rechercheImage(argv[2]);
         }else if(strcmp("AUDIO",argv[1])==0){
-            printf("%s\n",argv[1]);
+            retour = rechercheAudio(argv[2]);
 
         }else if(strcmp("MOTCLEF",argv[1])==0){
             retour = rechercheMotClef(argv[2]);
@@ -68,9 +67,9 @@ void EcouteCallback (IvyClientPtr app, void *data, int argc, char **argv){
     printf("FIN\n\n");
 
     if(retour==0){
-        IvySendMsg("HamsterJovial answer=OK");
+        IvySendMsg("HamsterJovial type=OK");
     }else{
-        IvySendMsg("HamsterJovial answer=ERREUR");
+        IvySendMsg("HamsterJovial type=ERREUR");
     }
 
 

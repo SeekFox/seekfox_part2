@@ -1,5 +1,11 @@
+/*
+ * Copyright (c) 2020.
+ * Clément Truillet (clement@ctruillet.eu)
+ */
+
 package vue;
 
+import controleur.ControlRequete;
 import modele.Config;
 import modele.Resultat;
 import modele.TypeRequete;
@@ -7,6 +13,7 @@ import processing.core.*;
 
 
 public class ProcessingMain extends PApplet {
+    private PApplet processing;
     private ScreenName previousScreen;
     private ScreenName currentScreen = ScreenName.MAIN;
 
@@ -21,8 +28,15 @@ public class ProcessingMain extends PApplet {
     private ResultsScreen resultsScreen;
     private ConfigScreen configScreen;
 
+    private ControlRequete controlRequete = new ControlRequete();
+
+    public static void main(String... args) {
+        PApplet.main("vue.ProcessingMain");
+    }
+
 
     public void settings() {
+        processing = this;
         size(640, 480);
 
     }
@@ -31,12 +45,15 @@ public class ProcessingMain extends PApplet {
         mainScreen = new MainScreen(this);
         loginScreen = new LoginScreen(this);
         historyScreen = new HistoryScreen(this);
-        searchConfigTxtScreen = new SearchConfigTxtScreen(this);
-        searchConfigImgScreen = new SearchConfigImgScreen(this);
-        searchConfigSndScreen = new SearchConfigSndScreen(this);
-        loadingScreen = new LoadingScreen(this);
         resultsScreen = new ResultsScreen(this);
+        searchConfigTxtScreen = new SearchConfigTxtScreen(this, controlRequete);
+        searchConfigImgScreen = new SearchConfigImgScreen(this, controlRequete);
+        searchConfigSndScreen = new SearchConfigSndScreen(this);
+        loadingScreen = new LoadingScreen(this, controlRequete, resultsScreen);
+
         configScreen = new ConfigScreen(this);
+
+        controlRequete.initBus("HamsterJovial", "HamsterJovial est pret !");
     }
 
     public void changeScreen(){
@@ -97,23 +114,6 @@ public class ProcessingMain extends PApplet {
                     searchConfigTxtScreen.init();
                     break;
                 case RESULTS:
-                    Resultat testResults =  new Resultat("ptdr", TypeRequete.TEXTE);
-                    testResults.add("Fichier 1", 0.50f);
-                    testResults.add("Fichier 2", 0.40f);
-                    testResults.add("Fichier 3", 0.30f);
-                    testResults.add("Fichier 4", 0.20f);
-                    testResults.add("Fichier 5", 0.10f);
-                    testResults.add("Fichier 6", 0.09f);
-                    testResults.add("Fichier 7", 0.08f);
-                    testResults.add("Fichier 8", 0.07f);
-                    testResults.add("Fichier 9", 0.06f);
-                    testResults.add("Fichier 10", 0.05f);
-                    testResults.add("Fichier 11", 0.04f);
-                    testResults.add("Fichier 12", 0.03f);
-                    testResults.add("Fichier 13", 0.02f);
-                    testResults.add("Fichier 14", 0.01f);
-                    testResults.add("Fichier 15", 0.001f);
-                    resultsScreen.init(testResults);
                     break;
             }
         }
@@ -244,8 +244,8 @@ public class ProcessingMain extends PApplet {
         }
     }
 
-    public static void main(String... args) {
-        PApplet.main("vue.ProcessingMain");
+    public void exit(){
+        controlRequete.stop();
+        super.exit();
     }
-
 }

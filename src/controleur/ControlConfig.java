@@ -23,8 +23,5 @@ public class ControlConfig {
 
 
 	//Méthodes
-	public void truc(){
-
-	}
 
 }
