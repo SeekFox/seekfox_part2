@@ -30,9 +30,11 @@ public class Main {
 						"\t0/ Lancer Recherche MotClef\n" +
 						"\t1/ Lancer Recherche Texte\n" +
 						"\t2/ Indexation Texte\n" +
-						"\t3/ Voir les configs\n" +
-						"\t4/ Voir les fichiers Textes indexes\n" +
-						"\t5/ Quitter"
+						"\t3/ Indexation Audio\n" +
+						"\t4/ Voir les configs\n" +
+						"\t5/ Voir les fichiers Textes indexes\n" +
+						"\t6/ Quitter\n"
+						
 				);
 
 				choix = sc.nextInt();
@@ -72,8 +74,18 @@ public class Main {
 						controlRequete.runIndexation(TypeRequete.TEXTE, argument);
 
 						break;
-
+					
 					case 3:
+						System.out.println("[all/fichier.xml]");
+
+						argument = sc.nextLine();
+
+						System.out.println(argument);
+						controlRequete.runIndexation(TypeRequete.AUDIO, argument);
+
+						break;
+						
+					case 4:
 						Config config = Config.getInstance();
 						config.loadConfig();
 						config.setPasswordAdmin("admin");
@@ -81,7 +93,7 @@ public class Main {
 						System.out.println(config);
 						break;
 
-					case 4:
+					case 5:
 						System.out.println("Fichiers Textes Indexes = {");
 						for (String s : controlRequete.getListeFichierIndexesTexte()) {
 							System.out.println("\t" + s);

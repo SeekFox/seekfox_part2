@@ -6,16 +6,20 @@
 package vue;
 
 import controleur.ControlRequete;
+import drop.*;
 import modele.Config;
 import modele.Resultat;
 import modele.TypeRequete;
 import processing.core.*;
+
+import java.io.File;
 
 
 public class ProcessingMain extends PApplet {
     private PApplet processing;
     private ScreenName previousScreen;
     private ScreenName currentScreen = ScreenName.MAIN;
+    private SDrop drop;
 
 
     private MainScreen mainScreen;
@@ -52,6 +56,8 @@ public class ProcessingMain extends PApplet {
         loadingScreen = new LoadingScreen(this, controlRequete, resultsScreen);
 
         configScreen = new ConfigScreen(this);
+
+        drop = new SDrop(this);
 
         controlRequete.initBus("HamsterJovial", "HamsterJovial est pret !");
     }
@@ -247,5 +253,31 @@ public class ProcessingMain extends PApplet {
     public void exit(){
         controlRequete.stop();
         super.exit();
+    }
+
+    void dropEvent(DropEvent theDropEvent) {
+        if(theDropEvent.isFile()) {
+            // for further information see
+            // http://java.sun.com/j2se/1.4.2/docs/api/java/io/File.html
+            File myFile = theDropEvent.file();
+            System.out.println("\nisDirectory ? "+myFile.isDirectory()+"  /  isFile ? "+myFile.isFile());
+            if(myFile.isDirectory()) {
+                System.out.println("listing the directory");
+
+                // list the directory, not recursive, with the File api. returns File[].
+                System.out.println("\n\n### listFiles #############################\n");
+                System.out.println(myFile.listFiles());
+
+
+                // list the directory recursively with listFilesAsArray. returns File[]
+                System.out.println("\n\n### listFilesAsArray recursive #############################\n");
+                System.out.println(theDropEvent.listFilesAsArray(myFile,true));
+
+
+                // list the directory and control the depth of the search. returns File[]
+                System.out.println("\n\n### listFilesAsArray depth #############################\n");
+                System.out.println(theDropEvent.listFilesAsArray(myFile,2));
+            }
+        }
     }
 }
