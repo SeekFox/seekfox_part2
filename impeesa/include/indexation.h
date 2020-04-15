@@ -12,3 +12,4 @@
 
 
 int indexationTexte (char * argument);
+int indexationAudio (char * argument);
