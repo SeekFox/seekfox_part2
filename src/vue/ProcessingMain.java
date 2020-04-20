@@ -43,9 +43,13 @@ public class ProcessingMain extends PApplet {
         processing = this;
         size(640, 480);
 
+
     }
 
     public void setup() {
+        PImage icon = loadImage("../doc/icon.png","png");
+        surface.setIcon(icon);
+        surface.setTitle("SeekFox");
         mainScreen = new MainScreen(this);
         loginScreen = new LoginScreen(this);
         historyScreen = new HistoryScreen(this);
