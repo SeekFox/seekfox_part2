@@ -6,6 +6,11 @@
 package vue;
 
 import processing.core.PApplet;
+import drop.DropEvent;
+
+import java.io.File;
+
+import static processing.core.PApplet.println;
 
 public class MainScreen {
     PApplet p;
@@ -52,4 +57,6 @@ public class MainScreen {
         nextScreen = ScreenName.MAIN;
         return temp;
     }
+
+
 }

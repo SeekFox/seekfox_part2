@@ -8,6 +8,7 @@ package vue;
 import controleur.ControlRequete;
 import modele.TypeRequete;
 import processing.core.PApplet;
+
 //TODO Drag&Drop
 public class SearchConfigTxtScreen {
 

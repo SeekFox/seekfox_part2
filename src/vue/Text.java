@@ -22,6 +22,7 @@ public class Text {
     }
 
     public void display(){
+        p.fill(0);
         p.text(text,textX,textY);
     }
 }
