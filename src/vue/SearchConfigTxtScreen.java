@@ -19,6 +19,7 @@ public class SearchConfigTxtScreen {
     private Button validerRecherche;
     private Button retour;
     private ControlRequete controlRequete;
+    private TickBox multimoteur;
     private boolean isRechercheLaunch = false;
 
     private ScreenName nextScreen = ScreenName.SEARCH_CONFIG_TXT;
@@ -30,7 +31,8 @@ public class SearchConfigTxtScreen {
         ongletSnd = new Button(2*(p.width/3),0,p.width/3,40,255,"Son",false,p);
 
         searchBox = new Textbox(p.width/2, p.height/2, p.width/2, 30, "Chercher",false,true,p);
-        validerRecherche = new Button(p.width/2, p.height/2 + 60, 100, 40, 255, "Valider", true, p);
+        multimoteur = new TickBox(p.width/2 - 75, p.height/2 + 43,15,15,true, p);
+        validerRecherche = new Button(p.width/2, p.height/2 + 90, 100, 40, 255, "Valider", true, p);
 
         retour = new Button(10, p.height-50, 100, 40, 255, "Retour", false, p);
     }
@@ -45,13 +47,17 @@ public class SearchConfigTxtScreen {
     }
 
     public void draw(){
+
         p.background(200);
+        p.text("Glissez et déposez le fichier à rechercher ou utilisez les critères ci-dessous", p.width/2f, p.height/2f - 40);
         drawCurrentOnglet();
         ongletImg.display();
         ongletSnd.display();
         searchBox.display();
         validerRecherche.display();
         retour.display();
+        multimoteur.display();
+        p.text("Recherche multimoteur", p.width/2f, p.height/2f + 40);
     }
 
     public void mousePressed(){
@@ -60,6 +66,7 @@ public class SearchConfigTxtScreen {
         searchBox.clickParsing();
         validerRecherche.clickParsing();
         retour.clickParsing();
+        multimoteur.clickParsing();
     }
 
     public void mouseReleased(){
@@ -78,6 +85,7 @@ public class SearchConfigTxtScreen {
             nextScreen = ScreenName.MAIN;
 
         searchBox.release();
+        multimoteur.release();
     }
 
     public void keyPressed(char key){
@@ -106,5 +114,9 @@ public class SearchConfigTxtScreen {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void launchSearch(String filePath){
+        //TODO implémenter avec le vrai truc
     }
 }

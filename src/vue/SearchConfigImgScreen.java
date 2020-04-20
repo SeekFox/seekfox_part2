@@ -23,6 +23,7 @@ public class SearchConfigImgScreen {
     private ScreenName nextScreen = ScreenName.SEARCH_CONFIG_IMG;
 
     private ControlRequete controlRequete;
+    private TickBox multimoteur;
 
     public SearchConfigImgScreen(PApplet p, ControlRequete controlRequete){
         this.p = p;
@@ -30,7 +31,9 @@ public class SearchConfigImgScreen {
         ongletTxt = new Button(0,0,p.width/3,40,255,"Texte",false,p);
         ongletSnd = new Button(2*(p.width/3),0,p.width/3,40,255,"Son",false,p);
         retour = new Button(10, p.height-50, 100, 40, 255, "Retour", false, p);
-        validerRecherche = new Button(p.width/2, p.height/2+90 + 60, 100, 40, 255, "Valider", true, p);
+
+        multimoteur = new TickBox(p.width/2 - 75, p.height/2 +115,15,15,true, p);
+        validerRecherche = new Button(p.width/2, p.height/2+150, 100, 40, 255, "Valider", true, p);
 
         rouge = new Slider(p.width/2 - (255/2), p.height/2, 255, 0, 255,p);
         vert = new Slider(p.width/2 - (255/2), p.height/2+30, 255, 0, 255,p);
@@ -44,6 +47,7 @@ public class SearchConfigImgScreen {
         p.textAlign(p.CENTER, p.CENTER);
         p.fill(0);
         p.text("Image",p.width/3f, 0, p.width/3f, 40);
+
     }
 
     private void drawColorText(){
@@ -82,6 +86,9 @@ public class SearchConfigImgScreen {
         p.rect(p.width/2f,p.width/2f - 170,90,90);
 
         validerRecherche.display();
+        multimoteur.display();
+        p.text("Recherche multimoteur",p.width/2f , p.height/2f +112);
+        p.text("Glissez et déposez l'image que vous voulez rechercher", p.width/2f, p.height-20);
 
     }
 
@@ -93,6 +100,7 @@ public class SearchConfigImgScreen {
         vert.clickParsing();
         bleu.clickParsing();
         validerRecherche.clickParsing();
+        multimoteur.clickParsing();
 
     }
 
@@ -112,6 +120,7 @@ public class SearchConfigImgScreen {
         rouge.release();
         vert.release();
         bleu.release();
+        multimoteur.release();
     }
 
     public ScreenName getNextScreen(){
@@ -121,4 +130,7 @@ public class SearchConfigImgScreen {
     }
 
 
+    public void launchSearch(String filePath) {
+        //TODO le lien avec le reste du projet
+    }
 }
