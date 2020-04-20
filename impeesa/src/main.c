@@ -51,7 +51,8 @@ void EcouteCallback (IvyClientPtr app, void *data, int argc, char **argv){
             printf("%s\n",argv[1]);
 
         }else if(strcmp("AUDIO",argv[1])==0){
-            printf("%s\n",argv[1]);
+            retour = indexationAudio(argv[2]);
+            //printf("%s\n",argv[1]);
 
         }else{
             printf("ERREUR : %s\n",argv[1]);
