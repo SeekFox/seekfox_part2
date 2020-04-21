@@ -372,7 +372,7 @@ int indexationTotaleAudio(){
         fichier = fopen(cheminFichierCourant,"r");
         if(fichier!=NULL){
 
-            descripteurCourant = creerDescripteurAudio(fichier, getAudioM(), getAudioN(), getExtensionOfFile(cheminFichierCourant));
+            descripteurCourant = creerDescripteurAudio(fichier, getAudioM(), getAudioN(), 1);
 
             fprintf(fichierDescripteurs,"%s\n",descripteurAudioToString(descripteurCourant));
 
@@ -439,7 +439,7 @@ int indexationFichierAudio(char * cheminFichier){
     }
 
     DescripteurAudio descripteurCourant;
-    descripteurCourant = creerDescripteurAudio(fichier, getAudioM(), getAudioN(), getExtensionOfFile(cheminFichierCourant));
+    descripteurCourant = creerDescripteurAudio(fichier, getAudioM(), getAudioN(), 1);
 
     //printf("%s\n",cheminFichier);
     //printf("%s\n",strrchr(cheminFichier,'/'));

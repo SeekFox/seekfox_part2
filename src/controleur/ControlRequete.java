@@ -31,6 +31,8 @@ public class ControlRequete {
 	private Ivy bus;
 	private EtatRequeteIvy etatRequeteIvy = EtatRequeteIvy.WAIT;
 
+	private int compteur = 0;
+
 
 	//Constructeur
 
@@ -263,10 +265,16 @@ public class ControlRequete {
 	 */
 	public Resultat getResultat() throws Exception {
 		if (etatRequeteIvy == EtatRequeteIvy.OK) {
+			compteur=0;
 			return resultat;
+		} else if(compteur>300){
+			compteur=0;
+			throw new Exception("La connexion Ivy a été rompue.");
+
 		} else if (etatRequeteIvy == EtatRequeteIvy.WAIT) {
 			try {
 				Thread.sleep(10);
+				compteur++;
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

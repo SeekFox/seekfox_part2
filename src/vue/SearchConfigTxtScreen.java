@@ -9,6 +9,8 @@ import controleur.ControlRequete;
 import modele.TypeRequete;
 import processing.core.PApplet;
 
+import java.io.File;
+
 //TODO Drag&Drop
 public class SearchConfigTxtScreen {
 
@@ -21,6 +23,9 @@ public class SearchConfigTxtScreen {
     private ControlRequete controlRequete;
     private TickBox multimoteur;
     private boolean isRechercheLaunch = false;
+
+    private boolean isRechercheTexte = false;
+    private File file;
 
     private ScreenName nextScreen = ScreenName.SEARCH_CONFIG_TXT;
 
@@ -77,14 +82,20 @@ public class SearchConfigTxtScreen {
             nextScreen = ScreenName.SEARCH_CONFIG_SND;
 
         if(validerRecherche.release()) {
-            this.runRecherche();
             nextScreen = ScreenName.LOADING;    //TODO activer la recherche ptdr & gérer les erreurs
+            this.runRecherche();
+
         }
 
         if(retour.release())
             nextScreen = ScreenName.MAIN;
 
-        searchBox.release();
+        if(searchBox.release()){
+            if(isRechercheTexte){
+                searchBox.resetText();
+                isRechercheTexte=false;
+            }
+        }
         multimoteur.release();
     }
 
@@ -108,7 +119,24 @@ public class SearchConfigTxtScreen {
         if(!isRechercheLaunch) {
             try { //Lancer la recherche
                 this.isRechercheLaunch = true;
-                controlRequete.runRecherche(TypeRequete.MOTCLEF, searchBox.getWrittenText());
+
+                if(isRechercheTexte){
+                    if(file!=null){
+                        controlRequete.runRecherche(TypeRequete.TEXTE, "./baseDeDocuments/Texte/" + file.getName());
+                        isRechercheTexte=false;
+                    }else{
+
+                    }
+
+                }else {
+                    if(searchBox.getWrittenText()!=""){
+                        controlRequete.runRecherche(TypeRequete.MOTCLEF, searchBox.getWrittenText());
+                    }else{
+                        this.isRechercheLaunch=false;
+                        nextScreen=ScreenName.SEARCH_CONFIG_TXT;
+                    }
+
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -116,7 +144,9 @@ public class SearchConfigTxtScreen {
         }
     }
 
-    public void launchSearch(String filePath){
-        //TODO implémenter avec le vrai truc
+    public void setArgumentRecherche(File file){
+        searchBox.setText(file.getName());
+        isRechercheTexte = true;
+        this.file = file;
     }
 }

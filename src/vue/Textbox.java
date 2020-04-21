@@ -70,8 +70,11 @@ public class Textbox {
         isPressed = Detection.isPressed(p.mouseX, p.mouseY, posX,posY,sizeX,sizeY, isCentered);
     }
 
-    public void release() {
-
+    public boolean release() {
+        if (isPressed) {
+            return true;
+        }
+        return false;
     }
 
     public void keyPressedParsing(char keypressed) {
@@ -93,8 +96,12 @@ public class Textbox {
         }
     }
 
+    public void setText(String text){
+        writtenText=text;
+    }
+
     public void resetText(){
-        writtenText = "";
+        this.setText("");
     }
 
 }
