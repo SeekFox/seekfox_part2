@@ -15,6 +15,8 @@ public class ErrorWindow extends PApplet {
 	private String text;
 	private PFont font;
 
+	private Button okButton;
+
 	//Constructeur
 	public ErrorWindow(String text){
 		super();
@@ -23,6 +25,9 @@ public class ErrorWindow extends PApplet {
 		noLoop();
 		surface.setVisible(false);
 		this.isVisible = false;
+
+		this.okButton =  new Button(width/2, 2*height/3, 100, 40, 255, "OK", true, this);
+
 	}
 
 	//Méthodes
@@ -53,9 +58,20 @@ public class ErrorWindow extends PApplet {
 		textFont(font);
 		background(255,0,0);
 		textAlign(CENTER, CENTER);
-		text(text,width/2,height/2);
+		text(text,width/2,height/3);
+		okButton.display();
 
 
+	}
+
+	public void mousePressed(){
+		okButton.clickParsing();
+	}
+
+	public void mouseReleased(){
+		if(okButton.release()) {
+			this.exit();
+		}
 	}
 
 	/**
