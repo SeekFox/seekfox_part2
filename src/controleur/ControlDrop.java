@@ -41,7 +41,7 @@ public class ControlDrop {
 					System.out.println("Drop Txt");
 					break;
 				case SEARCH_CONFIG_IMG:
-					searchConfigImgScreen.launchSearch(theDropEvent.filePath());
+					searchConfigImgScreen.setArgumentRecherche(file);
 					System.out.println("Drop img");
 					break;
 				case SEARCH_CONFIG_SND:
