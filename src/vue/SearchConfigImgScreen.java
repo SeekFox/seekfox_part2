@@ -12,6 +12,7 @@ import processing.core.PImage;
 
 import java.awt.*;
 import java.io.File;
+import java.text.DecimalFormat;
 
 //TODO Drag & Drop
 public class SearchConfigImgScreen {
@@ -179,9 +180,7 @@ public class SearchConfigImgScreen {
                     isRechercheImage=false;
                 }
             }else {
-                //controlRequete.runRecherche(TypeRequete.MOTCLEF, searchBox.getWrittenText());
-                nextScreen=ScreenName.SEARCH_CONFIG_IMG;
-
+                controlRequete.runRecherche(TypeRequete.COULEURDOMINANTE, "" + Integer.toHexString(color.getRGB()).substring(2));
             }
 
         } catch (Exception e) {

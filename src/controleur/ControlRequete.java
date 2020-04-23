@@ -137,6 +137,7 @@ public class ControlRequete {
 			case MOTCLEF:
 			case AUDIO:
 			case IMAGE:
+			case COULEURDOMINANTE:
 				msg = "Impeesa type=Recherche_" + type + " argument=" + argument;
 				break;
 

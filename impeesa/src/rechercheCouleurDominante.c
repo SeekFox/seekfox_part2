@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "../include/pcre.h"
 #include "../include/ivy.h"
@@ -21,51 +22,18 @@
     #include "../include/recherche.h"
 #endif
 
-int RVBouNB (char * argv) {         // Renvoie 1 si la chaîne de caractères est du NB, 2 si c'est du RVB, 0 sinon
-    int i=0;
-    while (argv[i]!='\n') i++;
-    if (i==4) return 1;
-    if (i==12) return 2;
-    else return 0;
-}
-
-int stringToNB (char * argv) {       // Renvoie la valeur de noir entre 0 et 255 pour les images NB
-    char * valeur = malloc(3*sizeof(char));
-    for(int i=1; i<4; i++) {
-        if(argv[i]=='\0') return -1;
-        valeur[i-1]=argv[i];
-    }
-    int val = atoi(valeur);
-    free(valeur);
-    return val;
-}
 
 int * stringToRGB (char * argv) {
-    char * rouge = malloc(3*sizeof(char));
-    char * vert = malloc(3*sizeof(char));
-    char * bleu = malloc(3*sizeof(char));
-    for(int i=1; i<4; i++) {
-        if(argv[i]=='\0') return NULL;
-        rouge[i-1]=argv[i];
-    }
-    for(int i=4; i<8; i++) {
-        if(argv[i]=='\0') return NULL;
-        vert[i-4]=argv[i];
-    }
-    for(int i=8; i<12; i++) {
-        if(argv[i]=='\0') return NULL;
-        bleu[i-8]=argv[i];
-    }
-    int r = atoi(rouge);
-    int v = atoi(vert);
-    int b = atoi(bleu);
-    free(rouge);
-    free(vert);
-    free(bleu);
-    int * RGB = malloc(3*sizeof(int));
-    RGB[0] = r;
-    RGB[1] = v;
-    RGB[2] = b;
+    int * RGB = calloc(3,sizeof(int));
+
+    int hexValue = atoi(argv);
+
+    RGB[0] = ((hexValue >> 16) & 0xFF) / 255.0;  // Extract the RR byte
+    RGB[1] = ((hexValue >> 8) & 0xFF) / 255.0;   // Extract the GG byte
+    RGB[2] = ((hexValue) & 0xFF) / 255.0;        // Extract the BB byte
+
+
+
     return RGB;
 }
 
