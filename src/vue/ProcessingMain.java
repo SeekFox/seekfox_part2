@@ -59,7 +59,7 @@ public class ProcessingMain extends PApplet {
         resultsScreen = new ResultsScreen(this);
         searchConfigTxtScreen = new SearchConfigTxtScreen(this, controlRequete);
         searchConfigImgScreen = new SearchConfigImgScreen(this, controlRequete);
-        searchConfigSndScreen = new SearchConfigSndScreen(this);
+        searchConfigSndScreen = new SearchConfigSndScreen(this, controlRequete);
 
         controlDrop = new ControlDrop(searchConfigTxtScreen, searchConfigSndScreen, searchConfigImgScreen);
         loadingScreen = new LoadingScreen(this, controlRequete, resultsScreen);
