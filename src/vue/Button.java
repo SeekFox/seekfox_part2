@@ -68,5 +68,11 @@ public class Button {
 
     }
 
+    public void setPosY(int posY){
+        this.posY = posY;
+    }
 
+    public int getposY(){
+        return this.posY;
+    }
 }
