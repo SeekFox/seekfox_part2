@@ -8,16 +8,18 @@ package vue;
 import controleur.ControlRequete;
 import processing.core.PApplet;
 
+import java.util.ArrayList;
+
 public class LoadingScreen {
     private PApplet p;
     private ScreenName nextScreen = ScreenName.LOADING;
     private int loadingSize =0;
-    private ControlRequete controlRequete;
+    private ArrayList<ControlRequete> listControlRequete;
     private ResultsScreen resultsScreen;
 
-    public LoadingScreen(PApplet p, ControlRequete controlRequete, ResultsScreen resultsScreen) {
+    public LoadingScreen(PApplet p, ArrayList<ControlRequete> listControlRequete, ResultsScreen resultsScreen) {
         this.p = p;
-        this.controlRequete = controlRequete;
+        this.listControlRequete = listControlRequete;
         this.resultsScreen = resultsScreen;
 
     }
@@ -49,8 +51,8 @@ public class LoadingScreen {
 
         // Recuperation des resultats
         try {
-            resultsScreen.init(controlRequete.getResultat());
-            System.out.println(controlRequete.getResultat().toString());
+            resultsScreen.init(ControlRequete.trierResultats(listControlRequete));
+            System.out.println(ControlRequete.trierResultats(listControlRequete).toString());
         } catch (Exception e) {
             ProcessingMain.displayError("La connexion Ivy est rompue.");
             nextScreen = ScreenName.MAIN;

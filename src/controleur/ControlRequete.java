@@ -9,9 +9,11 @@ import fr.dgac.ivy.Ivy;
 import fr.dgac.ivy.IvyClient;
 import fr.dgac.ivy.IvyException;
 import fr.dgac.ivy.IvyMessageListener;
+import modele.CelluleResultat;
 import modele.EtatRequeteIvy;
 import modele.Resultat;
 import modele.TypeRequete;
+import vue.ResultsScreen;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -25,8 +27,8 @@ import java.util.ArrayList;
 public class ControlRequete {
 	//Attributs
 	private Resultat resultat;
-	private TypeRequete type;
-	private String argument;
+	private String name;
+	private String destinataire;
 	private Ivy bus;
 	private EtatRequeteIvy etatRequeteIvy = EtatRequeteIvy.WAIT;
 
@@ -34,6 +36,10 @@ public class ControlRequete {
 
 
 	//Constructeur
+	public ControlRequete(String name, String destinataire){
+		this.name=name;
+		this.destinataire = destinataire;
+	}
 
 	//Méthodes
 
@@ -56,12 +62,12 @@ public class ControlRequete {
 
 		//Abonnement au retour d'Impeesa
 		try {
-			bus.bindMsg("^HamsterJovial type=(.*) file=(.*) score=(.*)$", new IvyMessageListener() {
+			bus.bindMsg("^" + this.name +" type=(.*) file=(.*) score=(.*)$", new IvyMessageListener() {
 				@Override
 				public void receive(IvyClient ivyClient, String[] strings) {
 					if (strings.length !=3){
 						etatRequeteIvy = EtatRequeteIvy.ERROR;
-						System.err.println("Impeesa a rencontré un problème.");
+						System.err.println( destinataire +" a rencontré un problème.");
 					}
 
 					switch (strings[0]){
@@ -72,18 +78,18 @@ public class ControlRequete {
 						case "ERROR":
 						default:
 							etatRequeteIvy = EtatRequeteIvy.ERROR;
-							System.err.println("Impeesa a rencontré un problème.");
+							System.err.println( destinataire +" a rencontré un problème.");
 							break;
 					}
 				}
 			});
 
-			bus.bindMsg("^HamsterJovial type=(OK|ERROR)", new IvyMessageListener() {
+			bus.bindMsg("^"+this.name+" type=(OK|ERROR)", new IvyMessageListener() {
 				@Override
 				public void receive(IvyClient ivyClient, String[] strings) {
 					if(strings.length!=1){
 						etatRequeteIvy = EtatRequeteIvy.ERROR;
-						System.err.println("Impeesa a rencontré un problème.");
+						System.err.println( destinataire +" a rencontré un problème.");
 					}
 					switch (strings[0]){
 						case "OK":
@@ -94,7 +100,7 @@ public class ControlRequete {
 						case "ERROR":
 						default:
 							etatRequeteIvy = EtatRequeteIvy.ERROR;
-							System.err.println("Impeesa a rencontré un problème.");
+							System.err.println( destinataire +" a rencontré un problème.");
 							break;
 
 					}
@@ -123,8 +129,6 @@ public class ControlRequete {
 
 
 		String msg = "";
-		this.type = type;
-		this.argument = argument;
 		this.resultat = new Resultat(argument, type);
 		this.etatRequeteIvy = EtatRequeteIvy.WAIT;
 
@@ -137,7 +141,7 @@ public class ControlRequete {
 			case AUDIO:
 			case IMAGE:
 			case COULEURDOMINANTE:
-				msg = "Impeesa type=Recherche_" + type + " argument=" + argument;
+				msg = this.destinataire + " type=Recherche_" + type + " argument=" + argument;
 				break;
 
 			default:
@@ -162,8 +166,6 @@ public class ControlRequete {
 	 */
 	public void runIndexation(TypeRequete type, String argument) {
 		String msg = "";
-		this.type = type;
-		this.argument = argument;
 		this.etatRequeteIvy = EtatRequeteIvy.WAIT;
 
 
@@ -172,7 +174,7 @@ public class ControlRequete {
 			case TEXTE:
 			case AUDIO:
 			case IMAGE:
-				msg = "Impeesa type=Indexation_" + type + " argument=" + argument;
+				msg =  this.destinataire + " type=Indexation_" + type + " argument=" + argument;
 
 				break;
 			default:
@@ -195,7 +197,7 @@ public class ControlRequete {
 	public void stop() {
 		//Envoi du message
 		try {
-			bus.sendMsg("Impeesa Bye");
+			bus.sendMsg(this.destinataire + " Bye");
 		} catch (IvyException ie) {
 			System.err.println("Error : " + ie.getMessage());
 			this.etatRequeteIvy = EtatRequeteIvy.ERROR;
@@ -228,6 +230,27 @@ public class ControlRequete {
 				return true;
 		}
 
+	}
+
+
+	public static Resultat trierResultats(ArrayList<ControlRequete> listControlRequete) throws Exception{
+		if(listControlRequete==null ||listControlRequete.size()==0){
+			throw new Exception("La liste des ControlRequete est vide");
+		}
+
+		Resultat resultat = new Resultat(listControlRequete.get(0).getResultat().getRequete(), listControlRequete.get(0).getResultat().getType());
+
+		for (ControlRequete controlRequete : listControlRequete) {
+			Resultat r = controlRequete.getResultat();
+
+			for (CelluleResultat celluleResultat : r.getResultats()) {
+				resultat.add(celluleResultat);
+			}
+		}
+
+
+
+		return resultat;
 	}
 
 	/**
@@ -289,4 +312,7 @@ public class ControlRequete {
 
 		return listefichiers;
 	}
+
+
+
 }

@@ -14,6 +14,7 @@ import modele.TypeRequete;
 import processing.core.*;
 
 import java.io.File;
+import java.util.ArrayList;
 
 
 public class ProcessingMain extends PApplet {
@@ -34,7 +35,7 @@ public class ProcessingMain extends PApplet {
     private ResultsScreen resultsScreen;
     private ConfigScreen configScreen;
 
-    private ControlRequete controlRequete = new ControlRequete();
+    private ArrayList<ControlRequete> listControlRequete = new ArrayList<>();
     private ControlDrop controlDrop;
 
     public static void main(String... args) {
@@ -57,18 +58,28 @@ public class ProcessingMain extends PApplet {
         loginScreen = new LoginScreen(this);
         historyScreen = new HistoryScreen(this);
         resultsScreen = new ResultsScreen(this);
-        searchConfigTxtScreen = new SearchConfigTxtScreen(this, controlRequete);
-        searchConfigImgScreen = new SearchConfigImgScreen(this, controlRequete);
-        searchConfigSndScreen = new SearchConfigSndScreen(this, controlRequete);
+
+
+        listControlRequete.add(new ControlRequete("HamsterJovial", "Impeesa"));
+        listControlRequete.get(0).initBus("HamsterJovial", "HamsterJovial est pret !");
+
+        listControlRequete.add(new ControlRequete("Baloo", "Akela"));
+        listControlRequete.get(1).initBus("Baloo", "Baloo est pret !");
+
+
+
+        searchConfigTxtScreen = new SearchConfigTxtScreen(this, listControlRequete);
+        searchConfigImgScreen = new SearchConfigImgScreen(this, listControlRequete);
+        searchConfigSndScreen = new SearchConfigSndScreen(this, listControlRequete);
 
         controlDrop = new ControlDrop(searchConfigTxtScreen, searchConfigSndScreen, searchConfigImgScreen);
-        loadingScreen = new LoadingScreen(this, controlRequete, resultsScreen);
+        loadingScreen = new LoadingScreen(this, listControlRequete, resultsScreen);
 
         configScreen = new ConfigScreen(this);
 
         drop = new SDrop(this);
 
-        controlRequete.initBus("HamsterJovial", "HamsterJovial est pret !");
+
     }
 
     public void changeScreen(){
@@ -260,7 +271,9 @@ public class ProcessingMain extends PApplet {
     }
 
     public void exit(){
-        controlRequete.stop();
+        for (ControlRequete controlRequete : listControlRequete) {
+            controlRequete.stop();
+        }
         super.exit();
     }
 
