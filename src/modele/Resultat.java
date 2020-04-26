@@ -24,11 +24,21 @@ public class Resultat {
 		this.add(fichier,Float.valueOf(score));
 	}
 
+	public void add(CelluleResultat celluleResultat) {
+
+		//GERER LES DOUBLONS
+		if(!resultats.contains(celluleResultat)) {
+			this.add(celluleResultat.getFichier(), celluleResultat.getScore());
+		}
+	}
+
 	public void add(String fichier, float score) {
 		boolean isResultatAdd = false;
 
 		for(int i=0; (i<this.resultats.size()&&!isResultatAdd);i++){
-			if(this.resultats.get(i).getScore()<score){
+			if(fichier.equals(this.resultats.get(i).getFichier())){
+				isResultatAdd=true;
+			}else if(this.resultats.get(i).getScore()<score){
 				this.resultats.add(i,new CelluleResultat(fichier, score));
 				isResultatAdd= true;
 			}
@@ -39,6 +49,8 @@ public class Resultat {
 		}
 
 	}
+
+
 
 	public String getRequete() {
 		return requete;

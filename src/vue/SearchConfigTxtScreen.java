@@ -13,6 +13,8 @@ import vue.FileChooser.FileChooseType;
 import vue.FileChooser.FileChooser;
 
 import java.io.File;
+import java.util.ArrayList;
+
 public class SearchConfigTxtScreen {
 
     private PApplet p;
@@ -22,7 +24,7 @@ public class SearchConfigTxtScreen {
     private Textbox searchBox;
     private Button validerRecherche;
     private Button retour;
-    private ControlRequete controlRequete;
+    private ArrayList<ControlRequete> listControlRequete;
     private TickBox multimoteur;
     private boolean isRechercheLaunch = false;
     private FileChooser fileChooser = new FileChooser("../base_de_document");
@@ -32,9 +34,9 @@ public class SearchConfigTxtScreen {
 
     private ScreenName nextScreen = ScreenName.SEARCH_CONFIG_TXT;
 
-    public SearchConfigTxtScreen(PApplet p, ControlRequete controlRequete){
+    public SearchConfigTxtScreen(PApplet p, ArrayList<ControlRequete> listControlRequete){
         this.p = p;
-        this.controlRequete = controlRequete;
+        this.listControlRequete = listControlRequete;
         ongletImg = new Button(p.width/3,0,p.width/3,40,255,"Image",false,p);
         ongletSnd = new Button(2*(p.width/3),0,p.width/3,40,255,"Son",false,p);
 
@@ -132,7 +134,10 @@ public class SearchConfigTxtScreen {
                 if(isRechercheTexte){
                     if(file!=null){
                         TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.TEXTE);
-                        controlRequete.runRecherche(TypeRequete.TEXTE, "./baseDeDocuments/Texte/" + file.getName());
+                        for (ControlRequete controlRequete : listControlRequete) {
+                            controlRequete.runRecherche(TypeRequete.TEXTE, "./baseDeDocuments/Texte/" + file.getName());
+                        }
+
                         isRechercheTexte=false;
                     }else{
 
@@ -141,7 +146,11 @@ public class SearchConfigTxtScreen {
                 }else {
                     if(searchBox.getWrittenText()!=""){
                         TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.MOTCLEF);
-                        controlRequete.runRecherche(TypeRequete.MOTCLEF, searchBox.getWrittenText());
+
+                        for (ControlRequete controlRequete : listControlRequete) {
+                            controlRequete.runRecherche(TypeRequete.MOTCLEF, searchBox.getWrittenText());
+                        }
+
                     }else{
                         this.isRechercheLaunch=false;
                         nextScreen=ScreenName.SEARCH_CONFIG_TXT;

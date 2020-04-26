@@ -13,6 +13,7 @@ import processing.core.PImage;
 
 import java.awt.*;
 import java.io.File;
+import java.util.ArrayList;
 
 import vue.FileChooser.FileChooseType;
 import vue.FileChooser.FileChooser;
@@ -38,13 +39,13 @@ public class SearchConfigImgScreen {
 
     private ScreenName nextScreen = ScreenName.SEARCH_CONFIG_IMG;
 
-    private ControlRequete controlRequete;
+    private ArrayList<ControlRequete> listControlRequete;
     private TickBox multimoteur;
     private FileChooser fileChooser = new FileChooser("../base_de_document");
 
-    public SearchConfigImgScreen(PApplet p, ControlRequete controlRequete){
+    public SearchConfigImgScreen(PApplet p, ArrayList<ControlRequete> listControlRequete){
         this.p = p;
-        this.controlRequete = controlRequete;
+        this.listControlRequete = listControlRequete;
         ongletTxt = new Button(0,0,p.width/3,40,255,"Texte",false,p);
         ongletSnd = new Button(2*(p.width/3),0,p.width/3,40,255,"Son",false,p);
         retour = new Button(10, p.height-50, 100, 40, 255, "Retour", false, p);
@@ -183,17 +184,26 @@ public class SearchConfigImgScreen {
                 if(file!=null){
                     if(file.getParent().endsWith("RGB")){
                         TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.IMAGE);
-                        controlRequete.runRecherche(TypeRequete.IMAGE, "./baseDeDocuments/Image/RGB/" + file.getName());
+                        for (ControlRequete controlRequete : listControlRequete) {
+                            controlRequete.runRecherche(TypeRequete.IMAGE, "./baseDeDocuments/Image/RGB/" + file.getName());
+                        }
+
                     }else if(file.getParent().endsWith("NB")){
                         TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.IMAGE);
-                        controlRequete.runRecherche(TypeRequete.IMAGE, "./baseDeDocuments/Image/NB/" + file.getName());
+                        for (ControlRequete controlRequete : listControlRequete) {
+                            controlRequete.runRecherche(TypeRequete.IMAGE, "./baseDeDocuments/Image/NB/" + file.getName());
+                        }
+
                     }
 
                     isRechercheImage=false;
                 }
             }else {
                 TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.COULEURDOMINANTE);
-                controlRequete.runRecherche(TypeRequete.COULEURDOMINANTE, "" + Integer.toHexString(color.getRGB()).substring(2));
+                for (ControlRequete controlRequete : listControlRequete) {
+                    controlRequete.runRecherche(TypeRequete.COULEURDOMINANTE, "" + Integer.toHexString(color.getRGB()).substring(2));
+                }
+
             }
 
         } catch (Exception e) {

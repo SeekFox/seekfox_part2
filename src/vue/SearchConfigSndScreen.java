@@ -11,6 +11,7 @@ import modele.TypeRequete;
 import processing.core.PApplet;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import vue.FileChooser.FileChooseType;
 import vue.FileChooser.FileChooser;
@@ -28,13 +29,13 @@ public class SearchConfigSndScreen {
     private Button retour;
     private Button searchFile;
 
-    private ControlRequete controlRequete;
+    private ArrayList<ControlRequete> listControlRequete;
     private File file = null;
     private float posY = 0;
 
-    public SearchConfigSndScreen(PApplet p, ControlRequete controlRequete){
+    public SearchConfigSndScreen(PApplet p, ArrayList<ControlRequete> listControlRequete){
         this.p = p;
-        this.controlRequete = controlRequete;
+        this.listControlRequete = listControlRequete;
 
         ongletImg = new Button(p.width/3,0,p.width/3,40,255,"Image",false,p);
         ongletTxt = new Button(0,0,p.width/3,40,255,"Texte",false,p);
@@ -128,7 +129,10 @@ public class SearchConfigSndScreen {
         try { //Lancer la recherche
             if(file!=null){
                 TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.AUDIO);
-                controlRequete.runRecherche(TypeRequete.AUDIO, "./baseDeDocuments/Audio/" + file.getName());
+                for (ControlRequete controlRequete : listControlRequete) {
+                    controlRequete.runRecherche(TypeRequete.AUDIO, "./baseDeDocuments/Audio/" + file.getName());
+                }
+
             }
         } catch (Exception e) {
             e.printStackTrace();

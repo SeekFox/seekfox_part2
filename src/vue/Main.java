@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		boolean isRunning = true;
-		ControlRequete controlRequete = new ControlRequete();
+		ControlRequete controlRequete = new ControlRequete("HamsterJovial", "Impeesa");
 		controlRequete.initBus("HamsterJovial", "HamsterJovial est pret !");
 		Scanner sc = new Scanner(System.in);
 		int choix;
