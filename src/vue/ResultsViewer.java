@@ -13,6 +13,8 @@ import processing.core.PApplet;
 
 import java.util.ArrayList;
 
+//import static modele.Historique.addHistorique;
+
 public class ResultsViewer {
     private PApplet p;
 
@@ -41,6 +43,8 @@ public class ResultsViewer {
 
     private ArrayList<String> listOfElementsLeft = new ArrayList<>();     //Ce qu'il y a Ã©crit a gauche de la case
     private ArrayList<String> listOfElementsRight = new ArrayList<>();    //Ce qu'il y a Ã©crit sur la droite de la case
+    
+    //private Resultat resultat;			// Stockage des résultats affichés, utilisé pour l'historique
 
     public ResultsViewer(int posX, int posY, int sizeX, int sizeY, PApplet p) {
         this.p = p;
@@ -126,6 +130,7 @@ public class ResultsViewer {
         return (listOfElements.size() * elementCaseSizeY) / (sizeY - footerSizeY) +1;
     }
     public void init(Resultat resultat){
+    	//this.resultat = resultat;
         listOfElementsLeft.clear();
         listOfElementsRight.clear();
         fillResultsWindow(resultat);
@@ -174,5 +179,10 @@ public class ResultsViewer {
         nextButtonIsNeeded = nextButtonIsNeeded();
         previousButtonIsNeeded = previousButtonIsNeeded();
     }
+    
+    //public void ajouterResultatHistorique () {
+    //	if (this.resultat==null) return;
+    //	else addHistorique(this.resultat);
+    //}
 
 }
