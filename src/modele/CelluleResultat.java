@@ -31,4 +31,15 @@ public class CelluleResultat{
 				";" + score +
 				']';
 	}
+
+	public boolean equals(Object o){
+		if(o==null || ! (o instanceof CelluleResultat)){
+			return false;
+		}
+
+		CelluleResultat celluleResultat = (CelluleResultat)o;
+
+
+		return (celluleResultat.getFichier().equals(this.getFichier()) && celluleResultat.getScore()==this.getScore());
+	}
 }

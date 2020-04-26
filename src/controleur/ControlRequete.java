@@ -234,19 +234,31 @@ public class ControlRequete {
 
 
 	public static Resultat trierResultats(ArrayList<ControlRequete> listControlRequete) throws Exception{
-		if(listControlRequete==null ||listControlRequete.size()==0){
+		if((listControlRequete == null) || (listControlRequete.size() == 0)){
 			throw new Exception("La liste des ControlRequete est vide");
 		}
 
 		Resultat resultat = new Resultat(listControlRequete.get(0).getResultat().getRequete(), listControlRequete.get(0).getResultat().getType());
 
-		for (ControlRequete controlRequete : listControlRequete) {
-			Resultat r = controlRequete.getResultat();
+		if(listControlRequete.size()==1){
+			resultat = listControlRequete.get(0).getResultat();
+		}else{
+			for (CelluleResultat celluleResultat : listControlRequete.get(0).getResultat().getResultats()) {
+				boolean isSameValue = true;
 
-			for (CelluleResultat celluleResultat : r.getResultats()) {
-				resultat.add(celluleResultat);
+				for (int i = 1; i < listControlRequete.size(); i++) {
+					if(!listControlRequete.get(i).getResultat().getResultats().contains(celluleResultat)){
+						isSameValue = false;
+					}
+				}
+
+				if(isSameValue){
+					resultat.add(celluleResultat);
+				}
 			}
 		}
+
+
 
 
 

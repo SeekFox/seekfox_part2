@@ -51,6 +51,7 @@ public class LoadingScreen {
 
         // Recuperation des resultats
         try {
+
             resultsScreen.init(ControlRequete.trierResultats(listControlRequete));
             System.out.println(ControlRequete.trierResultats(listControlRequete).toString());
         } catch (Exception e) {
