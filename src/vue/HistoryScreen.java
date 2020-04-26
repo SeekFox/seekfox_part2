@@ -25,7 +25,7 @@ public class HistoryScreen {
 
    public  ScreenName nextScreen = ScreenName.HISTORY;
 
-
+    //constructeur
     public HistoryScreen(PApplet p){
         this.p = p;
         scrollbar = new ScrollBar(p.width - 20 , 0 , 19 , 20, p);
@@ -58,7 +58,7 @@ public class HistoryScreen {
 
     }
 
-
+    //méthode quisert à sauvegarder les recherches
     public void sauvegarderRecherche(String recherche){
         listeDeRecherches.add(recherche);
         boutonsDeRecherches.add(new Button( previouspx,previouspy ,previoussx,previoussy,255,recherche,false,p));
