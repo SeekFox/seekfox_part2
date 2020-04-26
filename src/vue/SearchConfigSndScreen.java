@@ -103,8 +103,10 @@ public class SearchConfigSndScreen {
 
         if(retour.release())
             nextScreen = ScreenName.MAIN;
-        if(searchFile.release())
+        if(searchFile.release()) {
             fileChooser.display(FileChooseType.AUDIO);
+            this.setArgumentRecherche(fileChooser.getFile());
+        }
 
         if(validerRecherche.release()&&file!=null) {
             nextScreen = ScreenName.LOADING;    //TODO activer la recherche ptdr & gérer les erreurs

@@ -29,7 +29,7 @@ public class MainScreen {
         historiqueButton = new Button(20, p.height - 60, p.width / 5, 40, p.color(255), "Historique", false, p);
         settingsButton = new Button(p.width - p.width / 5 - 20, p.height - 60, p.width / 5, 40, p.color(255), "Configuration", false, p);
 
-        logo = p.loadImage("./doc/seekfox.png");
+        logo = p.loadImage("doc/seekfox.png");
     }
 
     public void draw() {

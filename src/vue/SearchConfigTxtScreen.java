@@ -99,8 +99,10 @@ public class SearchConfigTxtScreen {
                 isRechercheTexte=false;
             }
         }
-        if(searchFile.release())
+        if(searchFile.release()) {
             fileChooser.display(FileChooseType.TEXT);
+            this.setArgumentRecherche(fileChooser.getFile());
+        }
         searchBox.release();
         multimoteur.release();
     }

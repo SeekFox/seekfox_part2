@@ -12,9 +12,7 @@ import processing.core.PImage;
 
 import java.awt.*;
 import java.io.File;
-import java.text.DecimalFormat;
 
-//TODO Drag & Drop
 import vue.FileChooser.FileChooseType;
 import vue.FileChooser.FileChooser;
 
@@ -157,9 +155,10 @@ public class SearchConfigImgScreen {
 
         }
         multimoteur.release();
-        if(accessFile.release())
+        if(accessFile.release()) {
             fileChooser.display(FileChooseType.IMAGE);
-        //TODO Faire le lien ici aussi ptdr
+            this.setArgumentRecherche(fileChooser.getFile());
+        }
     }
 
     public ScreenName getNextScreen(){
