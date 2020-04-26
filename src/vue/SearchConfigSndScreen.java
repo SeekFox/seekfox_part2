@@ -11,7 +11,6 @@ import processing.core.PApplet;
 
 import java.io.File;
 
-//TODO Drag and drop
 import vue.FileChooser.FileChooseType;
 import vue.FileChooser.FileChooser;
 
@@ -38,7 +37,8 @@ public class SearchConfigSndScreen {
 
         ongletImg = new Button(p.width/3,0,p.width/3,40,255,"Image",false,p);
         ongletTxt = new Button(0,0,p.width/3,40,255,"Texte",false,p);
-        searchFile = new Button(p.width/2, p.height/2 + 60, 100, 40, 255,"Chercher un Fichier", true, p);
+        validerRecherche = new Button(p.width/2-60, p.height/2 + 90, 100, 40, 255, "Valider", true, p);
+        searchFile = new Button(p.width/2+60, p.height/2 + 90, 100, 40, 255, "Chercher un fichier", true, p);
         retour = new Button(10, p.height-50, 100, 40, 255, "Retour", false, p);
         multimoteur = new TickBox(p.width/2 - 75, p.height/2+25,15,15,true, p);
     }
