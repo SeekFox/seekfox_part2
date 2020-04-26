@@ -13,6 +13,7 @@ public class ResultsScreen {
     private ResultsViewer resultsViewer;
     private Button saveButton;
     private Button backButton;
+    private modele.Resultat results;
 
     public ResultsScreen(PApplet p) {
         this.p = p;
@@ -53,5 +54,6 @@ public class ResultsScreen {
 
     public void init(modele.Resultat searchResults){
         resultsViewer.init(searchResults);
+        results = searchResults;
     }
 }
