@@ -61,7 +61,12 @@ public class Textbox {
             if(!isPassword)
                 p.text(writtenText, posX, posY, sizeX, sizeY);
             else{
-                p.text("* ".repeat(writtenText.length()), posX, posY, sizeX, sizeY);   //Écrire des étoiles si mdp
+                String text = "";
+                for (int i = 0; i < writtenText.length(); i++) {
+                    text += "*";
+                }
+
+                p.text(text, posX, posY, sizeX, sizeY);   //Écrire des étoiles si mdp
             }
         }
     }

@@ -87,7 +87,7 @@ void resetFileCursor(FILE* p_file, int fileType){
 }
 
 
-unsigned int getAudioFileSize(FILE* p_file, int fileType){ //Calculer la taille d'un fichier audio, /!\ change le curseur de position, possible TODO a faire
+unsigned int getAudioFileSize(FILE* p_file, int fileType){ //Calculer la taille d'un fichier audio, /!\ change le curseur de position, possible
 	unsigned int size;
 	double placeholder; //On est pas intéressé par les valeurs, faut juste une variable pour pouvoir lire
 

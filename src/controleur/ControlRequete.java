@@ -24,7 +24,6 @@ import java.util.ArrayList;
  */
 public class ControlRequete {
 	//Attributs
-	private String fichierResultatRecherche = "./impeesa/rechercheOut.txt";
 	private Resultat resultat;
 	private TypeRequete type;
 	private String argument;
@@ -206,33 +205,6 @@ public class ControlRequete {
 
 
 	}
-
-	@Deprecated
-	private Resultat lireResultat() {
-		String[] res;
-		Resultat resultat = new Resultat(argument, type);
-
-		try (
-				InputStream ips = new FileInputStream(this.fichierResultatRecherche);
-				InputStreamReader ipsr = new InputStreamReader(ips);
-				BufferedReader br = new BufferedReader(ipsr)
-		) {
-
-			String ligne = br.readLine();
-
-			while ((ligne = br.readLine()) != null) {
-
-				res = (ligne.split(";"));
-				resultat.add(res[0], Float.parseFloat(res[1]));
-			}
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-
-		return resultat;
-	}
-
-
 	/**
 	 * Renvoi True si le fichier est supporté par le moteur de recherche
 	 *

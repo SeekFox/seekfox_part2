@@ -50,7 +50,7 @@ public class ProcessingMain extends PApplet {
     }
 
     public void setup() {
-        PImage icon = loadImage("./doc/icon.png","png");
+        PImage icon = loadImage("doc/icon.png","png");
         surface.setIcon(icon);
         surface.setTitle("SeekFox");
         mainScreen = new MainScreen(this);

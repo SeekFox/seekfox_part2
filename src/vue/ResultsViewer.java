@@ -7,6 +7,8 @@ package vue;
 
 import modele.CelluleResultat;
 import modele.Resultat;
+import modele.TypeRecherche;
+import modele.TypeRequete;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
@@ -78,8 +80,30 @@ public class ResultsViewer {
 
             //ToDo -> Recherche motClef, c'est des occurences, pas des %
             // Same avec l'audio
+
             p.textAlign(p.RIGHT,p.CENTER);
-            p.text((Math.round(Float.parseFloat(listOfElementsRight.get(currentIndex)))) + " occur.",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
+            switch ( TypeRecherche.getINSTANCE().getTypeRequete()){
+                case TEXTE:
+                case COULEURDOMINANTE:
+                case IMAGE:
+                    p.text((Math.round(Float.parseFloat(listOfElementsRight.get(currentIndex)))) + " %.",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
+                    break;
+
+                case AUDIO:
+                    p.text((Math.round(Float.parseFloat(listOfElementsRight.get(currentIndex)))) + " s.",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
+                    break;
+
+                case MOTCLEF:
+                    p.text((Math.round(Float.parseFloat(listOfElementsRight.get(currentIndex)))) + " occur.",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
+                    break;
+
+                default:
+
+                    break;
+
+            }
+
+
             //p.text(listOfElementsRight.get(currentIndex) + "%",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
 
             currentYPosition += elementCaseSizeY;
