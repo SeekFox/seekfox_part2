@@ -10,7 +10,7 @@ import processing.core.PApplet;
 public class LoginScreen {
     private final static String adminLogin = "admin";
     private final static String adminPassword = "123456";
-
+    private boolean isconnected = false;
     PApplet p;
 
     boolean errorTextIsVisible = false;
@@ -56,8 +56,10 @@ public class LoginScreen {
         passwordBox.release();
 
         if(validerButton.release()){
-            if(usernameBox.getWrittenText().equals(adminLogin)  && passwordBox.getWrittenText().equals(adminPassword))
+            if(usernameBox.getWrittenText().equals(adminLogin)  && passwordBox.getWrittenText().equals(adminPassword)){
                 nextScreen = ScreenName.CONFIG;
+                isconnected = true;
+            }
             else
                 errorTextIsVisible = true;
         }
@@ -73,7 +75,12 @@ public class LoginScreen {
 
     public ScreenName getNextScreen() {
         ScreenName temp = nextScreen;
-        nextScreen = ScreenName.ADMIN_CONNECTION;
+        if(!isconnected){
+            nextScreen = ScreenName.ADMIN_CONNECTION;
+        }
+        else{
+            nextScreen = ScreenName.CONFIG;
+        }
         return temp;
     }
 
