@@ -83,7 +83,7 @@ int rechercheTexte(char * cheminFichier){
     dt = lireFichierTexte(cheminFichier);
     //afficheDescripteurTexte(dt);
 
-    //fprintf(output,"%s\n",descripteurTexteToString(dt));
+    //printf("%s\n",descripteurTexteToString(dt));
 
 
     FILE * fDescripteur = NULL;
@@ -107,7 +107,7 @@ int rechercheTexte(char * cheminFichier){
             IvySendMsg("HamsterJovial type=RESULT file=%s score=%f",getNameDescripteurTexte(descripteurCourant)
                                                                                 ,comparerDescripteurTexte(dt,descripteurCourant)
                                                                                 );
-
+            //printf("%s\t %f\n",descripteurTexteToString(descripteurCourant),comparerDescripteurTexte(dt,descripteurCourant));
             /*fprintf(output,"%s;%.2f\n",getNameDescripteurTexte(descripteurCourant)
                                     ,comparerDescripteurTexte(dt,descripteurCourant)
                                     );*/

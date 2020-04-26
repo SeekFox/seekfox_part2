@@ -6,7 +6,14 @@
 package vue;
 
 import controleur.ControlRequete;
+import modele.TypeRecherche;
+import modele.TypeRequete;
 import processing.core.PApplet;
+import processing.core.PImage;
+
+import java.awt.*;
+import java.io.File;
+
 import vue.FileChooser.FileChooseType;
 import vue.FileChooser.FileChooser;
 
@@ -22,6 +29,12 @@ public class SearchConfigImgScreen {
     private Slider rouge;
     private Slider vert;
     private Slider bleu;
+
+    private boolean isRechercheImage = false;
+    private File file;
+    private PImage image;
+
+    private Color color;
 
     private ScreenName nextScreen = ScreenName.SEARCH_CONFIG_IMG;
 
@@ -42,6 +55,8 @@ public class SearchConfigImgScreen {
         rouge = new Slider(p.width/2 - (255/2), p.height/2, 255, 0, 255,p);
         vert = new Slider(p.width/2 - (255/2), p.height/2+30, 255, 0, 255,p);
         bleu = new Slider(p.width/2 - (255/2), p.height/2+60, 255, 0, 255,p);
+
+        this.color = new Color(rouge.getValue(), vert.getValue(), bleu.getValue());
     }
 
     private void drawCurrentOnglet(){
@@ -86,14 +101,21 @@ public class SearchConfigImgScreen {
 
         drawColorText();
 
-        p.fill(rouge.getValue(), vert.getValue(), bleu.getValue());
-        p.rectMode(p.CENTER);
-        p.rect(p.width/2f,p.width/2f - 170,90,90);
+        if(isRechercheImage){
+            p.image(image, p.width/2f-45,p.width/2f - 170-45,91,91);
+        }else{
+            p.fill(rouge.getValue(), vert.getValue(), bleu.getValue());
+            p.rectMode(p.CENTER);
+            p.rect(p.width/2f,p.width/2f - 170,90,90);
+        }
 
         validerRecherche.display();
         multimoteur.display();
         p.text("Recherche multimoteur",p.width/2f , p.height/2f +112);
         p.text("Glissez et déposez l'image que vous voulez rechercher", p.width/2f, p.height-20);
+
+
+
 
     }
 
@@ -106,6 +128,9 @@ public class SearchConfigImgScreen {
         bleu.clickParsing();
         validerRecherche.clickParsing();
         multimoteur.clickParsing();
+
+        this.color = new Color((int)(rouge.getValue()), (int)(vert.getValue()), (int)(bleu.getValue()));
+
         accessFile.clickParsing();
     }
 
@@ -119,16 +144,22 @@ public class SearchConfigImgScreen {
         if(retour.release())
             nextScreen = ScreenName.MAIN;
 
-        if(validerRecherche.release())
-            nextScreen = ScreenName.LOADING;    //TODO lancer la recherche
+        if(validerRecherche.release()) {
+            nextScreen = ScreenName.LOADING;    //TODO activer la recherche ptdr & gérer les erreurs
+            this.runRecherche();
+        }
 
-        rouge.release();
-        vert.release();
-        bleu.release();
+        if(rouge.release() || vert.release() || bleu.release()){
+            if(!this.color.equals(new Color((int)(rouge.getValue()), (int)(vert.getValue()), (int)(bleu.getValue())))){
+                isRechercheImage = false;
+            }
+
+        }
         multimoteur.release();
-        if(accessFile.release())
+        if(accessFile.release()) {
             fileChooser.display(FileChooseType.IMAGE);
-        //TODO Faire le lien ici aussi ptdr
+            this.setArgumentRecherche(fileChooser.getFile());
+        }
     }
 
     public ScreenName getNextScreen(){
@@ -138,7 +169,35 @@ public class SearchConfigImgScreen {
     }
 
 
-    public void launchSearch(String filePath) {
-        //TODO le lien avec le reste du projet
+    public void setArgumentRecherche(File file){
+        //Affichage de l'image
+        image = p.loadImage(file.getPath());
+
+        isRechercheImage = true;
+        this.file = file;
+    }
+
+    public void runRecherche(){
+        try { //Lancer la recherche
+            if(isRechercheImage){
+                if(file!=null){
+                    if(file.getParent().endsWith("RGB")){
+                        TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.IMAGE);
+                        controlRequete.runRecherche(TypeRequete.IMAGE, "./baseDeDocuments/Image/RGB/" + file.getName());
+                    }else if(file.getParent().endsWith("NB")){
+                        TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.IMAGE);
+                        controlRequete.runRecherche(TypeRequete.IMAGE, "./baseDeDocuments/Image/NB/" + file.getName());
+                    }
+
+                    isRechercheImage=false;
+                }
+            }else {
+                TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.COULEURDOMINANTE);
+                controlRequete.runRecherche(TypeRequete.COULEURDOMINANTE, "" + Integer.toHexString(color.getRGB()).substring(2));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

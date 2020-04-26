@@ -67,7 +67,7 @@ int rechercheImage(char * cheminFichier){
         return 2;
     }
 
-    if(strcmp(getExtensionOfFile(cheminFichier),".bmp")!=0){
+    if(strcmp(getExtensionOfFile(cheminFichier),".bmp")!=0&&strcmp(getExtensionOfFile(cheminFichier),".jpg")!=0){
        // fprintf(output,"ERREUR : \'%s\' isn\'t supported by \'%s\'.\n",cheminFichier,argv[0]);
         printf("ERREUR : \'%s\' isn\'t supported by rechercheImage.\n",cheminFichier);
 

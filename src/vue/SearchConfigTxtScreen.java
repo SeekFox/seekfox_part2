@@ -6,12 +6,13 @@
 package vue;
 
 import controleur.ControlRequete;
+import modele.TypeRecherche;
 import modele.TypeRequete;
 import processing.core.PApplet;
 import vue.FileChooser.FileChooseType;
 import vue.FileChooser.FileChooser;
 
-
+import java.io.File;
 public class SearchConfigTxtScreen {
 
     private PApplet p;
@@ -25,6 +26,9 @@ public class SearchConfigTxtScreen {
     private TickBox multimoteur;
     private boolean isRechercheLaunch = false;
     private FileChooser fileChooser = new FileChooser("../base_de_document");
+
+    private boolean isRechercheTexte = false;
+    private File file;
 
     private ScreenName nextScreen = ScreenName.SEARCH_CONFIG_TXT;
 
@@ -83,14 +87,23 @@ public class SearchConfigTxtScreen {
             nextScreen = ScreenName.SEARCH_CONFIG_SND;
 
         if(validerRecherche.release()) {
-            this.runRecherche();
             nextScreen = ScreenName.LOADING;    //TODO activer la recherche ptdr & gérer les erreurs
+            this.runRecherche();
         }
 
         if(retour.release())
             nextScreen = ScreenName.MAIN;
-        if(searchFile.release())
+
+        if(searchBox.release()){
+            if(isRechercheTexte){
+                searchBox.resetText();
+                isRechercheTexte=false;
+            }
+        }
+        if(searchFile.release()) {
             fileChooser.display(FileChooseType.TEXT);
+            this.setArgumentRecherche(fileChooser.getFile());
+        }
         searchBox.release();
         multimoteur.release();
     }
@@ -115,7 +128,26 @@ public class SearchConfigTxtScreen {
         if(!isRechercheLaunch) {
             try { //Lancer la recherche
                 this.isRechercheLaunch = true;
-                controlRequete.runRecherche(TypeRequete.MOTCLEF, searchBox.getWrittenText());
+
+                if(isRechercheTexte){
+                    if(file!=null){
+                        TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.TEXTE);
+                        controlRequete.runRecherche(TypeRequete.TEXTE, "./baseDeDocuments/Texte/" + file.getName());
+                        isRechercheTexte=false;
+                    }else{
+
+                    }
+
+                }else {
+                    if(searchBox.getWrittenText()!=""){
+                        TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.MOTCLEF);
+                        controlRequete.runRecherche(TypeRequete.MOTCLEF, searchBox.getWrittenText());
+                    }else{
+                        this.isRechercheLaunch=false;
+                        nextScreen=ScreenName.SEARCH_CONFIG_TXT;
+                    }
+
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -123,7 +155,9 @@ public class SearchConfigTxtScreen {
         }
     }
 
-    public void launchSearch(String filePath){
-        //TODO implémenter avec le vrai truc
+    public void setArgumentRecherche(File file){
+        searchBox.setText(file.getName());
+        isRechercheTexte = true;
+        this.file = file;
     }
 }

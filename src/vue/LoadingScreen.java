@@ -52,6 +52,9 @@ public class LoadingScreen {
             resultsScreen.init(controlRequete.getResultat());
             System.out.println(controlRequete.getResultat().toString());
         } catch (Exception e) {
+            ProcessingMain.displayError("La connexion Ivy est rompue.");
+            nextScreen = ScreenName.MAIN;
+            //On leve l'erreur ici
             e.printStackTrace();
         }
     }

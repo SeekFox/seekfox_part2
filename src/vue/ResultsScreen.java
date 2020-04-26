@@ -39,7 +39,7 @@ public class ResultsScreen {
         resultsViewer.release();
         if(saveButton.release())
             nextScreen = ScreenName.MAIN; //TODO Sauvegarder dans l'historique
-
+        	//resultsViewer.ajouterResultatHistorique();
         if(backButton.release())
             nextScreen = ScreenName.MAIN;
 

@@ -5,6 +5,7 @@
 
 package vue;
 
+import controleur.ControlDrop;
 import controleur.ControlRequete;
 import drop.*;
 import modele.Config;
@@ -17,6 +18,7 @@ import java.io.File;
 
 public class ProcessingMain extends PApplet {
     private PApplet processing;
+
     private ScreenName previousScreen;
     private ScreenName currentScreen = ScreenName.MAIN;
     private SDrop drop;
@@ -33,6 +35,7 @@ public class ProcessingMain extends PApplet {
     private ConfigScreen configScreen;
 
     private ControlRequete controlRequete = new ControlRequete();
+    private ControlDrop controlDrop;
 
     public static void main(String... args) {
         PApplet.main("vue.ProcessingMain");
@@ -47,7 +50,7 @@ public class ProcessingMain extends PApplet {
     }
 
     public void setup() {
-        PImage icon = loadImage("../doc/icon.png","png");
+        PImage icon = loadImage("doc/icon.png","png");
         surface.setIcon(icon);
         surface.setTitle("SeekFox");
         mainScreen = new MainScreen(this);
@@ -56,7 +59,9 @@ public class ProcessingMain extends PApplet {
         resultsScreen = new ResultsScreen(this);
         searchConfigTxtScreen = new SearchConfigTxtScreen(this, controlRequete);
         searchConfigImgScreen = new SearchConfigImgScreen(this, controlRequete);
-        searchConfigSndScreen = new SearchConfigSndScreen(this);
+        searchConfigSndScreen = new SearchConfigSndScreen(this, controlRequete);
+
+        controlDrop = new ControlDrop(searchConfigTxtScreen, searchConfigSndScreen, searchConfigImgScreen);
         loadingScreen = new LoadingScreen(this, controlRequete, resultsScreen);
 
         configScreen = new ConfigScreen(this);
@@ -260,19 +265,11 @@ public class ProcessingMain extends PApplet {
     }
 
     void dropEvent(DropEvent theDropEvent) {
-        switch(currentScreen){
-            case SEARCH_CONFIG_TXT:
-                searchConfigTxtScreen.launchSearch(theDropEvent.filePath());
-                break;
-            case SEARCH_CONFIG_IMG:
-                searchConfigImgScreen.launchSearch(theDropEvent.filePath());
-                break;
-            case SEARCH_CONFIG_SND:
-                searchConfigSndScreen.launchSearch(theDropEvent.filePath());
-                break;
-            default:
-                break;
+        controlDrop.dropEvent(theDropEvent, currentScreen);
+    }
 
-        }
+    public static void displayError(String text){
+        ErrorWindow errorWindow = new ErrorWindow(text);
+        errorWindow.setVisible();
     }
 }

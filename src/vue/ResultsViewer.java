@@ -7,9 +7,13 @@ package vue;
 
 import modele.CelluleResultat;
 import modele.Resultat;
+import modele.TypeRecherche;
+import modele.TypeRequete;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
+
+//import static modele.Historique.addHistorique;
 
 public class ResultsViewer {
     private PApplet p;
@@ -39,6 +43,8 @@ public class ResultsViewer {
 
     private ArrayList<String> listOfElementsLeft = new ArrayList<>();     //Ce qu'il y a Ã©crit a gauche de la case
     private ArrayList<String> listOfElementsRight = new ArrayList<>();    //Ce qu'il y a Ã©crit sur la droite de la case
+    
+    //private Resultat resultat;			// Stockage des résultats affichés, utilisé pour l'historique
 
     public ResultsViewer(int posX, int posY, int sizeX, int sizeY, PApplet p) {
         this.p = p;
@@ -74,8 +80,30 @@ public class ResultsViewer {
 
             //ToDo -> Recherche motClef, c'est des occurences, pas des %
             // Same avec l'audio
+
             p.textAlign(p.RIGHT,p.CENTER);
-            p.text((Math.round(Float.parseFloat(listOfElementsRight.get(currentIndex)))) + " occur.",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
+            switch ( TypeRecherche.getINSTANCE().getTypeRequete()){
+                case TEXTE:
+                case COULEURDOMINANTE:
+                case IMAGE:
+                    p.text((Math.round(Float.parseFloat(listOfElementsRight.get(currentIndex)))) + " %.",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
+                    break;
+
+                case AUDIO:
+                    p.text((Math.round(Float.parseFloat(listOfElementsRight.get(currentIndex)))) + " s.",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
+                    break;
+
+                case MOTCLEF:
+                    p.text((Math.round(Float.parseFloat(listOfElementsRight.get(currentIndex)))) + " occur.",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
+                    break;
+
+                default:
+
+                    break;
+
+            }
+
+
             //p.text(listOfElementsRight.get(currentIndex) + "%",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
 
             currentYPosition += elementCaseSizeY;
@@ -102,6 +130,7 @@ public class ResultsViewer {
         return (listOfElements.size() * elementCaseSizeY) / (sizeY - footerSizeY) +1;
     }
     public void init(Resultat resultat){
+    	//this.resultat = resultat;
         listOfElementsLeft.clear();
         listOfElementsRight.clear();
         fillResultsWindow(resultat);
@@ -150,5 +179,10 @@ public class ResultsViewer {
         nextButtonIsNeeded = nextButtonIsNeeded();
         previousButtonIsNeeded = previousButtonIsNeeded();
     }
+    
+    //public void ajouterResultatHistorique () {
+    //	if (this.resultat==null) return;
+    //	else addHistorique(this.resultat);
+    //}
 
 }
