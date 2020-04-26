@@ -40,10 +40,12 @@ public class Historique {
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-		List<String> recherches =  cut(s);		// Sépare chaque recherche de l'historique
-		List<Resultat> resultats = new ArrayList<Resultat>();
-		for(String str:recherches) resultats.add(toResultat(str));		// Pour chaque recherche de l'historique, fait une conversion String->Resultat
-		return resultats;
+		if (s.length()>0) {
+			List<String> recherches =  cut(s);		// Sépare chaque recherche de l'historique
+			List<Resultat> resultats = new ArrayList<Resultat>();
+			for(String str:recherches) resultats.add(toResultat(str));		// Pour chaque recherche de l'historique, fait une conversion String->Resultat
+			return resultats;
+		} else return null;
 	}
 	
 	public static void resetHistorique () {
