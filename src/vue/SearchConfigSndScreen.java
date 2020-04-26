@@ -6,6 +6,7 @@
 package vue;
 
 import controleur.ControlRequete;
+import modele.TypeRecherche;
 import modele.TypeRequete;
 import processing.core.PApplet;
 
@@ -126,6 +127,7 @@ public class SearchConfigSndScreen {
     public void runRecherche(){
         try { //Lancer la recherche
             if(file!=null){
+                TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.AUDIO);
                 controlRequete.runRecherche(TypeRequete.AUDIO, "./baseDeDocuments/Audio/" + file.getName());
             }
         } catch (Exception e) {

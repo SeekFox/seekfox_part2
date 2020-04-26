@@ -6,6 +6,7 @@
 package vue;
 
 import controleur.ControlRequete;
+import modele.TypeRecherche;
 import modele.TypeRequete;
 import processing.core.PApplet;
 import vue.FileChooser.FileChooseType;
@@ -130,6 +131,7 @@ public class SearchConfigTxtScreen {
 
                 if(isRechercheTexte){
                     if(file!=null){
+                        TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.TEXTE);
                         controlRequete.runRecherche(TypeRequete.TEXTE, "./baseDeDocuments/Texte/" + file.getName());
                         isRechercheTexte=false;
                     }else{
@@ -138,6 +140,7 @@ public class SearchConfigTxtScreen {
 
                 }else {
                     if(searchBox.getWrittenText()!=""){
+                        TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.MOTCLEF);
                         controlRequete.runRecherche(TypeRequete.MOTCLEF, searchBox.getWrittenText());
                     }else{
                         this.isRechercheLaunch=false;

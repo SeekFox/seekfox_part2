@@ -6,6 +6,7 @@
 package vue;
 
 import controleur.ControlRequete;
+import modele.TypeRecherche;
 import modele.TypeRequete;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -181,14 +182,17 @@ public class SearchConfigImgScreen {
             if(isRechercheImage){
                 if(file!=null){
                     if(file.getParent().endsWith("RGB")){
+                        TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.IMAGE);
                         controlRequete.runRecherche(TypeRequete.IMAGE, "./baseDeDocuments/Image/RGB/" + file.getName());
                     }else if(file.getParent().endsWith("NB")){
+                        TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.IMAGE);
                         controlRequete.runRecherche(TypeRequete.IMAGE, "./baseDeDocuments/Image/NB/" + file.getName());
                     }
 
                     isRechercheImage=false;
                 }
             }else {
+                TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.COULEURDOMINANTE);
                 controlRequete.runRecherche(TypeRequete.COULEURDOMINANTE, "" + Integer.toHexString(color.getRGB()).substring(2));
             }
 
