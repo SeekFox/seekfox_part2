@@ -12,6 +12,10 @@ import processing.core.PApplet;
 import java.io.File;
 
 //TODO Drag and drop
+import vue.FileChooser.FileChooseType;
+import vue.FileChooser.FileChooser;
+
+
 public class SearchConfigSndScreen {
 
     private PApplet p;
@@ -20,7 +24,9 @@ public class SearchConfigSndScreen {
     private Button validerRecherche;
     private ScreenName nextScreen = ScreenName.SEARCH_CONFIG_SND;
     private TickBox multimoteur;
+    private FileChooser fileChooser = new FileChooser("../base_de_document");
     private Button retour;
+    private Button searchFile;
 
     private ControlRequete controlRequete;
     private File file = null;
@@ -32,9 +38,9 @@ public class SearchConfigSndScreen {
 
         ongletImg = new Button(p.width/3,0,p.width/3,40,255,"Image",false,p);
         ongletTxt = new Button(0,0,p.width/3,40,255,"Texte",false,p);
+        searchFile = new Button(p.width/2, p.height/2 + 60, 100, 40, 255,"Chercher un Fichier", true, p);
         retour = new Button(10, p.height-50, 100, 40, 255, "Retour", false, p);
         multimoteur = new TickBox(p.width/2 - 75, p.height/2+25,15,15,true, p);
-        validerRecherche = new Button(p.width/2, p.height/2 + 90, 100, 40, 255, "Valider", true, p);
     }
 
     private void drawCurrentOnglet(){
@@ -53,6 +59,7 @@ public class SearchConfigSndScreen {
         ongletImg.display();
         ongletTxt.display();
         retour.display();
+        searchFile.display();
         multimoteur.display();
         validerRecherche.display();
 
@@ -83,6 +90,7 @@ public class SearchConfigSndScreen {
         ongletTxt.clickParsing();
         retour.clickParsing();
         multimoteur.clickParsing();
+        searchFile.clickParsing();
         validerRecherche.clickParsing();
     }
 
@@ -95,6 +103,8 @@ public class SearchConfigSndScreen {
 
         if(retour.release())
             nextScreen = ScreenName.MAIN;
+        if(searchFile.release())
+            fileChooser.display(FileChooseType.AUDIO);
 
         if(validerRecherche.release()&&file!=null) {
             nextScreen = ScreenName.LOADING;    //TODO activer la recherche ptdr & gérer les erreurs
