@@ -6,7 +6,10 @@
 package vue;
 
 import processing.core.PApplet;
-//TODO Drag and drop
+import vue.FileChooser.FileChooseType;
+import vue.FileChooser.FileChooser;
+
+
 public class SearchConfigSndScreen {
 
     private PApplet p;
@@ -14,12 +17,15 @@ public class SearchConfigSndScreen {
     private Button ongletTxt;
     private ScreenName nextScreen = ScreenName.SEARCH_CONFIG_SND;
     private TickBox multimoteur;
+    private FileChooser fileChooser = new FileChooser("../base_de_document");
     private Button retour;
+    private Button searchFile;
 
     public SearchConfigSndScreen(PApplet p){
         this.p = p;
         ongletImg = new Button(p.width/3,0,p.width/3,40,255,"Image",false,p);
         ongletTxt = new Button(0,0,p.width/3,40,255,"Texte",false,p);
+        searchFile = new Button(p.width/2, p.height/2 + 60, 100, 40, 255,"Chercher un Fichier", true, p);
         retour = new Button(10, p.height-50, 100, 40, 255, "Retour", false, p);
         multimoteur = new TickBox(p.width/2 - 75, p.height/2+25,15,15,true, p);
     }
@@ -40,6 +46,7 @@ public class SearchConfigSndScreen {
         ongletImg.display();
         ongletTxt.display();
         retour.display();
+        searchFile.display();
         multimoteur.display();
         p.text("Recherche multimoteur", p.width/2f, p.height/2f + 22);
     }
@@ -49,6 +56,7 @@ public class SearchConfigSndScreen {
         ongletTxt.clickParsing();
         retour.clickParsing();
         multimoteur.clickParsing();
+        searchFile.clickParsing();
     }
 
     public void mouseReleased(){
@@ -60,7 +68,8 @@ public class SearchConfigSndScreen {
 
         if(retour.release())
             nextScreen = ScreenName.MAIN;
-
+        if(searchFile.release())
+            fileChooser.display(FileChooseType.AUDIO);
         multimoteur.release();
     }
 

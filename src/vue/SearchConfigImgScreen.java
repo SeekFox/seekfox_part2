@@ -7,7 +7,9 @@ package vue;
 
 import controleur.ControlRequete;
 import processing.core.PApplet;
-//TODO Drag & Drop
+import vue.FileChooser.FileChooseType;
+import vue.FileChooser.FileChooser;
+
 public class SearchConfigImgScreen {
 
     private PApplet p;
@@ -15,6 +17,7 @@ public class SearchConfigImgScreen {
     private Button ongletSnd;
     private Button retour;
     private Button validerRecherche;
+    private Button accessFile;
 
     private Slider rouge;
     private Slider vert;
@@ -24,6 +27,7 @@ public class SearchConfigImgScreen {
 
     private ControlRequete controlRequete;
     private TickBox multimoteur;
+    private FileChooser fileChooser = new FileChooser("../base_de_document");
 
     public SearchConfigImgScreen(PApplet p, ControlRequete controlRequete){
         this.p = p;
@@ -33,8 +37,8 @@ public class SearchConfigImgScreen {
         retour = new Button(10, p.height-50, 100, 40, 255, "Retour", false, p);
 
         multimoteur = new TickBox(p.width/2 - 75, p.height/2 +115,15,15,true, p);
-        validerRecherche = new Button(p.width/2, p.height/2+150, 100, 40, 255, "Valider", true, p);
-
+        validerRecherche = new Button(p.width/2-60, p.height/2+150, 100, 40, 255, "Valider", true, p);
+        accessFile = new Button(p.width/2+60, p.height/2+150, 100, 40, 255, "Chercher un fichier", true, p);
         rouge = new Slider(p.width/2 - (255/2), p.height/2, 255, 0, 255,p);
         vert = new Slider(p.width/2 - (255/2), p.height/2+30, 255, 0, 255,p);
         bleu = new Slider(p.width/2 - (255/2), p.height/2+60, 255, 0, 255,p);
@@ -69,6 +73,7 @@ public class SearchConfigImgScreen {
 
     public void draw(){
         p.background(200);
+        accessFile.display();
         drawCurrentOnglet();
         ongletTxt.display();
         ongletSnd.display();
@@ -101,7 +106,7 @@ public class SearchConfigImgScreen {
         bleu.clickParsing();
         validerRecherche.clickParsing();
         multimoteur.clickParsing();
-
+        accessFile.clickParsing();
     }
 
     public void mouseReleased(){
@@ -121,6 +126,9 @@ public class SearchConfigImgScreen {
         vert.release();
         bleu.release();
         multimoteur.release();
+        if(accessFile.release())
+            fileChooser.display(FileChooseType.IMAGE);
+        //TODO Faire le lien ici aussi ptdr
     }
 
     public ScreenName getNextScreen(){

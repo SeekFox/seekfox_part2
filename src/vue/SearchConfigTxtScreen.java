@@ -8,19 +8,23 @@ package vue;
 import controleur.ControlRequete;
 import modele.TypeRequete;
 import processing.core.PApplet;
+import vue.FileChooser.FileChooseType;
+import vue.FileChooser.FileChooser;
 
-//TODO Drag&Drop
+
 public class SearchConfigTxtScreen {
 
     private PApplet p;
     private Button ongletImg;
     private Button ongletSnd;
+    private Button searchFile;
     private Textbox searchBox;
     private Button validerRecherche;
     private Button retour;
     private ControlRequete controlRequete;
     private TickBox multimoteur;
     private boolean isRechercheLaunch = false;
+    private FileChooser fileChooser = new FileChooser("../base_de_document");
 
     private ScreenName nextScreen = ScreenName.SEARCH_CONFIG_TXT;
 
@@ -32,8 +36,8 @@ public class SearchConfigTxtScreen {
 
         searchBox = new Textbox(p.width/2, p.height/2, p.width/2, 30, "Chercher",false,true,p);
         multimoteur = new TickBox(p.width/2 - 75, p.height/2 + 43,15,15,true, p);
-        validerRecherche = new Button(p.width/2, p.height/2 + 90, 100, 40, 255, "Valider", true, p);
-
+        validerRecherche = new Button(p.width/2-60, p.height/2 + 90, 100, 40, 255, "Valider", true, p);
+        searchFile = new Button(p.width/2+60, p.height/2 + 90, 100, 40, 255, "Chercher un fichier", true, p);
         retour = new Button(10, p.height-50, 100, 40, 255, "Retour", false, p);
     }
 
@@ -54,6 +58,7 @@ public class SearchConfigTxtScreen {
         ongletImg.display();
         ongletSnd.display();
         searchBox.display();
+        searchFile.display();
         validerRecherche.display();
         retour.display();
         multimoteur.display();
@@ -67,6 +72,7 @@ public class SearchConfigTxtScreen {
         validerRecherche.clickParsing();
         retour.clickParsing();
         multimoteur.clickParsing();
+        searchFile.clickParsing();
     }
 
     public void mouseReleased(){
@@ -83,7 +89,8 @@ public class SearchConfigTxtScreen {
 
         if(retour.release())
             nextScreen = ScreenName.MAIN;
-
+        if(searchFile.release())
+            fileChooser.display(FileChooseType.TEXT);
         searchBox.release();
         multimoteur.release();
     }
