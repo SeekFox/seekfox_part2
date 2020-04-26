@@ -16,7 +16,7 @@ import java.io.File;
 public class FileChooserFilterText extends FileFilter {
 	@Override
 	public boolean accept(File f) {
-		return f.isDirectory() || f.getName().endsWith(".txt");
+		return f.isDirectory() || f.getName().endsWith(".xml");
 	}
 
 	@Override

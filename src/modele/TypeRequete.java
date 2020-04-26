@@ -12,6 +12,7 @@ public enum TypeRequete {
 	TEXTE,
 	AUDIO,
 	IMAGE,
+	COULEURDOMINANTE,
 	MOTCLEF,
 	FIN
 }

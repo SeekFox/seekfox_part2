@@ -64,8 +64,12 @@ public class Slider {
         isPressed = p.mouseX >= posX + sizeX * sliderPosition - 5 && p.mouseX <= posX + sizeX * sliderPosition + 5 && p.mouseY >= posY - 8 && p.mouseY <= posY + 8;
     }
 
-    public void release() {
-        isPressed = false;
+    public boolean release() {
+        if(isPressed){
+            isPressed=false;
+            return true;
+        }
+        return false;
     }
 
 }

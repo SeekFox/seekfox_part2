@@ -24,12 +24,13 @@ import java.util.ArrayList;
  */
 public class ControlRequete {
 	//Attributs
-	private String fichierResultatRecherche = "./impeesa/rechercheOut.txt";
 	private Resultat resultat;
 	private TypeRequete type;
 	private String argument;
 	private Ivy bus;
 	private EtatRequeteIvy etatRequeteIvy = EtatRequeteIvy.WAIT;
+
+	private int compteur = 0;
 
 
 	//Constructeur
@@ -135,6 +136,7 @@ public class ControlRequete {
 			case MOTCLEF:
 			case AUDIO:
 			case IMAGE:
+			case COULEURDOMINANTE:
 				msg = "Impeesa type=Recherche_" + type + " argument=" + argument;
 				break;
 
@@ -203,33 +205,6 @@ public class ControlRequete {
 
 
 	}
-
-	@Deprecated
-	private Resultat lireResultat() {
-		String[] res;
-		Resultat resultat = new Resultat(argument, type);
-
-		try (
-				InputStream ips = new FileInputStream(this.fichierResultatRecherche);
-				InputStreamReader ipsr = new InputStreamReader(ips);
-				BufferedReader br = new BufferedReader(ipsr)
-		) {
-
-			String ligne = br.readLine();
-
-			while ((ligne = br.readLine()) != null) {
-
-				res = (ligne.split(";"));
-				resultat.add(res[0], Float.parseFloat(res[1]));
-			}
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-
-		return resultat;
-	}
-
-
 	/**
 	 * Renvoi True si le fichier est supporté par le moteur de recherche
 	 *
@@ -263,10 +238,16 @@ public class ControlRequete {
 	 */
 	public Resultat getResultat() throws Exception {
 		if (etatRequeteIvy == EtatRequeteIvy.OK) {
+			compteur=0;
 			return resultat;
+		} else if(compteur>300){
+			compteur=0;
+			throw new Exception("La connexion Ivy a été rompue.");
+
 		} else if (etatRequeteIvy == EtatRequeteIvy.WAIT) {
 			try {
 				Thread.sleep(10);
+				compteur++;
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

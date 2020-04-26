@@ -5,6 +5,7 @@
 
 package vue;
 
+import controleur.ControlDrop;
 import controleur.ControlRequete;
 import drop.*;
 import modele.Config;
@@ -17,6 +18,7 @@ import java.io.File;
 
 public class ProcessingMain extends PApplet {
     private PApplet processing;
+
     private ScreenName previousScreen;
     private ScreenName currentScreen = ScreenName.MAIN;
     private SDrop drop;
@@ -33,6 +35,7 @@ public class ProcessingMain extends PApplet {
     private ConfigScreen configScreen;
 
     private ControlRequete controlRequete = new ControlRequete();
+    private ControlDrop controlDrop;
 
     public static void main(String... args) {
         PApplet.main("vue.ProcessingMain");
@@ -43,16 +46,22 @@ public class ProcessingMain extends PApplet {
         processing = this;
         size(640, 480);
 
+
     }
 
     public void setup() {
+        PImage icon = loadImage("doc/icon.png","png");
+        surface.setIcon(icon);
+        surface.setTitle("SeekFox");
         mainScreen = new MainScreen(this);
         loginScreen = new LoginScreen(this);
         historyScreen = new HistoryScreen(this);
         resultsScreen = new ResultsScreen(this);
         searchConfigTxtScreen = new SearchConfigTxtScreen(this, controlRequete);
         searchConfigImgScreen = new SearchConfigImgScreen(this, controlRequete);
-        searchConfigSndScreen = new SearchConfigSndScreen(this);
+        searchConfigSndScreen = new SearchConfigSndScreen(this, controlRequete);
+
+        controlDrop = new ControlDrop(searchConfigTxtScreen, searchConfigSndScreen, searchConfigImgScreen);
         loadingScreen = new LoadingScreen(this, controlRequete, resultsScreen);
 
         configScreen = new ConfigScreen(this);
@@ -256,28 +265,11 @@ public class ProcessingMain extends PApplet {
     }
 
     void dropEvent(DropEvent theDropEvent) {
-        if(theDropEvent.isFile()) {
-            // for further information see
-            // http://java.sun.com/j2se/1.4.2/docs/api/java/io/File.html
-            File myFile = theDropEvent.file();
-            System.out.println("\nisDirectory ? "+myFile.isDirectory()+"  /  isFile ? "+myFile.isFile());
-            if(myFile.isDirectory()) {
-                System.out.println("listing the directory");
+        controlDrop.dropEvent(theDropEvent, currentScreen);
+    }
 
-                // list the directory, not recursive, with the File api. returns File[].
-                System.out.println("\n\n### listFiles #############################\n");
-                System.out.println(myFile.listFiles());
-
-
-                // list the directory recursively with listFilesAsArray. returns File[]
-                System.out.println("\n\n### listFilesAsArray recursive #############################\n");
-                System.out.println(theDropEvent.listFilesAsArray(myFile,true));
-
-
-                // list the directory and control the depth of the search. returns File[]
-                System.out.println("\n\n### listFilesAsArray depth #############################\n");
-                System.out.println(theDropEvent.listFilesAsArray(myFile,2));
-            }
-        }
+    public static void displayError(String text){
+        ErrorWindow errorWindow = new ErrorWindow(text);
+        errorWindow.setVisible();
     }
 }
