@@ -20,6 +20,16 @@ public class Resultat {
 	}
 
 	//Méthodes
+	public void remove(CelluleResultat celluleResultat){
+		for (int i = 0; i < this.resultats.size(); i++) {
+			 if(celluleResultat.equals(this.resultats.get(i))){
+			 	this.resultats.remove(celluleResultat);
+			 }
+
+		}
+	}
+
+
 	public void add(String fichier, String score){
 		this.add(fichier,Float.valueOf(score));
 	}

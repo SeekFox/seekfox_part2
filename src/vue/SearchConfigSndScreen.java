@@ -23,7 +23,7 @@ public class SearchConfigSndScreen {
     private Button ongletTxt;
     private Button validerRecherche;
     private ScreenName nextScreen = ScreenName.SEARCH_CONFIG_SND;
-    private TickBox multimoteur;
+    //private TickBox multimoteur;
     private FileChooser fileChooser = new FileChooser("../base_de_document");
     private Button retour;
     private Button searchFile;
@@ -41,7 +41,7 @@ public class SearchConfigSndScreen {
         validerRecherche = new Button(p.width/2-60, p.height/2 + 90, 100, 40, 255, "Valider", true, p);
         searchFile = new Button(p.width/2+60, p.height/2 + 90, 100, 40, 255, "Chercher un fichier", true, p);
         retour = new Button(10, p.height-50, 100, 40, 255, "Retour", false, p);
-        multimoteur = new TickBox(p.width/2 - 75, p.height/2+25,15,15,true, p);
+        //multimoteur = new TickBox(p.width/2 - 75, p.height/2+25,15,15,true, p);
     }
 
     private void drawCurrentOnglet(){
@@ -55,13 +55,13 @@ public class SearchConfigSndScreen {
 
     public void draw(){
         p.background(200);
-        p.text("Glissez et déposez le fichier à recherche", p.width/2f, p.height/2f);
+        p.text("Glissez et déposez le fichier à rechercher", p.width/2f, p.height/2f);
         drawCurrentOnglet();
         ongletImg.display();
         ongletTxt.display();
         retour.display();
         searchFile.display();
-        multimoteur.display();
+        //multimoteur.display();
         validerRecherche.display();
 
         if(file!=null){
@@ -83,14 +83,13 @@ public class SearchConfigSndScreen {
             posY=0;
         }
 
-        p.text("Recherche multimoteur", p.width/2f, p.height/2f + 22);
     }
 
     public void mousePressed(){
         ongletImg.clickParsing();
         ongletTxt.clickParsing();
         retour.clickParsing();
-        multimoteur.clickParsing();
+//        multimoteur.clickParsing();
         searchFile.clickParsing();
         validerRecherche.clickParsing();
     }
@@ -114,7 +113,7 @@ public class SearchConfigSndScreen {
             this.runRecherche();
         }
 
-        multimoteur.release();
+//        multimoteur.release();
     }
 
     public ScreenName getNextScreen(){

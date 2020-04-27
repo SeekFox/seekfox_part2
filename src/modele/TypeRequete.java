@@ -14,5 +14,6 @@ public enum TypeRequete {
 	IMAGE,
 	COULEURDOMINANTE,
 	MOTCLEF,
+	MOTCLEF_COMPLEXE,
 	FIN
 }

@@ -91,6 +91,7 @@ public class ResultsViewer {
                     break;
 
                 case MOTCLEF:
+                case MOTCLEF_COMPLEXE:
                     p.text((Math.round(Float.parseFloat(listOfElementsRight.get(currentIndex)))) + " occur.",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
                     break;
 
