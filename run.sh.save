@@ -1,0 +1,7 @@
+#! /bin/sh
+
+cd ./impeesa && make &&
+cd ./impeesa && ./impeesa.out
+
+exit 0
+

@@ -5,19 +5,15 @@
  */
 
 package vue;
+import modele.Button;
+import modele.ScreenName;
 import processing.core.*;
 
-import javax.print.DocFlavor;
-
-import modele.Resultat;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import static modele.Historique.getHistorique;
 
 public class HistoryScreen {
+    public ScrollBar scrollbar;
+    public int k = 0 , l = 0;
 
     PApplet p;
     public ArrayList<String> listeDeRecherches;
@@ -26,21 +22,22 @@ public class HistoryScreen {
     private boolean isEmpty = true;
     Button backButton;
     Button plusButton;
-    
+
     //private List<Resultat> historique;		// Stockage de l'historique
 
-   public  ScreenName nextScreen = ScreenName.HISTORY;
+   public ScreenName nextScreen = ScreenName.HISTORY;
 
-
+    //constructeur
     public HistoryScreen(PApplet p){
         this.p = p;
-        previouspx = 15;
+        scrollbar = new ScrollBar(p.width - 20 , 0 , 19 , 20, p);
+        previouspx = 110;
         previouspy = 15;
-        previoussx = 610;
+        previoussx = 450;
         previoussy = 30 ;
-        //historique = getHistorique();				// Récupération de l'historique
-        
-        // L'historique est une liste d'objets de type Recherche, donc leur contenu peut être récupéré pour être affiché avec les méthodes de la classe Recherche
+        //historique = getHistorique();				// Rï¿½cupï¿½ration de l'historique
+
+        // L'historique est une liste d'objets de type Recherche, donc leur contenu peut ï¿½tre rï¿½cupï¿½rï¿½ pour ï¿½tre affichï¿½ avec les mï¿½thodes de la classe Recherche
         listeDeRecherches = new ArrayList<String>();
         boutonsDeRecherches = new ArrayList<Button>();
 
@@ -54,29 +51,36 @@ public class HistoryScreen {
         sauvegarderRecherche("Recherche 8 = RÃ©sultat = ");
         sauvegarderRecherche("Recherche 9 = RÃ©sultat = ");
         sauvegarderRecherche("Recherche 10 = RÃ©sultat = ");
+        sauvegarderRecherche("Recherche 11 = RÃ©sultat = ");
+        sauvegarderRecherche("Recherche 12 = RÃ©sultat = ");
+        sauvegarderRecherche("Recherche 13 = RÃ©sultat = ");
+        sauvegarderRecherche("Recherche 14 = RÃ©sultat = ");
+        sauvegarderRecherche("Recherche 15 = RÃ©sultat = ");
+        sauvegarderRecherche("Recherche 16 = RÃ©sultat = ");
+        sauvegarderRecherche("Recherche 17 = RÃ©sultat = ");
+        sauvegarderRecherche("Recherche 18 = RÃ©sultat = ");
+        sauvegarderRecherche("Recherche 19 = RÃ©sultat = ");
 
     }
 
-
+    //mÃ©thode quisert Ã  sauvegarder les recherches
     public void sauvegarderRecherche(String recherche){
         listeDeRecherches.add(recherche);
         boutonsDeRecherches.add(new Button( previouspx,previouspy ,previoussx,previoussy,255,recherche,false,p));
         previouspy += 45;
-        backButton = new Button(20, p.height - 60, 100, 40,p.color(200,0,0), "Retour",false,p);
+        backButton = new Button(20, p.height - 60, 80, 40,p.color(200,0,0), "Retour",false,p);
         plusButton = new Button(p.width - 120,p.height - 60, 100,40,p.color(255),"Plus",false,p);
+
     }
 
     public void draw(){
         p.background(200);
-        for (int i = 0; i < boutonsDeRecherches.size(); i++) {
-            if( i < 9){
-                boutonsDeRecherches.get(i).display();
-            }
-        }
         if(boutonsDeRecherches.size() > 9){
-                plusButton.display();
+            scrollbar.display();
         }
         backButton.display();
+        scrolldown();
+
     }
 
     public void mousePressed(){
@@ -87,6 +91,7 @@ public class HistoryScreen {
 
         backButton.clickParsing();
         plusButton.clickParsing();
+        scrollbar.clickParsing();
     }
 
     public void mouseReleased(){
@@ -95,7 +100,12 @@ public class HistoryScreen {
         }
         if(backButton.release()){
             nextScreen = ScreenName.MAIN;
+            scrollbar.reset(p.width - 20 , 0 , 19 , 20);
+            k=0;
+            l=0;
         }
+        scrollbar.release();
+        k = 0;
     }
 
     public ScreenName getNextScreen() {
@@ -111,5 +121,32 @@ public class HistoryScreen {
         }
         return temp;
     }
+
+    private void scrolldown(){
+        scrollbar.setSy(p.height - 16 * boutonsDeRecherches.size());
+        if( l < 0) l = 0;
+        if( k < 0) k = 0;
+        for (int i = 0; i < boutonsDeRecherches.size(); i++) {
+            boutonsDeRecherches.get(i).display();
+        }
+        if(scrollbar.getPosy() > k) {
+
+            for(int j = 0 ;j < boutonsDeRecherches.size(); j++){
+                boutonsDeRecherches.get(j).setPosY(boutonsDeRecherches.get(j).getposY() - 16);
+                k++;
+                l++;
+            }
+        }
+        else if(scrollbar.getPosy() < l){
+
+            for(int j = 0 ;j < boutonsDeRecherches.size(); j++){
+                boutonsDeRecherches.get(j).setPosY(boutonsDeRecherches.get(j).getposY() + 16);
+                l--;
+                System.out.println(" l = " + l + "\n k = " + k );
+            }
+            k--;
+        }
+    }
+
 
 }

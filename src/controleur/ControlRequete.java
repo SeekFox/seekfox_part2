@@ -9,10 +9,7 @@ import fr.dgac.ivy.Ivy;
 import fr.dgac.ivy.IvyClient;
 import fr.dgac.ivy.IvyException;
 import fr.dgac.ivy.IvyMessageListener;
-import modele.CelluleResultat;
-import modele.EtatRequeteIvy;
-import modele.Resultat;
-import modele.TypeRequete;
+import modele.*;
 import vue.ResultsScreen;
 
 import java.io.BufferedReader;
@@ -304,7 +301,7 @@ public class ControlRequete {
 	}
 
 
-	public ArrayList<String> getListeFichierIndexesTexte() {
+	public static ArrayList<String> getListeFichierIndexesTexte() {
 		ArrayList<String> listefichiers = new ArrayList<>();
 
 		try (
@@ -327,4 +324,46 @@ public class ControlRequete {
 
 
 
+	public Resultat runRechercheComplexe(String requete) throws Exception {
+		Resultat resultat = new Resultat(requete, TypeRequete.MOTCLEF_COMPLEXE);
+
+		ArrayList<MotClefComplexe> motClefComplexeArrayList = new ArrayList<>();
+		ArrayList<Resultat> resultatArrayList = new ArrayList<>();
+
+		boolean isAtLeastOnePlusRequete = false;
+
+		this.resultat = new Resultat(requete, TypeRequete.MOTCLEF_COMPLEXE);
+		this.etatRequeteIvy = EtatRequeteIvy.WAIT;
+
+		// Décomposition de la chaine
+		for (int i = 0; i < requete.split(" ").length; i++) {
+			 motClefComplexeArrayList.add(new MotClefComplexe(requete.split(" ")[i]));
+
+			 if(motClefComplexeArrayList.get(i).getPolarite()=='+'){
+			 	isAtLeastOnePlusRequete=true;
+			 }
+		}
+
+		if(!isAtLeastOnePlusRequete){
+			throw new IllegalArgumentException("La requete ne contient pas de polarité positive");
+		}
+
+		for (MotClefComplexe motClefComplexe : motClefComplexeArrayList) {
+			this.runRecherche(TypeRequete.MOTCLEF, motClefComplexe.getMot());
+
+			Resultat r = this.getResultat();
+			for (CelluleResultat celluleResultat : r.getResultats()) {
+				if(motClefComplexe.getPolarite()=='+'){
+					resultat.add(celluleResultat);
+				}else{
+					resultat.remove(celluleResultat);
+				}
+			}
+		}
+
+
+		this.resultat = resultat;
+
+		return resultat;
+	}
 }

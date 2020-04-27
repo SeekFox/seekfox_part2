@@ -5,116 +5,100 @@
 
 package vue;
 
-import controleur.ControlRequete;
-import modele.Config;
-import modele.TypeRequete;
 
+import controleur.*;
+import modele.*;
+import fr.dgac.ivy.Ivy;
+import modele.Resultat;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
 		boolean isRunning = true;
-		ControlRequete controlRequete = new ControlRequete("HamsterJovial", "Impeesa");
-		controlRequete.initBus("HamsterJovial", "HamsterJovial est pret !");
+		ArrayList<ControlRequete> listControlRequete = new ArrayList<>();
+
+
+		listControlRequete.add(new ControlRequete("HamsterJovial", "Impeesa"));
+		listControlRequete.get(0).initBus("HamsterJovial", "HamsterJovial est pret !");
+
+		listControlRequete.add(new ControlRequete("Baloo", "Akela"));
+		listControlRequete.get(1).initBus("Baloo", "Baloo est pret !");
+
 		Scanner sc = new Scanner(System.in);
 		int choix;
+
+
+		//NEW VERSION
+		ArrayList<MotClefComplexe> motClefComplexeArrayList = new ArrayList<>();
+
+
+
+
+		int choixAdd;
+		String polarite = "";
+		String chaineRecherche = "";
 		String argument = "";
+		String tabChaine[];
+		String tabPolarite[];
+		String tabMot[];
+		int indiceList = 0;
+		boolean testPolarite = true;
+		boolean conditionTailleTab;
+		boolean conditionPolarite1Mot;
+		ArrayList<ArrayList<String>> listCritere = new ArrayList<>();
+		ArrayList<Resultat> listResultat = new ArrayList<>();
+		ArrayList<CelluleResultat> listResultatApresComparaison = new ArrayList<>();
+		ArrayList<String> listeFichierIndexesTexte = new ArrayList<>();
+
 
 		System.out.println("============================\n" +
 				"           SEEKFOX          \n" +
 				"============================");
 
-		try {
-			while (isRunning) {
-				System.out.println("CHOIX \n" +
-						"\t0/ Lancer Recherche MotClef\n" +
-						"\t1/ Lancer Recherche Texte\n" +
-						"\t2/ Indexation Texte\n" +
-						"\t3/ Indexation Audio\n" +
-						"\t4/ Voir les configs\n" +
-						"\t5/ Voir les fichiers Textes indexes\n" +
-						"\t6/ Quitter\n"
-						
-				);
 
-				choix = sc.nextInt();
-				sc.nextLine();
 
-				switch (choix) {
-					case 0:
-						System.out.println("Entrez le mot clef");
+		while(isRunning){
+			System.out.println("CHOIX \n" +
+					"\t0/ Lancer Recherche Simple 	MotClef\n" +
+					"\t1/ Lancer Recherche Complexe MotClef\n" +
+					"\t2/ Quitter"
+			);
 
-						argument = sc.nextLine();
+			choix = sc.nextInt();
+			sc.nextLine();
 
-						System.out.println(argument);
-						controlRequete.runRecherche(TypeRequete.MOTCLEF, argument);
+			switch(choix){
+				case 0:
+					listeFichierIndexesTexte = ControlRequete.getListeFichierIndexesTexte();
+					System.out.println("Liste= " + listeFichierIndexesTexte.get(0));
+					break;
 
-						System.out.println(controlRequete.getResultat());
+				case 1:
+					System.out.println("Entrer la recherche complexe");
+					chaineRecherche = sc.nextLine();
 
-						break;
-
-					case 1:
-						System.out.println("Entrez le chemin vers le fichier");
-
-						argument = sc.nextLine();
-
-						System.out.println(argument);
-						controlRequete.runRecherche(TypeRequete.TEXTE, argument);
-
-						System.out.println(controlRequete.getResultat());
-
-						break;
-
-					case 2:
-						System.out.println("[all/fichier.xml]");
-
-						argument = sc.nextLine();
-
-						System.out.println(argument);
-						controlRequete.runIndexation(TypeRequete.TEXTE, argument);
-
-						break;
-					
-					case 3:
-						System.out.println("[all/fichier.xml]");
-
-						argument = sc.nextLine();
-
-						System.out.println(argument);
-						controlRequete.runIndexation(TypeRequete.AUDIO, argument);
-
-						break;
-						
-					case 4:
-						Config config = Config.getInstance();
-						config.loadConfig();
-						config.setPasswordAdmin("admin");
-						config.majConfig();
-						System.out.println(config);
-						break;
-
-					case 5:
-						System.out.println("Fichiers Textes Indexes = {");
-						for (String s : controlRequete.getListeFichierIndexesTexte()) {
-							System.out.println("\t" + s);
+					for (ControlRequete controlRequete : listControlRequete) {
+						try {
+							System.out.println(controlRequete.runRechercheComplexe(chaineRecherche));
+						} catch (Exception e) {
+							e.printStackTrace();
 						}
-						System.out.println("}");
+					}
 
-						break;
+					break;
 
-					default:
-						controlRequete.stop();
-						isRunning = false;
-						break;
-				}
+				default:
+					isRunning = false;
+					break;
 			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			controlRequete.stop();
 		}
 
-		System.out.println("Fin de Piste");
+		for (ControlRequete controlRequete : listControlRequete) {
+			controlRequete.stop();
+		}
+		System.out.println("FIN\n");
 	}
+
 }

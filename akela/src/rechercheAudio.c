@@ -78,7 +78,7 @@ int rechercheAudio(char * cheminFichier){
 
 
 //    DONNEES EN DUR
-    IvySendMsg("HamsterJovial type=RESULT file=%s score=%f","./baseDeDocuments/Audio/corpus_fi.bin"
+    IvySendMsg("Baloo type=RESULT file=%s score=%f","./baseDeDocuments/Audio/corpus_fi.bin"
                                                                         ,28.79);
 
     /*fprintf(output,"%s;%.2f\n","./baseDeDocuments/Audio/corpus_fi.bin"

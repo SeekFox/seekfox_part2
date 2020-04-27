@@ -40,6 +40,6 @@ public class CelluleResultat{
 		CelluleResultat celluleResultat = (CelluleResultat)o;
 
 
-		return (celluleResultat.getFichier().equals(this.getFichier()) && celluleResultat.getScore()==this.getScore());
+		return (celluleResultat.getFichier().equals(this.getFichier()));
 	}
 }

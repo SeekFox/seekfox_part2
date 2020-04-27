@@ -6,6 +6,7 @@
 package vue;
 
 import controleur.ControlRequete;
+import modele.ScreenName;
 import processing.core.PApplet;
 
 import java.util.ArrayList;

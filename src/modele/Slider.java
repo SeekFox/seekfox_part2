@@ -3,7 +3,7 @@
  * Clément Truillet (clement@ctruillet.eu)
  */
 
-package vue;
+package modele;
 
 import processing.core.PApplet;
 

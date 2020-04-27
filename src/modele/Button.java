@@ -2,35 +2,35 @@
  * Copyright (c) 2020.
  * Clément Truillet (clement@ctruillet.eu)
  */
+package modele;
 
-package vue;
 
-import processing.core.PApplet;
+import processing.core.*;
 
-public class TickBox {
 
+public class Button {
     private int posX;
     private int posY;
     private int sizeX;
     private int sizeY;
     private PApplet p;
 
-
+    private int buttonColor;
+    private int buttonColorWhenPressed;
+    private String buttonText;
     private boolean isPressed = false;
-    private boolean isTicked = false;
     private boolean isCentered;
 
-    public TickBox(int px, int py, int sx, int sy, boolean isCentered, PApplet app) {
+    public Button(int px, int py, int sx, int sy, int buttonColor, String buttonText, boolean isCentered, PApplet app) {
         p = app;
         this.isCentered = isCentered;
         posX = px;
         posY = py;
         sizeX = sx;
         sizeY = sy;
-    }
-
-    public boolean isTicked() {
-        return isTicked;
+        buttonColorWhenPressed = p.color(100);
+        this.buttonColor = buttonColor;
+        this.buttonText = buttonText;
     }
 
     public void display() {
@@ -40,21 +40,15 @@ public class TickBox {
             p.rectMode(p.CORNER);
 
         if (!isPressed)
-            p.fill(150);
+            p.fill(buttonColor);
         else
-            p.fill(100);
+            p.fill(buttonColorWhenPressed);
 
-        p.rect(posX, posY, sizeX, sizeY, 2);
-        if(isTicked){
-            p.fill(255);
-            if(!isCentered)
-                p.rect(posX +2, posY+2, sizeX-4, sizeY-4, 2);
-            else
-                p.rect(posX, posY, sizeX-4, sizeY-4, 2);
-        }
+
+        p.rect(posX, posY, sizeX, sizeY, 5);
         p.fill(0);
         p.textAlign(p.CENTER, p.CENTER);
-        //p.text(buttonText, posX, posY, sizeX, sizeY);
+        p.text(buttonText, posX, posY, sizeX, sizeY);
     }
 
     public boolean isPressed() {
@@ -68,10 +62,17 @@ public class TickBox {
     public boolean release() {
         if (isPressed) {
             isPressed = false;
-            isTicked = !isTicked;
             return true;
         }
         return false;
 
+    }
+
+    public void setPosY(int posY){
+        this.posY = posY;
+    }
+
+    public int getposY(){
+        return this.posY;
     }
 }
