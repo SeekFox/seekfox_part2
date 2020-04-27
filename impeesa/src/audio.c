@@ -87,7 +87,7 @@ void resetFileCursor(FILE* p_file, int fileType){
 }
 
 
-unsigned int getAudioFileSize(FILE* p_file, int fileType){ //Calculer la taille d'un fichier audio, /!\ change le curseur de position, possible TODO a faire
+unsigned int getAudioFileSize(FILE* p_file, int fileType){ //Calculer la taille d'un fichier audio, /!\ change le curseur de position, possible
 	unsigned int size;
 	double placeholder; //On est pas intéressé par les valeurs, faut juste une variable pour pouvoir lire
 
@@ -372,7 +372,7 @@ int indexationTotaleAudio(){
         fichier = fopen(cheminFichierCourant,"r");
         if(fichier!=NULL){
 
-            descripteurCourant = creerDescripteurAudio(fichier, getAudioM(), getAudioN(), getExtensionOfFile(cheminFichierCourant));
+            descripteurCourant = creerDescripteurAudio(fichier, getAudioM(), getAudioN(), 1);
 
             fprintf(fichierDescripteurs,"%s\n",descripteurAudioToString(descripteurCourant));
 
@@ -439,7 +439,7 @@ int indexationFichierAudio(char * cheminFichier){
     }
 
     DescripteurAudio descripteurCourant;
-    descripteurCourant = creerDescripteurAudio(fichier, getAudioM(), getAudioN(), getExtensionOfFile(cheminFichierCourant));
+    descripteurCourant = creerDescripteurAudio(fichier, getAudioM(), getAudioN(), 1);
 
     //printf("%s\n",cheminFichier);
     //printf("%s\n",strrchr(cheminFichier,'/'));

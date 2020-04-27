@@ -34,7 +34,10 @@ void EcouteCallback (IvyClientPtr app, void *data, int argc, char **argv){
 
         }else if(strcmp("MOTCLEF",argv[1])==0){
             retour = rechercheMotClef(argv[2]);
-
+        
+        }else if(strcmp("COULEURDOMINANTE", argv[1])==0) {
+            int * RGB = stringToRGB (argv[2]);
+            retour = rechercheCouleurDominanteRGB(RGB[0], RGB[1], RGB[2]);
         }else{
             printf("ERREUR : %s\n",argv[1]);
             retour = 1;

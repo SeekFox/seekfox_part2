@@ -61,7 +61,12 @@ public class Textbox {
             if(!isPassword)
                 p.text(writtenText, posX, posY, sizeX, sizeY);
             else{
-                p.text("* ".repeat(writtenText.length()), posX, posY, sizeX, sizeY);   //Écrire des étoiles si mdp
+                String text = "";
+                for (int i = 0; i < writtenText.length(); i++) {
+                    text += "*";
+                }
+
+                p.text(text, posX, posY, sizeX, sizeY);   //Écrire des étoiles si mdp
             }
         }
     }
@@ -70,8 +75,11 @@ public class Textbox {
         isPressed = Detection.isPressed(p.mouseX, p.mouseY, posX,posY,sizeX,sizeY, isCentered);
     }
 
-    public void release() {
-
+    public boolean release() {
+        if (isPressed) {
+            return true;
+        }
+        return false;
     }
 
     public void keyPressedParsing(char keypressed) {
@@ -93,8 +101,12 @@ public class Textbox {
         }
     }
 
+    public void setText(String text){
+        writtenText=text;
+    }
+
     public void resetText(){
-        writtenText = "";
+        this.setText("");
     }
 
 }

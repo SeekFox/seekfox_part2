@@ -18,7 +18,7 @@ public class ErrorMessage {
     public ErrorMessage(PApplet p) {
         this.p = p;
         okButton = new Button(p.width/2, p.height/2 + 20, 100, 40, 255, "Oups", true, p);
-        errorIcon = p.loadImage("../doc/error.png","png");
+        errorIcon = p.loadImage("doc/error.png","png");
     }
 
     public void setErrorMessage(String errorMessage) {
