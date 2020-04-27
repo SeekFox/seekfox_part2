@@ -158,7 +158,8 @@ public class SearchConfigImgScreen {
 //        multimoteur.release();
         if(accessFile.release()) {
             fileChooser.display(FileChooseType.IMAGE);
-            this.setArgumentRecherche(fileChooser.getFile());
+            if(fileChooser.getFile() != null)
+                this.setArgumentRecherche(fileChooser.getFile());
         }
     }
 

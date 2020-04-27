@@ -102,7 +102,8 @@ public class SearchConfigTxtScreen {
         }
         if(searchFile.release()) {
             fileChooser.display(FileChooseType.TEXT);
-            this.setArgumentRecherche(fileChooser.getFile());
+            if(fileChooser.getFile() != null)
+                this.setArgumentRecherche(fileChooser.getFile());
         }
         searchBox.release();
 //        multimoteur.release();

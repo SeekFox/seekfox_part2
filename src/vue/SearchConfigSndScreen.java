@@ -105,7 +105,8 @@ public class SearchConfigSndScreen {
             nextScreen = ScreenName.MAIN;
         if(searchFile.release()) {
             fileChooser.display(FileChooseType.AUDIO);
-            this.setArgumentRecherche(fileChooser.getFile());
+            if(fileChooser.getFile() != null)
+                this.setArgumentRecherche(fileChooser.getFile());
         }
 
         if(validerRecherche.release()&&file!=null) {
