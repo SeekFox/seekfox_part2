@@ -70,35 +70,24 @@ public class ResultsScreen {
         ArrayList<CelluleResultat> everyResults = searchResults.getResultats();
         if(everyResults.size()>0) {
             String filePath = everyResults.get(0).getFichier();
-            switch (search){
-                case IMAGE:
-                    try {
-                        if(filePath.contains(".txt"))
-                            filePath = filePath.replace(".txt",".jpg");
-                        File newFile = new File(filePath);
-                        desktop.open(newFile);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case AUDIO:
-                    try {
-                        if(filePath.contains(".bin"))
-                            filePath = filePath.replace(".bin",".wav");
-                        File newFile = new File(filePath);
-                        desktop.open(newFile);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                default:
-                    try {
-                        File newFile = new File(filePath);
-                        desktop.open(newFile);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+            try {
 
+                switch (search) {
+                    case AUDIO:
+                        if (filePath.contains(".bin")){
+                            filePath = filePath.replace(".bin", ".wav");
+                        }
+                        desktop.open( new File("impeesa/" + filePath));
+
+                        break;
+
+                    default:
+                        desktop.open(new File("impeesa/" + filePath));
+
+                        break;
+                }
+            }catch (IOException e){
+                e.printStackTrace();
             }
 
         }
