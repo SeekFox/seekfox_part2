@@ -5,6 +5,10 @@
 
 package vue;
 
+import modele.Button;
+import modele.ScreenName;
+import modele.Slider;
+import modele.Text;
 import processing.core.PApplet;
 
 public class ConfigScreen {

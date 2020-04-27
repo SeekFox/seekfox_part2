@@ -5,17 +5,11 @@
  */
 
 package vue;
+import modele.Button;
+import modele.ScreenName;
 import processing.core.*;
 
-import javax.print.DocFlavor;
-
-import modele.Resultat;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import static modele.Historique.getHistorique;
 
 public class HistoryScreen {
 
@@ -29,7 +23,7 @@ public class HistoryScreen {
     
     //private List<Resultat> historique;		// Stockage de l'historique
 
-   public  ScreenName nextScreen = ScreenName.HISTORY;
+   public ScreenName nextScreen = ScreenName.HISTORY;
 
 
     public HistoryScreen(PApplet p){
@@ -38,9 +32,9 @@ public class HistoryScreen {
         previouspy = 15;
         previoussx = 610;
         previoussy = 30 ;
-        //historique = getHistorique();				// Récupération de l'historique
+        //historique = getHistorique();				// Rï¿½cupï¿½ration de l'historique
         
-        // L'historique est une liste d'objets de type Recherche, donc leur contenu peut être récupéré pour être affiché avec les méthodes de la classe Recherche
+        // L'historique est une liste d'objets de type Recherche, donc leur contenu peut ï¿½tre rï¿½cupï¿½rï¿½ pour ï¿½tre affichï¿½ avec les mï¿½thodes de la classe Recherche
         listeDeRecherches = new ArrayList<String>();
         boutonsDeRecherches = new ArrayList<Button>();
 

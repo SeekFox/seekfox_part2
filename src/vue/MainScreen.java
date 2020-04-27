@@ -5,12 +5,10 @@
 
 package vue;
 
+import modele.Button;
+import modele.ScreenName;
 import processing.core.PApplet;
-import drop.DropEvent;
 import processing.core.PImage;
-
-import java.awt.image.PixelInterleavedSampleModel;
-import java.io.File;
 
 import static processing.core.PApplet.println;
 

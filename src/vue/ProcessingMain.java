@@ -8,12 +8,9 @@ package vue;
 import controleur.ControlDrop;
 import controleur.ControlRequete;
 import drop.*;
-import modele.Config;
-import modele.Resultat;
-import modele.TypeRequete;
+import modele.ScreenName;
 import processing.core.*;
 
-import java.io.File;
 import java.util.ArrayList;
 
 

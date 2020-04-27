@@ -6,16 +6,12 @@
 package controleur;
 
 import drop.DropEvent;
-import vue.ScreenName;
+import modele.ScreenName;
 import vue.SearchConfigImgScreen;
 import vue.SearchConfigSndScreen;
 import vue.SearchConfigTxtScreen;
 
-import java.awt.*;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class ControlDrop {
 	//Attributs

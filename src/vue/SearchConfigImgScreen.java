@@ -6,8 +6,8 @@
 package vue;
 
 import controleur.ControlRequete;
-import modele.TypeRecherche;
-import modele.TypeRequete;
+import modele.*;
+import modele.Button;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -21,11 +21,11 @@ import vue.FileChooser.FileChooser;
 public class SearchConfigImgScreen {
 
     private PApplet p;
-    private Button ongletTxt;
-    private Button ongletSnd;
-    private Button retour;
-    private Button validerRecherche;
-    private Button accessFile;
+    private modele.Button ongletTxt;
+    private modele.Button ongletSnd;
+    private modele.Button retour;
+    private modele.Button validerRecherche;
+    private modele.Button accessFile;
 
     private Slider rouge;
     private Slider vert;
@@ -46,12 +46,12 @@ public class SearchConfigImgScreen {
     public SearchConfigImgScreen(PApplet p, ArrayList<ControlRequete> listControlRequete){
         this.p = p;
         this.listControlRequete = listControlRequete;
-        ongletTxt = new Button(0,0,p.width/3,40,255,"Texte",false,p);
-        ongletSnd = new Button(2*(p.width/3),0,p.width/3,40,255,"Son",false,p);
-        retour = new Button(10, p.height-50, 100, 40, 255, "Retour", false, p);
+        ongletTxt = new modele.Button(0,0,p.width/3,40,255,"Texte",false,p);
+        ongletSnd = new modele.Button(2*(p.width/3),0,p.width/3,40,255,"Son",false,p);
+        retour = new modele.Button(10, p.height-50, 100, 40, 255, "Retour", false, p);
 
         multimoteur = new TickBox(p.width/2 - 75, p.height/2 +115,15,15,true, p);
-        validerRecherche = new Button(p.width/2-60, p.height/2+150, 100, 40, 255, "Valider", true, p);
+        validerRecherche = new modele.Button(p.width/2-60, p.height/2+150, 100, 40, 255, "Valider", true, p);
         accessFile = new Button(p.width/2+60, p.height/2+150, 100, 40, 255, "Chercher un fichier", true, p);
         rouge = new Slider(p.width/2 - (255/2), p.height/2, 255, 0, 255,p);
         vert = new Slider(p.width/2 - (255/2), p.height/2+30, 255, 0, 255,p);

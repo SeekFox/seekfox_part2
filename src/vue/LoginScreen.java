@@ -5,6 +5,9 @@
 
 package vue;
 
+import modele.Button;
+import modele.ScreenName;
+import modele.Textbox;
 import processing.core.PApplet;
 
 public class LoginScreen {

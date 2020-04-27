@@ -5,6 +5,7 @@
 
 package vue;
 
+import modele.Button;
 import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PImage;

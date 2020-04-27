@@ -3,12 +3,9 @@
  * ClÃ©ment Truillet (clement@ctruillet.eu)
  */
 
-package vue;
+package modele;
 
-import modele.CelluleResultat;
-import modele.Resultat;
-import modele.TypeRecherche;
-import modele.TypeRequete;
+import modele.*;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
@@ -44,7 +41,7 @@ public class ResultsViewer {
     private ArrayList<String> listOfElementsLeft = new ArrayList<>();     //Ce qu'il y a Ã©crit a gauche de la case
     private ArrayList<String> listOfElementsRight = new ArrayList<>();    //Ce qu'il y a Ã©crit sur la droite de la case
     
-    //private Resultat resultat;			// Stockage des résultats affichés, utilisé pour l'historique
+    //private Resultat resultat;			// Stockage des rï¿½sultats affichï¿½s, utilisï¿½ pour l'historique
 
     public ResultsViewer(int posX, int posY, int sizeX, int sizeY, PApplet p) {
         this.p = p;

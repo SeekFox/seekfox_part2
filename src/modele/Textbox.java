@@ -3,8 +3,9 @@
  * Clément Truillet (clement@ctruillet.eu)
  */
 
-package vue;
+package modele;
 
+import modele.Detection;
 import processing.core.PApplet;
 
 import static processing.core.PConstants.*;

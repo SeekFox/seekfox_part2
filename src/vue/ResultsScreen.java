@@ -5,6 +5,9 @@
 
 package vue;
 
+import modele.Button;
+import modele.ResultsViewer;
+import modele.ScreenName;
 import processing.core.PApplet;
 
 public class ResultsScreen {

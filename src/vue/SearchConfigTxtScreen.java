@@ -6,8 +6,7 @@
 package vue;
 
 import controleur.ControlRequete;
-import modele.TypeRecherche;
-import modele.TypeRequete;
+import modele.*;
 import processing.core.PApplet;
 import vue.FileChooser.FileChooseType;
 import vue.FileChooser.FileChooser;
