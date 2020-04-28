@@ -91,10 +91,10 @@ public class ResultsViewer {
                     break;
 
                 case MOTCLEF:
-                case MOTCLEF_COMPLEXE:
                     p.text((Math.round(Float.parseFloat(listOfElementsRight.get(currentIndex)))) + " occur.",posX+sizeX-10,currentYPosition+elementCaseSizeY/2);
                     break;
 
+                case MOTCLEF_COMPLEXE:
                 default:
 
                     break;
@@ -128,6 +128,7 @@ public class ResultsViewer {
         return (listOfElements.size() * elementCaseSizeY) / (sizeY - footerSizeY) +1;
     }
     public void init(Resultat resultat){
+        TypeRecherche.getINSTANCE().setTypeRequete(resultat.getType());
     	//this.resultat = resultat;
         listOfElementsLeft.clear();
         listOfElementsRight.clear();

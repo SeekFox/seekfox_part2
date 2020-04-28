@@ -82,4 +82,59 @@ public class Resultat {
 				", \n\tresultats=" + resultats +
 				"\n}";
 	}
+
+	public Resultat trier(){
+		Resultat resultatTri = new Resultat(this.getRequete(), this.getType());
+
+		for (CelluleResultat celluleResultat : resultats) {
+			resultatTri.add(celluleResultat);
+		}
+
+
+		return resultatTri;
+	}
+
+	public void addScore(Resultat r){
+		for (CelluleResultat celluleResultat : this.resultats) {
+			for (CelluleResultat celluleResultatINPUT : r.getResultats()) {
+				if(celluleResultat.equals(celluleResultatINPUT)){
+					celluleResultat.addScore(celluleResultatINPUT.getScore());
+				}
+			}
+		}
+	}
+
+
+	public Resultat intersection(Resultat r){
+		System.out.println("INTERSECTION");
+		System.out.println(r);
+		System.out.println(this);
+
+		Resultat intersection = new Resultat(this.getRequete() + " " + r.getRequete(), TypeRequete.MOTCLEF_COMPLEXE);
+
+		for (CelluleResultat celluleResultat : this.resultats) {
+			if(r.getResultats().contains(celluleResultat)){
+				intersection.add(celluleResultat);
+			}
+		}
+
+
+		return intersection;
+	}
+
+	public Resultat difference(Resultat r){
+		System.out.println("DIFFERENCE");
+		System.out.println(r);
+		System.out.println(this);
+
+		Resultat difference = new Resultat(this.getRequete() + " " + r.getRequete(), TypeRequete.MOTCLEF_COMPLEXE);
+
+		for (CelluleResultat celluleResultat : this.getResultats()) {
+			if(!r.getResultats().contains(celluleResultat)){
+				difference.add(celluleResultat);
+			}
+		}
+
+		return difference;
+	}
 }
