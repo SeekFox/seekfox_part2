@@ -147,7 +147,7 @@ public class SearchConfigTxtScreen {
                         TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.MOTCLEF);
 
                         for (ControlRequete controlRequete : listControlRequete) {
-                            System.out.println(controlRequete.runRechercheComplexe(searchBox.getWrittenText()));
+                            controlRequete.runRechercheComplexe(searchBox.getWrittenText());
                         }
 
                     }else{

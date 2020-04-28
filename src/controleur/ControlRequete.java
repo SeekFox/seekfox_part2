@@ -331,6 +331,7 @@ public class ControlRequete {
 		ArrayList<Resultat> resultatArrayList = new ArrayList<>();
 
 		boolean isAtLeastOnePlusRequete = false;
+		boolean isFirstRequete = true;
 
 		this.resultat = new Resultat(requete, TypeRequete.MOTCLEF_COMPLEXE);
 		this.etatRequeteIvy = EtatRequeteIvy.WAIT;
@@ -351,18 +352,29 @@ public class ControlRequete {
 		for (MotClefComplexe motClefComplexe : motClefComplexeArrayList) {
 			this.runRecherche(TypeRequete.MOTCLEF, motClefComplexe.getMot());
 
+
 			Resultat r = this.getResultat();
-			for (CelluleResultat celluleResultat : r.getResultats()) {
+
+			if(isFirstRequete){
+				resultat = r;
+			}else{
+
 				if(motClefComplexe.getPolarite()=='+'){
-					resultat.add(celluleResultat);
+					//UNION
+					resultat.addScore(r);
+					resultat = resultat.intersection(r);
+
 				}else{
-					resultat.remove(celluleResultat);
+					//DIFFERENCE
+					resultat = resultat.difference(r);
 				}
 			}
+
+			isFirstRequete = false;
 		}
 
 
-		this.resultat = resultat;
+		this.resultat = resultat.trier();
 
 		return resultat;
 	}

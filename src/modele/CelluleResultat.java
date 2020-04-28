@@ -25,6 +25,10 @@ public class CelluleResultat{
 		return score;
 	}
 
+	public void addScore(float score){
+		this.score+=score;
+	}
+
 	@Override
 	public String toString() {
 		return "\n\t\t[" + fichier +
