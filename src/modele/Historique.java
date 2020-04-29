@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2020.
+ * ClÃ©ment Truillet (clement@ctruillet.eu)
+ */
+
 package modele;
 import java.io.File;
 import java.io.FileReader;
@@ -23,7 +28,7 @@ public class Historique {
 	}
 	
 	public static List<Resultat> getHistorique () {
-		/* Récupère une liste de String (à adapter éventuellement) contenant tout l'historique des recherches effectuées */
+		/* Rï¿½cupï¿½re une liste de String (ï¿½ adapter ï¿½ventuellement) contenant tout l'historique des recherches effectuï¿½es */
 		String s = "";
 		try {
 			File f = new File("historique.txt");
@@ -41,7 +46,7 @@ public class Historique {
 			ex.printStackTrace();
 		}
 		if (s.length()>0) {
-			List<String> recherches =  cut(s);		// Sépare chaque recherche de l'historique
+			List<String> recherches =  cut(s);		// Sï¿½pare chaque recherche de l'historique
 			List<Resultat> resultats = new ArrayList<Resultat>();
 			for(String str:recherches) resultats.add(toResultat(str));		// Pour chaque recherche de l'historique, fait une conversion String->Resultat
 			return resultats;
@@ -67,23 +72,23 @@ public class Historique {
 		List<String> liste = new ArrayList<String>();
 		char[] histo = s.toCharArray();
 		
-		boolean inBalises = false;		// Dit si le caractère actuel est entre deux balises
-		boolean isBalise = false;		// Dit si le caractère appartient à une balise
+		boolean inBalises = false;		// Dit si le caractï¿½re actuel est entre deux balises
+		boolean isBalise = false;		// Dit si le caractï¿½re appartient ï¿½ une balise
 		int i=0;
 		
-		String recherche = "";			// Chaîne de caractères contenant une recherche
-		String balise = "";				// Chaîne de caractères contenant une balise
+		String recherche = "";			// Chaï¿½ne de caractï¿½res contenant une recherche
+		String balise = "";				// Chaï¿½ne de caractï¿½res contenant une balise
 		
 		while (i<s.length()) {
 			
-			char c = histo[i];		// Caractère courant
+			char c = histo[i];		// Caractï¿½re courant
 			
-			if(c=='<' && isBalise==false) isBalise=true;	// D'abord on vérifie que le caractère ne nous fait pas entrer dans une balise
+			if(c=='<' && isBalise==false) isBalise=true;	// D'abord on vï¿½rifie que le caractï¿½re ne nous fait pas entrer dans une balise
 			
-			if(inBalises==true && isBalise==false) recherche+=c;		// On ajoute le caractère où il faut selon la configuration actuelle
+			if(inBalises==true && isBalise==false) recherche+=c;		// On ajoute le caractï¿½re oï¿½ il faut selon la configuration actuelle
 			if(isBalise==true) balise+=c;
 			
-			if(c=='>' && isBalise==true) {		// Si le caractère lu marque la fin d'une balise, on agit selon la balise : nouvelle recherche, ou fin d'une recherche
+			if(c=='>' && isBalise==true) {		// Si le caractï¿½re lu marque la fin d'une balise, on agit selon la balise : nouvelle recherche, ou fin d'une recherche
 				if(balise.equals("<recherche>")) inBalises=true;
 				if(balise.equals("<\\recherche>")) {
 					inBalises=false;
@@ -103,7 +108,7 @@ public class Historique {
 	private static Resultat toResultat (String recup) {
 		char[] aconvertir = recup.toCharArray();
 		
-		// Récupération de l'intitulé de la requête
+		// Rï¿½cupï¿½ration de l'intitulï¿½ de la requï¿½te
 		String requete = "";
 		int i=0;
 		while(aconvertir[i]!='\'' && i<aconvertir.length) i++;
@@ -114,7 +119,7 @@ public class Historique {
 		}
 		i++;
 		
-		// Récupération du type de recherche
+		// Rï¿½cupï¿½ration du type de recherche
 		String typeS = "";
 		while(aconvertir[i]!='=' && i<aconvertir.length) i++;
 		i++;
@@ -125,29 +130,32 @@ public class Historique {
 		i++;
 		TypeRequete type;
 		switch(typeS) {
-		case "TEXTE" : 
-			type = TypeRequete.TEXTE;
-			break;
-		case "AUDIO" : 
-			type = TypeRequete.AUDIO;
-			break;
-		case "IMAGE" : 
-			type = TypeRequete.IMAGE;
-			break;
-		case "MOTCLEF" : 
-			type = TypeRequete.MOTCLEF;
-			break;
-		default :
-			type = TypeRequete.FIN;
-			break;
+			case "TEXTE" :
+				type = TypeRequete.TEXTE;
+				break;
+			case "AUDIO" :
+				type = TypeRequete.AUDIO;
+				break;
+			case "IMAGE" :
+				type = TypeRequete.IMAGE;
+				break;
+			case "MOTCLEF" :
+				type = TypeRequete.MOTCLEF;
+				break;
+			case "MOTCLEF_COMPLEXE":
+				type = TypeRequete.MOTCLEF_COMPLEXE;
+				break;
+			default :
+				type = TypeRequete.FIN;
+				break;
 		}
 		
-		// Création du résultat de la recherche
+		// Crï¿½ation du rï¿½sultat de la recherche
 		Resultat res = new Resultat(requete, type);
 		
-		while(aconvertir[i]!='[' && i<aconvertir.length) i++;		// On se déplace jusqsu'au début de la liste des résultats
+		while(aconvertir[i]!='[' && i<aconvertir.length) i++;		// On se dï¿½place jusqsu'au dï¿½but de la liste des rï¿½sultats
 		i++;
-		// Récupération de tous les résultats de la recherche
+		// Rï¿½cupï¿½ration de tous les rï¿½sultats de la recherche
 		while(i<aconvertir.length) {
 			if(aconvertir[i]=='[') {
 				i++;

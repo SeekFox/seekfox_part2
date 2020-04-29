@@ -5,10 +5,10 @@
  */
 
 package vue;
-import modele.Button;
-import modele.ScreenName;
+import modele.*;
 import processing.core.*;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class HistoryScreen {
@@ -16,10 +16,12 @@ public class HistoryScreen {
     public int k = 0 , l = 0;
 
     PApplet p;
-    public ArrayList<String> listeDeRecherches;
+    public ArrayList<Resultat> listeDeRecherches;
     public ArrayList<Button> boutonsDeRecherches;
     private int previouspx  , previouspy, previoussx, previoussy;
     private boolean isEmpty = true;
+    private ResultWindows resultWindows = new ResultWindows();
+
     Button backButton;
     Button plusButton;
 
@@ -38,39 +40,69 @@ public class HistoryScreen {
         //historique = getHistorique();				// R�cup�ration de l'historique
 
         // L'historique est une liste d'objets de type Recherche, donc leur contenu peut �tre r�cup�r� pour �tre affich� avec les m�thodes de la classe Recherche
-        listeDeRecherches = new ArrayList<String>();
+        listeDeRecherches = new ArrayList<>();
         boutonsDeRecherches = new ArrayList<Button>();
 
-        sauvegarderRecherche("Recherche 1 = Résultat = ");
-        sauvegarderRecherche("Recherche 2 = Résultat = ");
-        sauvegarderRecherche("Recherche 3 = Résultat = ");
-        sauvegarderRecherche("Recherche 4 = Résultat = ");
-        sauvegarderRecherche("Recherche 5 = Résultat = ");
-        sauvegarderRecherche("Recherche 6 = Résultat = ");
-        sauvegarderRecherche("Recherche 7 = Résultat = ");
-        sauvegarderRecherche("Recherche 8 = Résultat = ");
-        sauvegarderRecherche("Recherche 9 = Résultat = ");
-        sauvegarderRecherche("Recherche 10 = Résultat = ");
-        sauvegarderRecherche("Recherche 11 = Résultat = ");
-        sauvegarderRecherche("Recherche 12 = Résultat = ");
-        sauvegarderRecherche("Recherche 13 = Résultat = ");
-        sauvegarderRecherche("Recherche 14 = Résultat = ");
-        sauvegarderRecherche("Recherche 15 = Résultat = ");
-        sauvegarderRecherche("Recherche 16 = Résultat = ");
-        sauvegarderRecherche("Recherche 17 = Résultat = ");
-        sauvegarderRecherche("Recherche 18 = Résultat = ");
-        sauvegarderRecherche("Recherche 19 = Résultat = ");
+        if(Historique.getHistorique()!=null){
+            listeDeRecherches.clear();
+            boutonsDeRecherches.clear();
+            previouspy=15;
+            for (Resultat resultat : Historique.getHistorique()) {
+                sauvegarderRecherche(resultat);
+            }
+        }
 
+
+
+        backButton = new Button(20, p.height - 60, 80, 40,p.color(200,0,0), "Retour",false,p);
+        plusButton = new Button(p.width - 120,p.height - 60, 100,40,p.color(255),"Plus",false,p);
     }
 
     //méthode quisert à sauvegarder les recherches
-    public void sauvegarderRecherche(String recherche){
-        listeDeRecherches.add(recherche);
-        boutonsDeRecherches.add(new Button( previouspx,previouspy ,previoussx,previoussy,255,recherche,false,p));
-        previouspy += 45;
-        backButton = new Button(20, p.height - 60, 80, 40,p.color(200,0,0), "Retour",false,p);
-        plusButton = new Button(p.width - 120,p.height - 60, 100,40,p.color(255),"Plus",false,p);
+    public void sauvegarderRecherche(Resultat recherche){
+        String requete;
 
+        switch (recherche.getType()){
+            case TEXTE:
+            case IMAGE:
+            case AUDIO:
+                requete = recherche.getRequete().substring(recherche.getRequete().lastIndexOf('/')+1).toUpperCase();
+                break;
+            case COULEURDOMINANTE:
+                requete = "#"+recherche.getRequete().toUpperCase();
+                break;
+            case MOTCLEF:
+            case MOTCLEF_COMPLEXE:
+            default:
+                requete = recherche.getRequete().toUpperCase();
+                break;
+
+        }
+
+        listeDeRecherches.add(recherche);
+        boutonsDeRecherches.add(new Button( previouspx,
+                previouspy ,
+                previoussx,
+                previoussy,
+                255,
+                requete,
+                false,
+                p)
+        );
+        previouspy += 45;
+    }
+
+    public void init(){
+        if(Historique.getHistorique()!=null){
+            listeDeRecherches.clear();
+            boutonsDeRecherches.clear();
+            previouspy=15;
+            if(Historique.getHistorique()!=null) {
+                for (Resultat resultat : Historique.getHistorique()) {
+                    sauvegarderRecherche(resultat);
+                }
+            }
+        }
     }
 
     public void draw(){
@@ -96,7 +128,7 @@ public class HistoryScreen {
 
     public void mouseReleased(){
         if(buttonIsReleased(boutonsDeRecherches)){
-            nextScreen = ScreenName.RESULTS;
+            //nextScreen = ScreenName.RESULTS;
         }
         if(backButton.release()){
             nextScreen = ScreenName.MAIN;
@@ -118,6 +150,16 @@ public class HistoryScreen {
         boolean temp = false;
         for(int i=0 ; i< boutonsDeRecherches.size(); i++){
             temp = temp || boutonsDeRecherches.get(i).release();
+
+
+            if(boutonsDeRecherches.get(i).isPressed()) {
+                this.resultWindows.setResultat(listeDeRecherches.get(i));
+                this.resultWindows.setVisible();
+
+                System.out.println(listeDeRecherches.get(i));
+            }
+
+
         }
         return temp;
     }

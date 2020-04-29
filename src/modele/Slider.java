@@ -31,6 +31,7 @@ public class Slider {
 
 
     public void display() {
+
         //CLICK AND DRAG CALCULATIONS
         if (isPressed) {
             sliderPosition = ((p.mouseX - posX) / (float) sizeX);

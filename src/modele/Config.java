@@ -6,10 +6,11 @@
 package modele;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class Config {
 	//Attributs
-	private String fichierConfig =  "./impeesa/data/user.config";
+	private ArrayList<String> configArrayList = new ArrayList<>();
 
 	private String passwordAdmin;
 	private int TEXTE_tailleMin;
@@ -23,6 +24,8 @@ public class Config {
 
 	//Constructeur
 	private Config(){
+		this.configArrayList.add("./impeesa/data/user.config");
+		this.configArrayList.add("./akela/data/user.config");
 
 	}
 
@@ -38,28 +41,31 @@ public class Config {
 
 	public void majConfig(){
 		try {
-			File f = new File(this.fichierConfig);
-			f.createNewFile();
+			for (String config : configArrayList) {
+				File f = new File(config);
+				f.createNewFile();
 
-			//Vider le fichier
-			FileWriter fw;
-			fw = new FileWriter(f, false);
-			fw.write("");
-			fw.flush();
-			fw.close();
+				//Vider le fichier
+				FileWriter fw;
+				fw = new FileWriter(f, false);
+				fw.write("");
+				fw.flush();
+				fw.close();
 
-			//Ecrire dans le fichier
-			fw = new FileWriter(f, true);
-			fw.write(this.passwordAdmin+"\n" +
-					this.TEXTE_tailleMin + "\n" +
-					this.TEXTE_val + "\n" +
-					this.TEXTE_seuil + "\n" +
-					this.IMAGE_nbBIts + "\n" +
-					this.AUDIO_n + "\n" +
-					this.AUDIO_m + "\n"
-			);
-			fw.flush();
-			fw.close();
+				//Ecrire dans le fichier
+				fw = new FileWriter(f, true);
+				fw.write(this.passwordAdmin+"\n" +
+						this.TEXTE_tailleMin + "\n" +
+						this.TEXTE_val + "\n" +
+						this.TEXTE_seuil + "\n" +
+						this.IMAGE_nbBIts + "\n" +
+						this.AUDIO_n + "\n" +
+						this.AUDIO_m + "\n"
+				);
+				fw.flush();
+				fw.close();
+			}
+
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
@@ -68,7 +74,7 @@ public class Config {
 
 	public void loadConfig(){
 		try (
-				InputStream ips = new FileInputStream(this.fichierConfig);
+				InputStream ips = new FileInputStream(this.configArrayList.get(0));
 				InputStreamReader ipsr = new InputStreamReader(ips);
 				BufferedReader br = new BufferedReader(ipsr)
 		){
