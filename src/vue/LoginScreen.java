@@ -30,7 +30,7 @@ public class LoginScreen {
         passwordBox = new Textbox(p.width / 2, p.height/2+20, p.width / 4, 30, "Mot de Passe", true, true, p);
 
         validerButton = new Button(p.width/2, p.height/2 + 110, 100, 40,p.color(255), "Valider",true,p);
-        backButton = new Button(20, p.height - 60, 100, 40,p.color(200,0,0), "Retour",false,p);
+        backButton = new Button(20, p.height - 60, 100, 40,p.color(255), "Retour",false,p);
     }
 
     public void draw() {
