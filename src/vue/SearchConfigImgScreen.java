@@ -189,12 +189,14 @@ public class SearchConfigImgScreen {
                 if(file!=null){
                     if(file.getParent().endsWith("RGB")){
                         TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.IMAGE);
+                        TypeRecherche.getINSTANCE().setRequete("./baseDeDocuments/Image/RGB/" + file.getName());
                         for (ControlRequete controlRequete : listControlRequete) {
                             controlRequete.runRecherche(TypeRequete.IMAGE, "./baseDeDocuments/Image/RGB/" + file.getName());
                         }
 
                     }else if(file.getParent().endsWith("NB")){
                         TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.IMAGE);
+                        TypeRecherche.getINSTANCE().setRequete("./baseDeDocuments/Image/NB/" + file.getName());
                         for (ControlRequete controlRequete : listControlRequete) {
                             controlRequete.runRecherche(TypeRequete.IMAGE, "./baseDeDocuments/Image/NB/" + file.getName());
                         }
@@ -205,6 +207,7 @@ public class SearchConfigImgScreen {
                 }
             }else {
                 TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.COULEURDOMINANTE);
+                TypeRecherche.getINSTANCE().setRequete("" + Integer.toHexString(color.getRGB()).substring(2));
                 for (ControlRequete controlRequete : listControlRequete) {
                     controlRequete.runRecherche(TypeRequete.COULEURDOMINANTE, "" + Integer.toHexString(color.getRGB()).substring(2));
                 }

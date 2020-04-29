@@ -73,8 +73,10 @@ public class HistoryScreen {
                 break;
             case MOTCLEF:
             case MOTCLEF_COMPLEXE:
-            default:
                 requete = recherche.getRequete();
+                break;
+            default:
+                requete = "null";
                 break;
 
         }

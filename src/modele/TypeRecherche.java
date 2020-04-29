@@ -10,6 +10,7 @@ public class TypeRecherche {
 	private static TypeRecherche INSTANCE = null;
 	private TypeRequete typeRequete;
 	private boolean isMultimoteur = false;
+	private String requete = "";
 
 
 	//Constructeur
@@ -41,5 +42,13 @@ public class TypeRecherche {
 
 	public void setMultimoteur(boolean multimoteur) {
 		isMultimoteur = multimoteur;
+	}
+
+	public String getRequete() {
+		return requete;
+	}
+
+	public void setRequete(String requete) {
+		this.requete = requete;
 	}
 }

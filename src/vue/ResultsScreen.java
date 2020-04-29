@@ -54,6 +54,8 @@ public class ResultsScreen {
     public void mouseReleased(){
         resultsViewer.release();
         if(saveButton.release()) {
+            results.setRequete(TypeRecherche.getINSTANCE().getRequete());
+            results.setType(TypeRecherche.getINSTANCE().getTypeRequete());
             Historique.addHistorique(results);
             nextScreen = ScreenName.MAIN;
         }

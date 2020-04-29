@@ -145,6 +145,9 @@ public class Historique {
 			case "MOTCLEF_COMPLEXE":
 				type = TypeRequete.MOTCLEF_COMPLEXE;
 				break;
+			case "COULEURDOMINANTE":
+				type = TypeRequete.COULEURDOMINANTE;
+				break;
 			default :
 				type = TypeRequete.FIN;
 				break;
