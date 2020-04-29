@@ -136,6 +136,7 @@ public class SearchConfigTxtScreen {
                 if(isRechercheTexte){
                     if(file!=null){
                         TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.TEXTE);
+                        TypeRecherche.getINSTANCE().setRequete("./baseDeDocuments/Texte/" + file.getName());
                         for (ControlRequete controlRequete : listControlRequete) {
                             controlRequete.runRecherche(TypeRequete.TEXTE, "./baseDeDocuments/Texte/" + file.getName());
                         }
@@ -148,6 +149,7 @@ public class SearchConfigTxtScreen {
                 }else {
                     if(searchBox.getWrittenText()!=""){
                         TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.MOTCLEF);
+                        TypeRecherche.getINSTANCE().setRequete(searchBox.getWrittenText());
 
                         for (ControlRequete controlRequete : listControlRequete) {
                             controlRequete.runRechercheComplexe(searchBox.getWrittenText());

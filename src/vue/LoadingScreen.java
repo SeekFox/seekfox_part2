@@ -59,7 +59,9 @@ public class LoadingScreen {
                 resultsScreen.init(ControlRequete.trierResultats(listControlRequete));
                 System.out.println(ControlRequete.trierResultats(listControlRequete).toString());
             }else{
-                ControlRequete.trierResultats(listControlRequete);
+                for (ControlRequete controlRequete : listControlRequete) {
+                    controlRequete.getResultat();
+                }
                 resultsScreen.init(listControlRequete.get(0).getResultat());
             }
 

@@ -66,15 +66,17 @@ public class HistoryScreen {
             case TEXTE:
             case IMAGE:
             case AUDIO:
-                requete = recherche.getRequete().substring(recherche.getRequete().lastIndexOf('/')+1).toUpperCase();
+                requete = recherche.getRequete().substring(recherche.getRequete().lastIndexOf('/')+1);
                 break;
             case COULEURDOMINANTE:
-                requete = "#"+recherche.getRequete().toUpperCase();
+                requete = "#"+recherche.getRequete();
                 break;
             case MOTCLEF:
             case MOTCLEF_COMPLEXE:
+                requete = recherche.getRequete();
+                break;
             default:
-                requete = recherche.getRequete().toUpperCase();
+                requete = "null";
                 break;
 
         }

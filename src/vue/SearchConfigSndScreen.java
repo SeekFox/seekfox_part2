@@ -131,6 +131,7 @@ public class SearchConfigSndScreen {
         try { //Lancer la recherche
             if(file!=null){
                 TypeRecherche.getINSTANCE().setTypeRequete(TypeRequete.AUDIO);
+                TypeRecherche.getINSTANCE().setRequete("./baseDeDocuments/Audio/" + file.getName());
                 for (ControlRequete controlRequete : listControlRequete) {
                     controlRequete.runRecherche(TypeRequete.AUDIO, "./baseDeDocuments/Audio/" + file.getName());
                 }

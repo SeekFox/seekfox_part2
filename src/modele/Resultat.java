@@ -66,8 +66,16 @@ public class Resultat {
 		return requete;
 	}
 
+	public void setRequete(String requete){
+		this.requete=requete;
+	}
+
 	public TypeRequete getType() {
 		return type;
+	}
+
+	public void setType(TypeRequete type){
+		this.type=type;
 	}
 
 	public ArrayList<CelluleResultat> getResultats() {
