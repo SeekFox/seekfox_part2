@@ -5,12 +5,11 @@
 
 package vue;
 
-import modele.Button;
-import modele.Config;
-import modele.ScreenName;
-import modele.Slider;
-import modele.Text;
+import controleur.ControlRequete;
+import modele.*;
 import processing.core.PApplet;
+
+import java.util.ArrayList;
 
 public class ConfigScreen {
 
@@ -32,9 +31,10 @@ public class ConfigScreen {
     ScreenName nextScreen = ScreenName.CONFIG;
     
     Config config = Config.getInstance();
+    private ArrayList<ControlRequete> controlRequeteArrayList;
 
 
-    public ConfigScreen(PApplet p){
+    public ConfigScreen(PApplet p, ArrayList<ControlRequete> controlRequeteArrayList){
         this.p = p;
         sliderNameI = new Text(p.width/2 - 100,p.height/5, "Image : nombre de \nbits de quantification",p);			//Nb Bits
         sliderImage = new Slider(p.width/2 - 40,p.height/5,80,2,8,p);
@@ -53,6 +53,8 @@ public class ConfigScreen {
         backButton = new Button(10, p.height-50, 100, 40, p.color(200,0,0), "Retour", false, p);
         
         config.loadConfig();
+
+        this.controlRequeteArrayList = controlRequeteArrayList;
     }
 
     public void draw(){
@@ -100,6 +102,12 @@ public class ConfigScreen {
         	config.setAUDIO_m((int)sliderAudio_m.getValue());
         	config.setTEXTE_tailleMin((int)sliderTexte.getValue());
         	config.majConfig();
+
+            for (ControlRequete controlRequete : controlRequeteArrayList) {
+                controlRequete.runIndexation(TypeRequete.TEXTE, "all");
+            }
+
+
         	nextScreen = ScreenName.MAIN;
         }
 

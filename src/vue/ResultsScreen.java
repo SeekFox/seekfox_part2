@@ -5,11 +5,8 @@
 
 package vue;
 
+import modele.*;
 import modele.Button;
-import modele.ResultsViewer;
-import modele.ScreenName;
-import modele.CelluleResultat;
-import modele.TypeRequete;
 import processing.core.PApplet;
 
 import java.awt.*;
@@ -36,21 +33,29 @@ public class ResultsScreen {
     public void draw() {
         p.background(200);
         resultsViewer.draw();
-        saveButton.display();
+
+        if(results!=null && results.getResultats().size()>0){
+            saveButton.display();
+        }
+
         backButton.display();
     }
 
     public void mousePressed(){
         resultsViewer.clickParsing();
-        saveButton.clickParsing();
+
+        if(results != null && results.getResultats() != null && results.getResultats().size()>0){
+            saveButton.clickParsing();
+        }
+
         backButton.clickParsing();
     }
 
     public void mouseReleased(){
         resultsViewer.release();
         if(saveButton.release())
-            nextScreen = ScreenName.MAIN; //TODO Sauvegarder dans l'historique
-        	//resultsViewer.ajouterResultatHistorique();
+            Historique.addHistorique(results);
+            nextScreen = ScreenName.MAIN;
         if(backButton.release())
             nextScreen = ScreenName.MAIN;
 

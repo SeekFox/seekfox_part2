@@ -75,4 +75,8 @@ public class Button {
     public int getposY(){
         return this.posY;
     }
+
+    public String getButtonText() {
+        return buttonText;
+    }
 }

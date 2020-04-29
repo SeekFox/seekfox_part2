@@ -8,6 +8,7 @@ package vue;
 import controleur.ControlDrop;
 import controleur.ControlRequete;
 import drop.*;
+import modele.Historique;
 import modele.ScreenName;
 import processing.core.*;
 
@@ -72,7 +73,7 @@ public class ProcessingMain extends PApplet {
         controlDrop = new ControlDrop(searchConfigTxtScreen, searchConfigSndScreen, searchConfigImgScreen);
         loadingScreen = new LoadingScreen(this, listControlRequete, resultsScreen);
 
-        configScreen = new ConfigScreen(this);
+        configScreen = new ConfigScreen(this, listControlRequete);
 
         drop = new SDrop(this);
 
@@ -118,6 +119,7 @@ public class ProcessingMain extends PApplet {
                 break;
 
             case HISTORY:
+                historyScreen.init();
                 surface.setTitle("Seekfox - Historique");
                 currentScreen = historyScreen.getNextScreen();
                 break;
@@ -287,6 +289,8 @@ public class ProcessingMain extends PApplet {
     }
 
     public void exit(){
+        Historique.resetHistorique();
+
         for (ControlRequete controlRequete : listControlRequete) {
             controlRequete.stop();
         }
