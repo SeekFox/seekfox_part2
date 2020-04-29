@@ -7,6 +7,7 @@ package vue;
 
 import controleur.ControlRequete;
 import modele.ScreenName;
+import modele.TypeRecherche;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
@@ -53,8 +54,16 @@ public class LoadingScreen {
         // Recuperation des resultats
         try {
 
-            resultsScreen.init(ControlRequete.trierResultats(listControlRequete));
-            System.out.println(ControlRequete.trierResultats(listControlRequete).toString());
+            //ToDo : Multimoteur
+            if(TypeRecherche.getINSTANCE().isMultimoteur()){
+                resultsScreen.init(ControlRequete.trierResultats(listControlRequete));
+                System.out.println(ControlRequete.trierResultats(listControlRequete).toString());
+            }else{
+                ControlRequete.trierResultats(listControlRequete);
+                resultsScreen.init(listControlRequete.get(0).getResultat());
+            }
+
+
         } catch (Exception e) {
             ProcessingMain.displayError("La connexion Ivy est rompue.");
             nextScreen = ScreenName.MAIN;

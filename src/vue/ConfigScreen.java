@@ -50,7 +50,7 @@ public class ConfigScreen {
         sliderTexte  = new Slider(p.width/2 - 40,p.height * 4/5,80,3,10,p);
 
 
-        backButton = new Button(10, p.height-50, 100, 40, p.color(200,0,0), "Retour", false, p);
+        backButton = new Button(10, p.height-50, 100, 40, p.color(255), "Retour", false, p);
         
         config.loadConfig();
 

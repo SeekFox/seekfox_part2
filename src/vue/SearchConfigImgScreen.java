@@ -40,7 +40,7 @@ public class SearchConfigImgScreen {
     private ScreenName nextScreen = ScreenName.SEARCH_CONFIG_IMG;
 
     private ArrayList<ControlRequete> listControlRequete;
-//    private TickBox multimoteur;
+    private TickBox multimoteur;
     private FileChooser fileChooser = new FileChooser("../base_de_document");
 
     public SearchConfigImgScreen(PApplet p, ArrayList<ControlRequete> listControlRequete){
@@ -50,7 +50,7 @@ public class SearchConfigImgScreen {
         ongletSnd = new modele.Button(2*(p.width/3),0,p.width/3,40,255,"Son",false,p);
         retour = new modele.Button(10, p.height-50, 100, 40, 255, "Retour", false, p);
 
-//        multimoteur = new TickBox(p.width/2 - 75, p.height/2 +115,15,15,true, p);
+        multimoteur = new TickBox(p.width/2 - 75, p.height/2 +115,15,15,true, p);
         validerRecherche = new modele.Button(p.width/2-60, p.height/2+150, 100, 40, 255, "Valider", true, p);
         accessFile = new Button(p.width/2+60, p.height/2+150, 100, 40, 255, "Chercher un fichier", true, p);
         rouge = new Slider(p.width/2 - (255/2), p.height/2, 255, 0, 255,p);
@@ -111,7 +111,8 @@ public class SearchConfigImgScreen {
         }
 
         validerRecherche.display();
-//        multimoteur.display();
+        multimoteur.display();
+        p.text("Recherche multimoteur",p.width/2f , p.height/2f +112);
         p.text("Glissez et déposez l'image que vous voulez rechercher", p.width/2f, p.height-20);
 
 
@@ -127,7 +128,7 @@ public class SearchConfigImgScreen {
         vert.clickParsing();
         bleu.clickParsing();
         validerRecherche.clickParsing();
-//        multimoteur.clickParsing();
+        multimoteur.clickParsing();
 
         this.color = new Color((int)(rouge.getValue()), (int)(vert.getValue()), (int)(bleu.getValue()));
 
@@ -155,7 +156,7 @@ public class SearchConfigImgScreen {
             }
 
         }
-//        multimoteur.release();
+        multimoteur.release();
         if(accessFile.release()) {
             fileChooser.display(FileChooseType.IMAGE);
             if(fileChooser.getFile() != null)
@@ -179,6 +180,10 @@ public class SearchConfigImgScreen {
     }
 
     public void runRecherche(){
+        TypeRecherche.getINSTANCE().setMultimoteur(this.multimoteur.isTicked());
+
+
+
         try { //Lancer la recherche
             if(isRechercheImage){
                 if(file!=null){

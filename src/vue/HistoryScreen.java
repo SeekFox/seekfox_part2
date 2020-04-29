@@ -54,7 +54,7 @@ public class HistoryScreen {
 
 
 
-        backButton = new Button(20, p.height - 60, 80, 40,p.color(200,0,0), "Retour",false,p);
+        backButton = new Button(20, p.height - 60, 80, 40,p.color(255), "Retour",false,p);
         plusButton = new Button(p.width - 120,p.height - 60, 100,40,p.color(255),"Plus",false,p);
     }
 
