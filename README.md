@@ -3,6 +3,8 @@
 ## Arborescence du projet
 + **Impeesa** *[C]*
     + Moteur de recherche codé en C.
++ **Akela** *[C]*
+    + Moteur de recherche codé en C.
 + **HamsterJovial** *[Java]*
     + Interface Utilisateur codée en Java. 
 + **Ivy**
@@ -22,9 +24,5 @@ Pour compiler le projet, il est necessaire d'installer la librairie d'Ivy.
 Pour cela, vous trouverez un tutoriel pour installer la librairie dans le repertoire */ivy*.   
 L'execution du projet est impossible sans compilation de la librairie ivy pour le C.
 
-
-### Version Alpha - 22.03.2020
-La version du *22/03/2020* est orientée sur la liaison Java/C.   
-Cette liaison se fait avec un bus logiciel **Ivy** sur le port 2010.
-
-Ainsi, pour montrer le bon fonctionnement de cette liaison, l'interface est textuelle, minimaliste et ne permet qu'une recherche par mot-Clef.
+---
+Seekfox Team - (*contact@seekfox.team*)
