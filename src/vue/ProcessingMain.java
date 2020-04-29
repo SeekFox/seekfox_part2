@@ -83,30 +83,49 @@ public class ProcessingMain extends PApplet {
         previousScreen = currentScreen;
         switch (currentScreen) {
             case MAIN:
+                surface.setTitle("Seekfox");
                 currentScreen = mainScreen.getNextScreen();
                 break;
+
             case SEARCH_CONFIG_IMG:
+                surface.setTitle("Seekfox - Recherche");
                 currentScreen = searchConfigImgScreen.getNextScreen();
                 break;
+
             case SEARCH_CONFIG_SND:
+                surface.setTitle("Seekfox - Recherche");
                 currentScreen = searchConfigSndScreen.getNextScreen();
                 break;
-            case LOADING:
-                currentScreen = loadingScreen.getNextScreen();
-                break;
-            case ADMIN_CONNECTION:
-                currentScreen = loginScreen.getNextScreen();
-                break;
-            case CONFIG:
-                currentScreen = configScreen.getNextScreen();
-                break;
-            case HISTORY:
-                currentScreen = historyScreen.getNextScreen();
-                break;
+
             case SEARCH_CONFIG_TXT:
+                surface.setTitle("Seekfox - Recherche");
                 currentScreen = searchConfigTxtScreen.getNextScreen();
                 break;
+
+            case LOADING:
+                surface.setTitle("Seekfox - Chargement");
+                currentScreen = loadingScreen.getNextScreen();
+                break;
+
+            case ADMIN_CONNECTION:
+                surface.setTitle("Seekfox - Configuration");
+                currentScreen = loginScreen.getNextScreen();
+                break;
+
+            case CONFIG:
+                surface.setTitle("Seekfox - Configuration");
+                currentScreen = configScreen.getNextScreen();
+                break;
+
+            case HISTORY:
+                surface.setTitle("Seekfox - Historique");
+                currentScreen = historyScreen.getNextScreen();
+                break;
+
+
+
             case RESULTS:
+                surface.setTitle("Seekfox - Resultat");
                 currentScreen = resultsScreen.getNextScreen();
                 break;
         }

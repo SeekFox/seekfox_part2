@@ -43,7 +43,7 @@ public class ConfigScreen {
         sliderAudio_n = new Slider(p.width/2 - 40,p.height * 2/5,80,10,100,p);
 
 
-        sliderNameAm = new Text(p.width/2 - 100, p.height *3/5 , "Audio : taille des\n fenêtres \nd'échantillonnage",p);		// insert param audio
+        sliderNameAm = new Text(p.width/2 - 100, p.height *3/5 , "Audio : taille des\n fenetres \nd'Ã©chantillonnage",p);		// insert param audio
         sliderAudio_m = new Slider(p.width/2 - 40,p.height * 3/5,80,500,5000,p);
 
         sliderNameT = new Text(p.width/2 - 100, p.height * 4/5, "Texte : taille minimale \ndes mots pour qu'ils \nsoient pris en compte",p);							//insert param text
@@ -60,21 +60,20 @@ public class ConfigScreen {
 
         sliderNameI.display();
         sliderImage.display();
-        p.text((int)sliderImage.getValue(),p.width/2 + 80,p.height/5);
-        
 
         sliderNameAn.display();
         sliderAudio_n.display();
-        p.text((int)sliderAudio_n.getValue(),p.width/2 + 80,p.height * 2/5);
-       
 
         sliderNameAm.display();
         sliderAudio_m.display();
-        p.text((int)sliderAudio_m.getValue(),p.width/2 + 80,p.height* 3/5);
-        
 
         sliderNameT.display();
         sliderTexte.display();
+
+        p.fill(0);
+        p.text((int)sliderImage.getValue(),p.width/2 + 80,p.height/5);
+        p.text((int)sliderAudio_n.getValue(),p.width/2 + 80,p.height * 2/5);
+        p.text((int)sliderAudio_m.getValue(),p.width/2 + 80,p.height* 3/5);
         p.text((int)sliderTexte.getValue(),p.width/2 + 80,p.height * 4/5);
         
 
@@ -95,7 +94,7 @@ public class ConfigScreen {
         sliderImage.release();
         sliderAudio_m.release();
         sliderAudio_n.release();
-        if(backButton.release()){		// Cas où on quitte l'écran : on applique les changements
+        if(backButton.release()){		// Cas oï¿½ on quitte l'ï¿½cran : on applique les changements
         	config.setIMAGE_nbBIts((int)sliderImage.getValue());
         	config.setAUDIO_n((int)sliderAudio_n.getValue());
         	config.setAUDIO_m((int)sliderAudio_m.getValue());
