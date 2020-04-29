@@ -24,7 +24,7 @@ public class SearchConfigTxtScreen {
     private Button validerRecherche;
     private Button retour;
     private ArrayList<ControlRequete> listControlRequete;
-//    private TickBox multimoteur;
+    private TickBox multimoteur;
     private boolean isRechercheLaunch = false;
     private FileChooser fileChooser = new FileChooser("../base_de_document");
 
@@ -40,7 +40,7 @@ public class SearchConfigTxtScreen {
         ongletSnd = new Button(2*(p.width/3),0,p.width/3,40,255,"Son",false,p);
 
         searchBox = new Textbox(p.width/2, p.height/2, p.width/2, 30, "Chercher",false,true,p);
-//        multimoteur = new TickBox(p.width/2 - 75, p.height/2 + 43,15,15,true, p);
+        multimoteur = new TickBox(p.width/2 - 75, p.height/2 + 43,15,15,true, p);
         validerRecherche = new Button(p.width/2-60, p.height/2 + 90, 100, 40, 255, "Valider", true, p);
         searchFile = new Button(p.width/2+60, p.height/2 + 90, 100, 40, 255, "Chercher un fichier", true, p);
         retour = new Button(10, p.height-50, 100, 40, 255, "Retour", false, p);
@@ -66,7 +66,8 @@ public class SearchConfigTxtScreen {
         searchFile.display();
         validerRecherche.display();
         retour.display();
-//        multimoteur.display();
+        multimoteur.display();
+        p.text("Recherche multimoteur", p.width/2f, p.height/2f + 40);
     }
 
     public void mousePressed(){
@@ -75,7 +76,7 @@ public class SearchConfigTxtScreen {
         searchBox.clickParsing();
         validerRecherche.clickParsing();
         retour.clickParsing();
-//        multimoteur.clickParsing();
+        multimoteur.clickParsing();
         searchFile.clickParsing();
     }
 
@@ -106,7 +107,7 @@ public class SearchConfigTxtScreen {
                 this.setArgumentRecherche(fileChooser.getFile());
         }
         searchBox.release();
-//        multimoteur.release();
+        multimoteur.release();
     }
 
     public void keyPressed(char key){
@@ -126,6 +127,8 @@ public class SearchConfigTxtScreen {
     }
 
     public void runRecherche(){
+        TypeRecherche.getINSTANCE().setMultimoteur(this.multimoteur.isTicked());
+
         if(!isRechercheLaunch) {
             try { //Lancer la recherche
                 this.isRechercheLaunch = true;

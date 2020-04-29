@@ -9,6 +9,7 @@ public class TypeRecherche {
 	//Attributs
 	private static TypeRecherche INSTANCE = null;
 	private TypeRequete typeRequete;
+	private boolean isMultimoteur = false;
 
 
 	//Constructeur
@@ -32,5 +33,13 @@ public class TypeRecherche {
 
 	public TypeRequete getTypeRequete(){
 		return typeRequete;
+	}
+
+	public boolean isMultimoteur() {
+		return isMultimoteur;
+	}
+
+	public void setMultimoteur(boolean multimoteur) {
+		isMultimoteur = multimoteur;
 	}
 }
