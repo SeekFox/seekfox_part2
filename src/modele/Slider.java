@@ -61,6 +61,10 @@ public class Slider {
         return valMin + (valMax - valMin) * sliderPosition;
     }
 
+    public void setValue(float value){
+        this.sliderPosition = (value-valMin)/(valMax-valMin);
+    }
+
     public void isPressed() {
         isPressed = p.mouseX >= posX + sizeX * sliderPosition - 5 && p.mouseX <= posX + sizeX * sliderPosition + 5 && p.mouseY >= posY - 8 && p.mouseY <= posY + 8;
     }

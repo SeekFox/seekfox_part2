@@ -57,10 +57,11 @@ public class ResultsScreen {
             results.setRequete(TypeRecherche.getINSTANCE().getRequete());
             results.setType(TypeRecherche.getINSTANCE().getTypeRequete());
             Historique.addHistorique(results);
-            nextScreen = ScreenName.MAIN;
+            //nextScreen = ScreenName.MAIN;
         }
 
         if(backButton.release()) {
+            this.resultsViewer.setCurrentPage(1);
             nextScreen = ScreenName.MAIN;
         }
 

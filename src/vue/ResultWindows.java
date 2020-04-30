@@ -95,6 +95,7 @@ public class ResultWindows extends PApplet {
 	 * Surcharge de la méthode exit de PApplet
 	 */
 	public void exit(){
+		this.resultsViewer.setCurrentPage(1);
 		this.isVisible = false;
 		surface.setVisible(false);
 

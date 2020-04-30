@@ -36,23 +36,27 @@ public class ConfigScreen {
 
     public ConfigScreen(PApplet p, ArrayList<ControlRequete> controlRequeteArrayList){
         this.p = p;
+        config.loadConfig();
+
         sliderNameI = new Text(p.width/2 - 100,p.height/5, "Image : nombre de \nbits de quantification",p);			//Nb Bits
         sliderImage = new Slider(p.width/2 - 40,p.height/5,80,2,8,p);
+        sliderImage.setValue(config.getIMAGE_nbBIts());
 
         sliderNameAn = new Text(p.width/2 - 100,p.height * 2/5, "Audio : nombre \nd'intervalles \nde l'histogramme",p);		//Nb subdivisions
         sliderAudio_n = new Slider(p.width/2 - 40,p.height * 2/5,80,10,100,p);
-
+        sliderAudio_n.setValue(config.getAUDIO_n());
 
         sliderNameAm = new Text(p.width/2 - 100, p.height *3/5 , "Audio : taille des\n fenetres \nd'échantillonnage",p);		// insert param audio
         sliderAudio_m = new Slider(p.width/2 - 40,p.height * 3/5,80,500,5000,p);
+        sliderAudio_m.setValue(config.getAUDIO_m());
 
         sliderNameT = new Text(p.width/2 - 100, p.height * 4/5, "Texte : taille minimale \ndes mots pour qu'ils \nsoient pris en compte",p);							//insert param text
         sliderTexte  = new Slider(p.width/2 - 40,p.height * 4/5,80,3,10,p);
-
+        sliderTexte.setValue(config.getTEXTE_tailleMin());
 
         backButton = new Button(10, p.height-50, 100, 40, p.color(255), "Retour", false, p);
         
-        config.loadConfig();
+
 
         this.controlRequeteArrayList = controlRequeteArrayList;
     }
