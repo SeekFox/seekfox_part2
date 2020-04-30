@@ -8,6 +8,9 @@ package modele;
 import modele.Detection;
 import processing.core.PApplet;
 
+/**
+ * Classe de TickBox
+ */
 public class TickBox {
 
     private int posX;
@@ -21,6 +24,15 @@ public class TickBox {
     private boolean isTicked = false;
     private boolean isCentered;
 
+    /**
+     * Constructeur
+     * @param px
+     * @param py
+     * @param sx
+     * @param sy
+     * @param isCentered
+     * @param app
+     */
     public TickBox(int px, int py, int sx, int sy, boolean isCentered, PApplet app) {
         p = app;
         this.isCentered = isCentered;
@@ -34,6 +46,9 @@ public class TickBox {
         return isTicked;
     }
 
+    /**
+     * Affichage de la TickBox
+     */
     public void display() {
         if (isCentered)
             p.rectMode(p.CENTER);

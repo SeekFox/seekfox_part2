@@ -5,6 +5,9 @@
 
 package modele;
 
+/**
+ * Enumeration des ecrans de l'application
+ */
 public enum ScreenName {
     MAIN,
     CONFIG,

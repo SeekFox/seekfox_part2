@@ -8,6 +8,9 @@ package modele;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Singleton des configuration des moteurs
+ */
 public class Config {
 	//Attributs
 	private ArrayList<String> configArrayList = new ArrayList<>();
@@ -23,6 +26,10 @@ public class Config {
 	private static Config INSTANCE = null;
 
 	//Constructeur
+
+	/**
+	 * Constructeur des configs
+	 */
 	private Config(){
 		this.configArrayList.add("./impeesa/data/user.config");
 		this.configArrayList.add("./akela/data/user.config");
@@ -39,6 +46,9 @@ public class Config {
 	}
 
 
+	/**
+	 * Mises à jour des configurations des moteurs
+	 */
 	public void majConfig(){
 		try {
 			for (String config : configArrayList) {
@@ -72,6 +82,10 @@ public class Config {
 
 	}
 
+
+	/**
+	 * Récupération des configurations des moteurs
+	 */
 	public void loadConfig(){
 		try (
 				InputStream ips = new FileInputStream(this.configArrayList.get(0));

@@ -7,6 +7,10 @@ package modele;
 
 import processing.core.PApplet;
 
+/**
+ * Classe de texte
+ * @see PApplet
+ */
 public class Text {
     public String text;
     PApplet p;

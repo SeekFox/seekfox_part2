@@ -5,13 +5,12 @@
 
 package modele;
 
-import modele.*;
 import processing.core.PApplet;
-
 import java.util.ArrayList;
 
-//import static modele.Historique.addHistorique;
-
+/**
+ * Classe permettant de visualiser les resultats
+ */
 public class ResultsViewer {
     private PApplet p;
 
@@ -43,6 +42,14 @@ public class ResultsViewer {
     
     //private Resultat resultat;			// Stockage des r�sultats affich�s, utilis� pour l'historique
 
+    /**
+     * Constructeur de la classe
+     * @param posX
+     * @param posY
+     * @param sizeX
+     * @param sizeY
+     * @param p
+     */
     public ResultsViewer(int posX, int posY, int sizeX, int sizeY, PApplet p) {
         this.p = p;
         this.posX = posX;
@@ -57,6 +64,9 @@ public class ResultsViewer {
     }
 
     @SuppressWarnings("IntegerDivisionInFloatingPointContext")
+    /**
+     * Affichage des resultats
+     */
     public void draw() {
         int currentYPosition = posY;
         int currentIndex;
@@ -124,9 +134,19 @@ public class ResultsViewer {
 
     }
 
+    /**
+     * Renvoit le nombre de page necessaire
+     * @param listOfElements
+     * @return
+     */
     private int nbPagesNeeded(ArrayList<String> listOfElements) {
         return (listOfElements.size() * elementCaseSizeY) / (sizeY - footerSizeY) +1;
     }
+
+    /**
+     * Initialise les resultats
+     * @param resultat
+     */
     public void init(Resultat resultat){
         TypeRecherche.getINSTANCE().setTypeRequete(resultat.getType());
     	//this.resultat = resultat;
@@ -139,6 +159,8 @@ public class ResultsViewer {
         previousButtonIsNeeded = previousButtonIsNeeded();
 
     }
+
+
     private void fillResultsWindow(Resultat resultats) {
         ArrayList<CelluleResultat> everyResults = resultats.getResultats();
 

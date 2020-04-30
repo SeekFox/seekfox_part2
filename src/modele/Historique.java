@@ -11,8 +11,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe gérant l'historique des recherches
+ */
 public class Historique {
-	
+
+	/**
+	 * Ajout d'un resultat dans l'historique
+	 * @param recherche
+	 */
 	public static void addHistorique (Resultat recherche) {
 		/* Ajoute une recherche au fichier d'historique */
 		try {
@@ -26,7 +33,11 @@ public class Historique {
 			ex.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Récuperation de l'historique
+	 * @return
+	 */
 	public static List<Resultat> getHistorique () {
 		/* R�cup�re une liste de String (� adapter �ventuellement) contenant tout l'historique des recherches effectu�es */
 		String s = "";
@@ -52,7 +63,10 @@ public class Historique {
 			return resultats;
 		} else return null;
 	}
-	
+
+	/**
+	 * Méthode de nettoyage de l'historique
+	 */
 	public static void resetHistorique () {
 		/* Supprime l'historique actuel */
 		try {
@@ -66,7 +80,12 @@ public class Historique {
 			ex.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 *
+	 * @param s
+	 * @return
+	 */
 	private static List<String> cut (String s) {
 		
 		List<String> liste = new ArrayList<String>();
@@ -104,7 +123,12 @@ public class Historique {
 		
 		return liste;
 	}
-	
+
+	/**
+	 *
+	 * @param recup
+	 * @return
+	 */
 	private static Resultat toResultat (String recup) {
 		char[] aconvertir = recup.toCharArray();
 		

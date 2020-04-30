@@ -10,6 +10,10 @@ import processing.core.PApplet;
 
 import static processing.core.PConstants.*;
 
+/**
+ * Classe de Textbox
+ * @see PApplet
+ */
 public class Textbox {
 
     private int posX;
@@ -24,10 +28,17 @@ public class Textbox {
     private boolean isCentered;
 
 
-    public String getWrittenText() {
-        return writtenText;
-    }
-
+    /**
+     * Constructeur de la textBox
+     * @param px
+     * @param py
+     * @param sx
+     * @param sy
+     * @param textBoxText
+     * @param isPassword
+     * @param isCentered
+     * @param app
+     */
     public Textbox(int px, int py, int sx, int sy, String textBoxText, boolean isPassword, boolean isCentered, PApplet app) {
         p = app;
         this.isPassword = isPassword;
@@ -39,6 +50,14 @@ public class Textbox {
         this.textBoxText = textBoxText;
     }
 
+
+    public String getWrittenText() {
+        return writtenText;
+    }
+
+    /**
+     * Affichage de la textbox
+     */
     public void display() {
         if (!isCentered)
             p.rectMode(p.CORNER);

@@ -5,12 +5,20 @@
 
 package modele;
 
+/**
+ * Classe gérant les mot clefs complexes afin de gérer la recherche complexe
+ */
 public class MotClefComplexe {
 	//Attributs
 	private String mot;
 	private char polarite;
 
 	//Constructeur
+
+	/**
+	 * Constructeur d'un mot clef complexe
+	 * @param requete
+	 */
 	public MotClefComplexe(String requete){
 		if(requete.length()<=1){
 			throw new IllegalArgumentException("le motClef n'est pas un mot valide");

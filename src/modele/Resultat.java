@@ -7,6 +7,11 @@ package modele;
 
 import java.util.ArrayList;
 
+/**
+ * Classe de resultat d'une requete
+ * @see CelluleResultat
+ * @see controleur.ControlRequete
+ */
 public class Resultat {
 	//Attributs
 	private String requete;
@@ -14,6 +19,12 @@ public class Resultat {
 	private ArrayList<CelluleResultat> resultats = new ArrayList<>();
 
 	//Constructeur
+
+	/**
+	 * Constructeur d'un resultat
+	 * @param requete
+	 * @param type
+	 */
 	public Resultat(String requete, TypeRequete type) {
 		this.requete = requete;
 		this.type = type;
@@ -113,6 +124,11 @@ public class Resultat {
 	}
 
 
+	/**
+	 * Renvoit un resultat correspondant à l'interssection entre deux resultats
+	 * @param r
+	 * @return
+	 */
 	public Resultat intersection(Resultat r){
 		System.out.println("INTERSECTION");
 		System.out.println(r);
@@ -130,6 +146,11 @@ public class Resultat {
 		return intersection;
 	}
 
+	/**
+	 * Renvoit un resultat correspondant à la difference entre deux resultats
+	 * @param r
+	 * @return
+	 */
 	public Resultat difference(Resultat r){
 		System.out.println("DIFFERENCE");
 		System.out.println(r);

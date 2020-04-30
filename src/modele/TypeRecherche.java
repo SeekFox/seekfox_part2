@@ -5,6 +5,9 @@
 
 package modele;
 
+/**
+ * Singleton contenant les informations d'une recherche
+ */
 public class TypeRecherche {
 	//Attributs
 	private static TypeRecherche INSTANCE = null;
