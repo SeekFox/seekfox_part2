@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import vue.FileChooser.FileChooseType;
 import vue.FileChooser.FileChooser;
 
+/**
+ * Ecran de recherche Image
+ */
 public class SearchConfigImgScreen {
 
     private PApplet p;
@@ -43,6 +46,11 @@ public class SearchConfigImgScreen {
     private TickBox multimoteur;
     private FileChooser fileChooser = new FileChooser("../base_de_document");
 
+    /**
+     *
+     * @param p
+     * @param listControlRequete
+     */
     public SearchConfigImgScreen(PApplet p, ArrayList<ControlRequete> listControlRequete){
         this.p = p;
         this.listControlRequete = listControlRequete;
@@ -60,6 +68,9 @@ public class SearchConfigImgScreen {
         this.color = new Color(rouge.getValue(), vert.getValue(), bleu.getValue());
     }
 
+    /**
+     *
+     */
     private void drawCurrentOnglet(){
         p.rectMode(p.CORNER);
         p.fill(100);
@@ -70,6 +81,9 @@ public class SearchConfigImgScreen {
 
     }
 
+    /**
+     *
+     */
     private void drawColorText(){
         p.fill(rouge.getValue(),0,0);
         p.rectMode(p.CENTER);
@@ -87,6 +101,9 @@ public class SearchConfigImgScreen {
         p.text((int)bleu.getValue(), p.width/2f + (255/2f)+20, p.height/2f+60-2);
     }
 
+    /**
+     * Affichage
+     */
     public void draw(){
         p.background(200);
         accessFile.display();
@@ -120,6 +137,9 @@ public class SearchConfigImgScreen {
 
     }
 
+    /**
+     *
+     */
     public void mousePressed(){
         ongletTxt.clickParsing();
         ongletSnd.clickParsing();
@@ -135,6 +155,9 @@ public class SearchConfigImgScreen {
         accessFile.clickParsing();
     }
 
+    /**
+     *
+     */
     public void mouseReleased(){
         if(ongletTxt.release())
             nextScreen = ScreenName.SEARCH_CONFIG_TXT;
@@ -146,7 +169,7 @@ public class SearchConfigImgScreen {
             nextScreen = ScreenName.MAIN;
 
         if(validerRecherche.release()) {
-            nextScreen = ScreenName.LOADING;    //TODO activer la recherche ptdr & gérer les erreurs
+            nextScreen = ScreenName.LOADING;
             this.runRecherche();
         }
 
@@ -164,6 +187,10 @@ public class SearchConfigImgScreen {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public ScreenName getNextScreen(){
         ScreenName temp = nextScreen;
         nextScreen = ScreenName.SEARCH_CONFIG_IMG;
@@ -171,6 +198,10 @@ public class SearchConfigImgScreen {
     }
 
 
+    /**
+     * Enregistre le fichier en parametre de recherche Image
+     * @param file
+     */
     public void setArgumentRecherche(File file){
         //Affichage de l'image
         image = p.loadImage(file.getPath());
@@ -179,6 +210,9 @@ public class SearchConfigImgScreen {
         this.file = file;
     }
 
+    /**
+     * Lance la recherche
+     */
     public void runRecherche(){
         TypeRecherche.getINSTANCE().setMultimoteur(this.multimoteur.isTicked());
 

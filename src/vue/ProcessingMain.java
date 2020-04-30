@@ -14,7 +14,10 @@ import processing.core.*;
 
 import java.util.ArrayList;
 
-
+/**
+ * Classe Main
+ * @see PApplet
+ */
 public class ProcessingMain extends PApplet {
     private PApplet processing;
 
@@ -36,11 +39,20 @@ public class ProcessingMain extends PApplet {
     private ArrayList<ControlRequete> listControlRequete = new ArrayList<>();
     private ControlDrop controlDrop;
 
+    /**
+     * Méthode main lançant la fenetre processing
+     * @param args
+     * @see PApplet
+     */
     public static void main(String... args) {
         PApplet.main("vue.ProcessingMain");
     }
 
 
+    /**
+     * Surcharge de la méthode settings de PApplet
+     * @see PApplet
+     */
     public void settings() {
         processing = this;
         size(640, 480);
@@ -48,6 +60,10 @@ public class ProcessingMain extends PApplet {
 
     }
 
+    /**
+     * Surcharge de la méthode setup de PApplet
+     * @see PApplet
+     */
     public void setup() {
         PImage icon = loadImage("doc/icon.png","png");
         surface.setIcon(icon);
@@ -80,6 +96,9 @@ public class ProcessingMain extends PApplet {
 
     }
 
+    /**
+     *
+     */
     public void changeScreen(){
         previousScreen = currentScreen;
         switch (currentScreen) {
@@ -133,6 +152,9 @@ public class ProcessingMain extends PApplet {
         }
     }
 
+    /**
+     * Initialisation des écrans
+     */
     public void initScreen(){
 
         //TODO Setup tous les init
@@ -206,6 +228,9 @@ public class ProcessingMain extends PApplet {
     }
 
 
+    /**
+     *
+     */
     public void mousePressed() {
         switch (currentScreen) {
             case MAIN:
@@ -235,6 +260,9 @@ public class ProcessingMain extends PApplet {
         }
     }
 
+    /**
+     *
+     */
     public void mouseReleased() {
         switch (currentScreen) {
             case MAIN:
@@ -264,6 +292,9 @@ public class ProcessingMain extends PApplet {
         }
     }
 
+    /**
+     *
+     */
     public void keyPressed() {
         char pressedKey = key;
         switch (currentScreen) {
@@ -288,6 +319,10 @@ public class ProcessingMain extends PApplet {
         }
     }
 
+    /**
+     * Surchage de la méthode exit de PApplet pour fermer les moteurs de recherches
+     * @see PApplet
+     */
     public void exit(){
         Historique.resetHistorique();
 
@@ -297,10 +332,20 @@ public class ProcessingMain extends PApplet {
         super.exit();
     }
 
+    /**
+     * Méthode levé lors d'un drop d'un fichier dans la fenetre
+     * @see SDrop
+     * @see ControlDrop
+     * @param theDropEvent
+     */
     void dropEvent(DropEvent theDropEvent) {
         controlDrop.dropEvent(theDropEvent, currentScreen);
     }
 
+    /**
+     * Affichage d'une erreur
+     * @param text
+     */
     public static void displayError(String text){
         ErrorWindow errorWindow = new ErrorWindow(text);
         errorWindow.setVisible();

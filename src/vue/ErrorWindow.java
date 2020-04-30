@@ -10,6 +10,9 @@ import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PImage;
 
+/**
+ * Fenetre d'erreur
+ */
 public class ErrorWindow extends PApplet {
 	//Attributs
 	private boolean isVisible;
@@ -19,6 +22,11 @@ public class ErrorWindow extends PApplet {
 	private Button okButton;
 
 	//Constructeur
+
+	/**
+	 *
+	 * @param text
+	 */
 	public ErrorWindow(String text){
 		super();
 		this.text=text;
@@ -65,10 +73,17 @@ public class ErrorWindow extends PApplet {
 
 	}
 
+	/**
+	 *
+	 */
 	public void mousePressed(){
 		okButton.clickParsing();
 	}
 
+
+	/**
+	 *
+	 */
 	public void mouseReleased(){
 		if(okButton.release()) {
 			this.exit();

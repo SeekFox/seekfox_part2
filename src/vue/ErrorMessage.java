@@ -10,22 +10,36 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
 
+/**
+ * Affichage d'un message d'erreur
+ */
 public class ErrorMessage {
     private static PImage errorIcon;
     private Button okButton;
     private PApplet p;
     private String errorMessage;
 
+    /**
+     *
+     * @param p
+     */
     public ErrorMessage(PApplet p) {
         this.p = p;
         okButton = new Button(p.width/2, p.height/2 + 20, 100, 40, 255, "Oups", true, p);
         errorIcon = p.loadImage("doc/error.png","png");
     }
 
+    /**
+     *
+     * @param errorMessage
+     */
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 
+    /**
+     * Affichage
+     */
     public void display(){
         p.fill(200);
         p.rectMode(PConstants.CENTER);
@@ -36,10 +50,18 @@ public class ErrorMessage {
         okButton.display();
     }
 
+    /**
+     *
+     */
     public void clickParsing(){
         okButton.clickParsing();
     }
 
+
+    /**
+     *
+     * @return
+     */
     public boolean release(){
         return okButton.release();
     }

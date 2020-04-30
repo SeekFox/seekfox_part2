@@ -10,6 +10,9 @@ import modele.ScreenName;
 import modele.Textbox;
 import processing.core.PApplet;
 
+/**
+ * Ecran de connection
+ */
 public class LoginScreen {
     private final static String adminLogin = "admin";
     private final static String adminPassword = "123456";
@@ -24,6 +27,10 @@ public class LoginScreen {
     Button validerButton;
     Button backButton;
 
+    /**
+     * Constructeur
+     * @param p
+     */
     public LoginScreen(PApplet p) {
         this.p = p;
         usernameBox = new Textbox(p.width / 2, p.height/2-20, p.width / 4, 30, "Login", false, true, p);
@@ -33,6 +40,9 @@ public class LoginScreen {
         backButton = new Button(20, p.height - 60, 100, 40,p.color(255), "Retour",false,p);
     }
 
+    /**
+     * Affichage
+     */
     public void draw() {
         p.background(200);
         usernameBox.display();
@@ -47,6 +57,9 @@ public class LoginScreen {
         }
     }
 
+    /**
+     *
+     */
     public void mousePressed() {
         usernameBox.clickParsing();
         passwordBox.clickParsing();
@@ -54,6 +67,9 @@ public class LoginScreen {
         backButton.clickParsing();
     }
 
+    /**
+     *
+     */
     public void mouseReleased() {
         usernameBox.release();
         passwordBox.release();
@@ -71,11 +87,20 @@ public class LoginScreen {
 
     }
 
+
+    /**
+     *
+     * @param key
+     */
     public void keyPressed(char key) {
         usernameBox.keyPressedParsing(key);
         passwordBox.keyPressedParsing(key);
     }
 
+    /**
+     *
+     * @return
+     */
     public ScreenName getNextScreen() {
         ScreenName temp = nextScreen;
         if(!isconnected){
@@ -87,6 +112,9 @@ public class LoginScreen {
         return temp;
     }
 
+    /**
+     * Initialisation
+     */
     public void init() {
         usernameBox.resetText();
         passwordBox.resetText();

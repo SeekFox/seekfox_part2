@@ -8,12 +8,16 @@ package vue;
 
 import controleur.*;
 import modele.*;
-import fr.dgac.ivy.Ivy;
 import modele.Resultat;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ *  Classe Main de test
+ * @deprecated
+ * @see ProcessingMain
+ */
 public class Main {
 	public static void main(String[] args) {
 		boolean isRunning = true;

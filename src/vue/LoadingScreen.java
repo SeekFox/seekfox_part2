@@ -12,6 +12,9 @@ import processing.core.PApplet;
 
 import java.util.ArrayList;
 
+/**
+ * Ecran de chargement
+ */
 public class LoadingScreen {
     private PApplet p;
     private ScreenName nextScreen = ScreenName.LOADING;
@@ -19,6 +22,12 @@ public class LoadingScreen {
     private ArrayList<ControlRequete> listControlRequete;
     private ResultsScreen resultsScreen;
 
+    /**
+     *
+     * @param p
+     * @param listControlRequete
+     * @param resultsScreen
+     */
     public LoadingScreen(PApplet p, ArrayList<ControlRequete> listControlRequete, ResultsScreen resultsScreen) {
         this.p = p;
         this.listControlRequete = listControlRequete;
@@ -26,6 +35,9 @@ public class LoadingScreen {
 
     }
 
+    /**
+     * Affichage
+     */
     public void draw() {
         p.background(200);
         p.rectMode(p.CORNER);
@@ -42,12 +54,19 @@ public class LoadingScreen {
             nextScreen = ScreenName.RESULTS;
     }
 
+    /**
+     *
+     * @return
+     */
     public ScreenName getNextScreen() {
         ScreenName temp = nextScreen;
         nextScreen = ScreenName.LOADING;
         return temp;
     }
 
+    /**
+     * Initialisation
+     */
     public void init(){
         loadingSize = 0;
 

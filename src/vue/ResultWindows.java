@@ -11,6 +11,11 @@ import modele.ResultsViewer;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * Fenetre d'affichage des resultats
+ * @see PApplet
+ * @see HistoryScreen
+ */
 public class ResultWindows extends PApplet {
 	//Attributs
 	private boolean isVisible;
@@ -63,17 +68,27 @@ public class ResultWindows extends PApplet {
 
 	}
 
+	/**
+	 *
+	 * @param resultat
+	 */
 	public void setResultat(Resultat resultat){
 		this.resultat=resultat;
 		resultsViewer.init(resultat);
 
 	}
 
+	/**
+	 *
+	 */
 	public void mousePressed(){
 		resultsViewer.clickParsing();
 		backButton.clickParsing();
 	}
 
+	/**
+	 *
+	 */
 	public void mouseReleased(){
 		resultsViewer.release();
 		if(backButton.release()) {
