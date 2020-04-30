@@ -9,6 +9,8 @@ import modele.Config;
 
 /**
  * Classe de control des Configs
+ * Singleton
+ * @see Config
  */
 public class ControlConfig {
 	//Attributs
