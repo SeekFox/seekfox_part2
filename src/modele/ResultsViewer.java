@@ -184,4 +184,8 @@ public class ResultsViewer {
     //	else addHistorique(this.resultat);
     //}
 
+    public void setCurrentPage(int page){
+        this.currentPage=page;
+    }
+
 }
