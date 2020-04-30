@@ -5,7 +5,10 @@
 
 package modele;
 
-public class    Detection {
+/**
+ * Classe statique de detection du curseur dans un rectangle
+ */
+public class Detection {
 
     public static boolean isPressed(int mouseX, int mouseY, int posX, int posY, int sizeX, int sizeY, boolean isCentered){
         if (!isCentered)

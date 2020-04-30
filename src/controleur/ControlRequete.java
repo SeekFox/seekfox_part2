@@ -10,7 +10,6 @@ import fr.dgac.ivy.IvyClient;
 import fr.dgac.ivy.IvyException;
 import fr.dgac.ivy.IvyMessageListener;
 import modele.*;
-import vue.ResultsScreen;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -19,7 +18,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
- * Classe de controle d'une requete
+ * Classe de controle d'une requete Ivy
  */
 public class ControlRequete {
 	//Attributs
@@ -33,6 +32,12 @@ public class ControlRequete {
 
 
 	//Constructeur
+
+	/**
+	 * Constructeur prennant en parametre le nom du Controleur et le nom du moteur C associé (Impeesa ou Akela)
+	 * @param name
+	 * @param destinataire
+	 */
 	public ControlRequete(String name, String destinataire){
 		this.name=name;
 		this.destinataire = destinataire;
@@ -44,7 +49,7 @@ public class ControlRequete {
 	 * Initialisation du bus logiciel Ivy
 	 *
 	 * @param name
-	 * @param msg☺
+	 * @param msg
 	 * @return
 	 */
 	public Ivy initBus(String name, String msg) {
@@ -81,6 +86,7 @@ public class ControlRequete {
 				}
 			});
 
+			//Acquittement
 			bus.bindMsg("^"+this.name+" type=(OK|ERROR)", new IvyMessageListener() {
 				@Override
 				public void receive(IvyClient ivyClient, String[] strings) {
@@ -229,7 +235,12 @@ public class ControlRequete {
 
 	}
 
-
+	/**
+	 * Tri des résultats après une recherche multimoteur
+	 * @param listControlRequete
+	 * @return
+	 * @throws Exception
+	 */
 	public static Resultat trierResultats(ArrayList<ControlRequete> listControlRequete) throws Exception{
 		if((listControlRequete == null) || (listControlRequete.size() == 0)){
 			throw new Exception("La liste des ControlRequete est vide");
@@ -264,7 +275,6 @@ public class ControlRequete {
 
 	/**
 	 * Lecture du resultat
-	 *
 	 * @return
 	 * @throws Exception
 	 */
@@ -272,7 +282,8 @@ public class ControlRequete {
 		if (etatRequeteIvy == EtatRequeteIvy.OK) {
 			compteur=0;
 			return resultat;
-		} else if(compteur>300){
+
+		} else if(compteur>300){						//Délai largement supérieur au temps que met une requete a avoir une réponse
 			compteur=0;
 			throw new Exception("La connexion Ivy a été rompue.");
 
@@ -301,6 +312,11 @@ public class ControlRequete {
 	}
 
 
+	/**
+	 * Renvoit la liste des fichiers textes indexés
+	 * @deprecated
+	 * @return
+	 */
 	public static ArrayList<String> getListeFichierIndexesTexte() {
 		ArrayList<String> listefichiers = new ArrayList<>();
 
@@ -323,7 +339,12 @@ public class ControlRequete {
 	}
 
 
-
+	/**
+	 * Lance une recherche complexe
+	 * @param requete
+	 * @return
+	 * @throws Exception
+	 */
 	public Resultat runRechercheComplexe(String requete) throws Exception {
 		Resultat resultat = new Resultat(requete, TypeRequete.MOTCLEF_COMPLEXE);
 
@@ -349,10 +370,12 @@ public class ControlRequete {
 			throw new IllegalArgumentException("La requete ne contient pas de polarité positive");
 		}
 
+		//Lancer les recherches simples
 		for (MotClefComplexe motClefComplexe : motClefComplexeArrayList) {
 			this.runRecherche(TypeRequete.MOTCLEF, motClefComplexe.getMot());
 
 
+			//Récupération des resultats
 			Resultat r = this.getResultat();
 
 			if(isFirstRequete){

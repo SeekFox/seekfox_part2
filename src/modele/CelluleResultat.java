@@ -5,26 +5,49 @@
 
 package modele;
 
+/**
+ * Cellule d'un resultat d'une requete
+ * @see Resultat
+ */
 public class CelluleResultat{
 	//Attributs
 	private String fichier;
 	private float score;
 
 	//Constructeur
+
+	/**
+	 * Constructeur d'une cellule
+	 * @param fichier
+	 * @param score
+	 */
 	public CelluleResultat(String fichier,float score){
 		this.fichier=fichier;
 		this.score = score;
 	}
 
 	//Méthodes
+
+	/**
+	 *
+	 * @return
+	 */
 	public String getFichier() {
 		return fichier;
 	}
 
+	/**
+	 *
+	 * @return
+	 */
 	public float getScore() {
 		return score;
 	}
 
+	/**
+	 * Ajoute score au score de la cellule
+	 * @param score
+	 */
 	public void addScore(float score){
 		this.score+=score;
 	}

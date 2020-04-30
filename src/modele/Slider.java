@@ -7,6 +7,10 @@ package modele;
 
 import processing.core.PApplet;
 
+/**
+ * Classe d'un slider
+ * @see PApplet
+ */
 public class Slider {
     private int posX;
     private int posY;
@@ -19,6 +23,15 @@ public class Slider {
 
     private boolean isPressed = false;
 
+    /**
+     * Constructeur d'un slider
+     * @param posX
+     * @param posY
+     * @param sizeX
+     * @param valMin
+     * @param valMax
+     * @param app
+     */
     public Slider(int posX, int posY, int sizeX, float valMin, float valMax, PApplet app) {
         p = app;
         this.posX = posX;
@@ -30,6 +43,9 @@ public class Slider {
     }
 
 
+    /**
+     * Affichage du slider
+     */
     public void display() {
 
         //CLICK AND DRAG CALCULATIONS

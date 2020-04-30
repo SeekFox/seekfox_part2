@@ -7,6 +7,9 @@ package vue;
 
 import processing.core.PApplet;
 
+/**
+ * ScrollBar
+ */
 public class ScrollBar {
     PApplet p;
     public int posx;
@@ -15,7 +18,15 @@ public class ScrollBar {
     public int sy;
 
     private boolean isPressed = false;
-    //
+
+    /**
+     *
+     * @param posx
+     * @param posy
+     * @param sx
+     * @param sy
+     * @param p
+     */
     public ScrollBar(int posx, int posy, int sx, int sy,PApplet p){
         this.p = p;
         this.posx = posx;
@@ -24,6 +35,9 @@ public class ScrollBar {
         this.sy = sy;
     }
 
+    /**
+     * Affichage
+     */
     public void display(){
         if (isPressed){
             if(posy >= 0 && posy <= p.height){
@@ -44,18 +58,34 @@ public class ScrollBar {
         p.rect(posx,posy,sx,sy,5);
     }
 
+    /**
+     *
+     */
     public void clickParsing(){
         isPressed();
     }
 
+    /**
+     *
+     */
     public void isPressed(){
         isPressed = p.mouseX >= posx && p.mouseX <= (posx + sx) && p.mouseY >= posy && p.mouseY <= (posy + sy);
     }
 
+    /**
+     *
+     */
     public void release(){
         isPressed = false;
     }
 
+    /**
+     *
+     * @param X
+     * @param Y
+     * @param x
+     * @param y
+     */
     public void reset(int X,int Y, int x ,int y){
         this.posx = X;
         this.posy = Y;
@@ -63,34 +93,66 @@ public class ScrollBar {
         this.sy = y;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPosx() {
         return posx;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPosy() {
         return posy;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getSx() {
         return sx;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getSy() {
         return sy;
     }
 
+    /**
+     *
+     * @param posx
+     */
     public void setPosx(int posx) {
         this.posx = posx;
     }
 
+    /**
+     *
+     * @param posy
+     */
     public void setPosy(int posy) {
         this.posy = posy;
     }
 
+    /**
+     *
+     * @param sx
+     */
     public void setSx(int sx) {
         this.sx = sx;
     }
 
+    /**
+     *
+     * @param sy
+     */
     public void setSy(int sy) {
         this.sy = sy;
     }

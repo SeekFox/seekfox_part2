@@ -14,6 +14,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Ecran des resultats
+ */
 public class ResultsScreen {
     private PApplet p;
     private ScreenName nextScreen = ScreenName.RESULTS;
@@ -23,6 +26,10 @@ public class ResultsScreen {
     private Desktop desktop = Desktop.getDesktop();
     private modele.Resultat results;
 
+    /**
+     *
+     * @param p
+     */
     public ResultsScreen(PApplet p) {
         this.p = p;
         resultsViewer = new ResultsViewer(0,0,p.width, p.height - 50,p);
@@ -30,6 +37,9 @@ public class ResultsScreen {
         backButton = new Button(p.width-110, p.height-40, 100, 30, 255,"Retour au menu", false, p);
     }
 
+    /**
+     * Affichage
+     */
     public void draw() {
         p.background(200);
         resultsViewer.draw();
@@ -41,6 +51,9 @@ public class ResultsScreen {
         backButton.display();
     }
 
+    /**
+     *
+     */
     public void mousePressed(){
         resultsViewer.clickParsing();
 
@@ -51,6 +64,9 @@ public class ResultsScreen {
         backButton.clickParsing();
     }
 
+    /**
+     *
+     */
     public void mouseReleased(){
         resultsViewer.release();
         if(saveButton.release()) {
@@ -68,12 +84,20 @@ public class ResultsScreen {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public ScreenName getNextScreen() {
         ScreenName temp = nextScreen;
         nextScreen = ScreenName.RESULTS;
         return temp;
     }
 
+    /**
+     * Initialisation
+     * @param searchResults
+     */
     public void init(modele.Resultat searchResults){
         resultsViewer.init(searchResults);
         results = searchResults;

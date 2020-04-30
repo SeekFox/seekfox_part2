@@ -12,6 +12,9 @@ import processing.core.PImage;
 
 import static processing.core.PApplet.println;
 
+/**
+ * Ecran principal
+ */
 public class MainScreen {
     PApplet p;
     Button launchButton;
@@ -21,6 +24,10 @@ public class MainScreen {
 
     private PImage logo;
 
+    /**
+     *
+     * @param p
+     */
     public MainScreen(PApplet p) {
         this.p = p;
         launchButton = new Button(p.width / 2, p.height / 2, p.width / 4, 40, p.color(255), "Chercher", true, p);
@@ -30,6 +37,9 @@ public class MainScreen {
         logo = p.loadImage("doc/seekfox.png");
     }
 
+    /**
+     * Affichage
+     */
     public void draw() {
         p.background(200);
         launchButton.display();
@@ -39,12 +49,18 @@ public class MainScreen {
         p.image(logo,p.width/2 - 75,50,150,150);
     }
 
+    /**
+     *
+     */
     public void mousePressed() {
         launchButton.clickParsing();
         historiqueButton.clickParsing();
         settingsButton.clickParsing();
     }
 
+    /**
+     *
+     */
     public void mouseReleased() {
         if (launchButton.release())
             nextScreen = ScreenName.SEARCH_CONFIG_TXT;
@@ -54,10 +70,17 @@ public class MainScreen {
             nextScreen = ScreenName.ADMIN_CONNECTION;
     }
 
+    /**
+     *
+     */
     public void keyPressed() {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public ScreenName getNextScreen() {
         ScreenName temp = nextScreen;
         nextScreen = ScreenName.MAIN;

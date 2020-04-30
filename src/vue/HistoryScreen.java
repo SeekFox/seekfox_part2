@@ -11,6 +11,9 @@ import processing.core.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+/**
+ * Ecran d'historique
+ */
 public class HistoryScreen {
     public ScrollBar scrollbar;
     public int k = 0 , l = 0;
@@ -30,6 +33,11 @@ public class HistoryScreen {
    public ScreenName nextScreen = ScreenName.HISTORY;
 
     //constructeur
+
+    /**
+     *
+     * @param p
+     */
     public HistoryScreen(PApplet p){
         this.p = p;
         scrollbar = new ScrollBar(p.width - 20 , 0 , 19 , 20, p);
@@ -58,7 +66,10 @@ public class HistoryScreen {
         plusButton = new Button(p.width - 120,p.height - 60, 100,40,p.color(255),"Plus",false,p);
     }
 
-    //méthode quisert à sauvegarder les recherches
+    /**
+     * Méthode qui sert à sauvegarder les recherches
+     * @param recherche
+     */
     public void sauvegarderRecherche(Resultat recherche){
         String requete;
 
@@ -94,6 +105,9 @@ public class HistoryScreen {
         previouspy += 45;
     }
 
+    /**
+     * Initialisation
+     */
     public void init(){
         if(Historique.getHistorique()!=null){
             listeDeRecherches.clear();
@@ -107,6 +121,9 @@ public class HistoryScreen {
         }
     }
 
+    /**
+     * Affichage
+     */
     public void draw(){
         p.background(200);
         if(boutonsDeRecherches.size() > 9){
@@ -117,6 +134,9 @@ public class HistoryScreen {
 
     }
 
+    /**
+     *
+     */
     public void mousePressed(){
 
         for(int i = 0; i < boutonsDeRecherches.size();i++){
@@ -128,6 +148,9 @@ public class HistoryScreen {
         scrollbar.clickParsing();
     }
 
+    /**
+     *
+     */
     public void mouseReleased(){
         if(buttonIsReleased(boutonsDeRecherches)){
             //nextScreen = ScreenName.RESULTS;
@@ -142,12 +165,21 @@ public class HistoryScreen {
         k = 0;
     }
 
+    /**
+     *
+     * @return
+     */
     public ScreenName getNextScreen() {
         ScreenName temp = nextScreen;
         nextScreen = ScreenName.HISTORY;
         return temp;
     }
 
+    /**
+     *
+     * @param boutonsDeRecherches
+     * @return
+     */
     public boolean buttonIsReleased(ArrayList<Button> boutonsDeRecherches){
         boolean temp = false;
         for(int i=0 ; i< boutonsDeRecherches.size(); i++){
@@ -166,6 +198,9 @@ public class HistoryScreen {
         return temp;
     }
 
+    /**
+     *
+     */
     private void scrolldown(){
         scrollbar.setSy(p.height - 16 * boutonsDeRecherches.size());
         if( l < 0) l = 0;

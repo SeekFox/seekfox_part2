@@ -14,6 +14,9 @@ import vue.FileChooser.FileChooser;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * Ecrand e recherche texte
+ */
 public class SearchConfigTxtScreen {
 
     private PApplet p;
@@ -33,6 +36,11 @@ public class SearchConfigTxtScreen {
 
     private ScreenName nextScreen = ScreenName.SEARCH_CONFIG_TXT;
 
+    /**
+     *
+     * @param p
+     * @param listControlRequete
+     */
     public SearchConfigTxtScreen(PApplet p, ArrayList<ControlRequete> listControlRequete){
         this.p = p;
         this.listControlRequete = listControlRequete;
@@ -46,6 +54,9 @@ public class SearchConfigTxtScreen {
         retour = new Button(10, p.height-50, 100, 40, 255, "Retour", false, p);
     }
 
+    /**
+     *
+     */
     private void drawCurrentOnglet(){
         p.rectMode(p.CORNER);
         p.fill(100);
@@ -55,6 +66,9 @@ public class SearchConfigTxtScreen {
         p.text("Texte",0, 0, p.width/3f, 40);
     }
 
+    /**
+     * Affichage
+     */
     public void draw(){
 
         p.background(200);
@@ -70,6 +84,9 @@ public class SearchConfigTxtScreen {
         p.text("Recherche multimoteur", p.width/2f, p.height/2f + 40);
     }
 
+    /**
+     *
+     */
     public void mousePressed(){
         ongletImg.clickParsing();
         ongletSnd.clickParsing();
@@ -80,6 +97,9 @@ public class SearchConfigTxtScreen {
         searchFile.clickParsing();
     }
 
+    /**
+     *
+     */
     public void mouseReleased(){
         if(ongletImg.release())
             nextScreen = ScreenName.SEARCH_CONFIG_IMG;
@@ -110,10 +130,18 @@ public class SearchConfigTxtScreen {
         multimoteur.release();
     }
 
+    /**
+     *
+     * @param key
+     */
     public void keyPressed(char key){
         searchBox.keyPressedParsing(key);
     }
 
+    /**
+     *
+     * @return
+     */
     public ScreenName getNextScreen(){
         ScreenName temp = nextScreen;
         nextScreen = ScreenName.SEARCH_CONFIG_TXT;
@@ -121,11 +149,17 @@ public class SearchConfigTxtScreen {
     }
 
 
+    /**
+     * Initialisation
+     */
     public void init() {
         searchBox.resetText();
         this.isRechercheLaunch = false;
     }
 
+    /**
+     * Lance la recherche texte
+     */
     public void runRecherche(){
         TypeRecherche.getINSTANCE().setMultimoteur(this.multimoteur.isTicked());
 
@@ -168,6 +202,10 @@ public class SearchConfigTxtScreen {
         }
     }
 
+    /**
+     * Met en parametre de recherche le fichier
+     * @param file
+     */
     public void setArgumentRecherche(File file){
         searchBox.setText(file.getName());
         isRechercheTexte = true;

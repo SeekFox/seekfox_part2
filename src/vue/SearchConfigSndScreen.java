@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import vue.FileChooser.FileChooseType;
 import vue.FileChooser.FileChooser;
 
-
+/**
+ * Ecran de recherche Son
+ */
 public class SearchConfigSndScreen {
 
     private PApplet p;
@@ -32,6 +34,11 @@ public class SearchConfigSndScreen {
     private File file = null;
     private float posY = 0;
 
+    /**
+     *
+     * @param p
+     * @param listControlRequete
+     */
     public SearchConfigSndScreen(PApplet p, ArrayList<ControlRequete> listControlRequete){
         this.p = p;
         this.listControlRequete = listControlRequete;
@@ -44,6 +51,9 @@ public class SearchConfigSndScreen {
         multimoteur = new TickBox(p.width/2 - 75, p.height/2+25,15,15,true, p);
     }
 
+    /**
+     *
+     */
     private void drawCurrentOnglet(){
         p.rectMode(p.CORNER);
         p.fill(100);
@@ -53,6 +63,9 @@ public class SearchConfigSndScreen {
         p.text("Son",2*(p.width/3f), 0, p.width/3f, 40);
     }
 
+    /**
+     * Affichage
+     */
     public void draw(){
         p.background(200);
         p.text("Glissez et déposez le fichier à rechercher", p.width/2f, p.height/2f);
@@ -86,6 +99,9 @@ public class SearchConfigSndScreen {
 
     }
 
+    /**
+     *
+     */
     public void mousePressed(){
         ongletImg.clickParsing();
         ongletTxt.clickParsing();
@@ -95,6 +111,9 @@ public class SearchConfigSndScreen {
         validerRecherche.clickParsing();
     }
 
+    /**
+     *
+     */
     public void mouseReleased(){
         if(ongletImg.release())
             nextScreen = ScreenName.SEARCH_CONFIG_IMG;
@@ -118,6 +137,10 @@ public class SearchConfigSndScreen {
         multimoteur.release();
     }
 
+    /**
+     *
+     * @return
+     */
     public ScreenName getNextScreen(){
         ScreenName temp = nextScreen;
         nextScreen = ScreenName.SEARCH_CONFIG_SND;
@@ -125,6 +148,9 @@ public class SearchConfigSndScreen {
     }
 
 
+    /**
+     * Lance la recherche
+     */
     public void runRecherche(){
         TypeRecherche.getINSTANCE().setMultimoteur(this.multimoteur.isTicked());
 
@@ -142,6 +168,10 @@ public class SearchConfigSndScreen {
         }
     }
 
+    /**
+     * Ajoute en parametre de la recherche le fichier
+     * @param file
+     */
     public void setArgumentRecherche(File file){
          this.file = file;
     }

@@ -11,6 +11,9 @@ import processing.core.PApplet;
 
 import java.util.ArrayList;
 
+/**
+ * Ecran des configurations
+ */
 public class ConfigScreen {
 
     PApplet p;
@@ -34,6 +37,11 @@ public class ConfigScreen {
     private ArrayList<ControlRequete> controlRequeteArrayList;
 
 
+    /**
+     * Constructeur
+     * @param p
+     * @param controlRequeteArrayList
+     */
     public ConfigScreen(PApplet p, ArrayList<ControlRequete> controlRequeteArrayList){
         this.p = p;
         config.loadConfig();
@@ -61,6 +69,9 @@ public class ConfigScreen {
         this.controlRequeteArrayList = controlRequeteArrayList;
     }
 
+    /**
+     * Affichage
+     */
     public void draw(){
         p.background(200);
 
@@ -87,6 +98,9 @@ public class ConfigScreen {
 
     }
 
+    /**
+     *
+     */
     public void mousePressed(){
         sliderTexte.clickParsing();
         sliderImage.clickParsing();
@@ -95,6 +109,9 @@ public class ConfigScreen {
         backButton.clickParsing();
     }
 
+    /**
+     *
+     */
     public void mouseReleased(){
         sliderTexte.release();
         sliderImage.release();
@@ -117,6 +134,10 @@ public class ConfigScreen {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public ScreenName getNextScreen() {
         ScreenName temp = nextScreen;
         nextScreen = ScreenName.CONFIG;
